@@ -1,33 +1,40 @@
 <p align="center"><img src="/images/logo.png" alt=""></p>
 <h1 align="center">What the f*ck Python! 😱</h1>
-<p align="center">Exploring and understanding Python through surprising snippets.</p>
+<p align="center">Cùng khám phá và tìm hiểu Python thông qua các đoạn mã khiến bạn bất ngờ.</p>
 
-Translations: [Chinese 中文](https://github.com/leisurelicht/wtfpython-cn) | [Add translation](https://github.com/satwikkansal/wtfpython/issues/new?title=Add%20translation%20for%20[LANGUAGE]&body=Expected%20time%20to%20finish:%20[X]%20weeks.%20I%27ll%20start%20working%20on%20it%20from%20[Y].)
 
-Other modes: [Interactive](https://colab.research.google.com/github/satwikkansal/wtfpython/blob/master/irrelevant/wtf.ipynb) | [CLI](https://pypi.python.org/pypi/wtfpython)
+Các bản dịch tiếng nước ngoài khác: [Tiếng Trung 中文](https://github.com/leisurelicht/wtfpython-cn) | [Thêm bản dịch](https://github.com/satwikkansal/wtfpython/issues/new?title=Add%20translation%20for%20[LANGUAGE]&body=Expected%20time%20to%20finish:%20[X]%20weeks.%20I%27ll%20start%20working%20on%20it%20from%20[Y].)
 
-Python, being a beautifully designed high-level and interpreter-based programming language, provides us with many features for the programmer's comfort. But sometimes, the outcomes of a Python snippet may not seem obvious at first sight.
+Bạn có thể tham khảo các đoạn mã với: [Chế độ trực quan](https://colab.research.google.com/github/satwikkansal/wtfpython/blob/master/irrelevant/wtf.ipynb) | [Giao diện dòng lệnh](https://pypi.python.org/pypi/wtfpython)
 
-Here's a fun project attempting to explain what exactly is happening under the hood for some counter-intuitive snippets and lesser-known features in Python.
 
-While some of the examples you see below may not be WTFs in the truest sense, but they'll reveal some of the interesting parts of Python that you might be unaware of. I find it a nice way to learn the internals of a programming language, and I believe that you'll find it interesting too!
+Python là một ngôn ngữ cấp cao, với các mã được thông dịch thay vì biên dịch như các ngôn ngữ khác như C hay Java. Python có rất nhiều các tính năng giúp việc lập trình dễ dàng, thuận tiện. Tuy nhiên, các đoạn mã viết bằng Python thỉnh thoảng cho ra kết quả không rõ ràng, gây khó hiểu khi mới nhìn vào.
 
-If you're an experienced Python programmer, you can take it as a challenge to get most of them right in the first attempt. You may have already experienced some of them before, and I might be able to revive sweet old memories of yours! :sweat_smile:
 
-PS: If you're a returning reader, you can learn about the new modifications [here](https://github.com/satwikkansal/wtfpython/releases/).
+wtfpython được tạo ra với mong muốn giải thích chính xác cách hoạt động của các đoạn mã thoạt nhìn khó hiểu và các tính năng ít được biết tới trong Python.
 
-So, here we go...
 
-# Table of Contents
+Một vài ví dụ có thể không làm bạn quá ngạc nhiên, tuy vậy bạn sẽ khám phá được những điều hay ho về Python mà có thể bạn chưa từng biết tới. Học lập trình thông qua những ví dụ như vậy giúp bạn hiểu sâu hơn những thứ nằm bên trong của một ngôn ngữ lập trình, khi đó bạn sẽ thấy hứng thú hơn trong quá trình học.
 
+
+Nếu độc giả là một lập trình viên có thâm niên, hãy thử thức mình với các đoạn mã sắp tới, cố gắng làm đúng mỗi thử thách ngay trong lần đầu tiên. Độc giả có thể đã thử quả một vài trong số các bài toán trước đó, đọc và làm các bài toán dưới đây có thể giúp bạn ôn lại chúng.
+
+
+PS: Nếu bạn đã đọc bài này trước đó, bạn có thể muốn xem những thay đổi mới [ở đây](https://github.com/satwikkansal/wtfpython/releases/).
+
+
+
+Nào ta bắt đầu ...
+
+# Những nội dung chính
 <!-- Generated using "markdown-toc -i README.md --maxdepth 3"-->
 
 <!-- toc -->
 
-- [Structure of the Examples](#structure-of-the-examples)
+- [Cấu trúc của các ví dụ](#structure-of-the-examples)
     + [▶ Some fancy Title](#-some-fancy-title)
-- [Usage](#usage)
-- [👀 Examples](#-examples)
+- [Cách sử dụng](#usage)
+- [👀 Các ví dụ](#-examples)
   * [Section: Strain your brain!](#section-strain-your-brain)
     + [▶ First things first! *](#-first-things-first-)
     + [▶ Strings can be tricky sometimes](#-strings-can-be-tricky-sometimes)
