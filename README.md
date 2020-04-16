@@ -108,74 +108,72 @@ Nào ta bắt đầu ...
 
 <!-- tocstop -->
 
-# Structure of the Examples
+# Cấu trúc của các ví dụ
 
-All the examples are structured like below:
-
-> ### ▶ Some fancy Title
+Tất cả các các ví dụ được trình bày với cấu trúc như sau:
+> ### ▶ Một tiêu đề hấp dẫn
 >
 > ```py
-> # Set up the code.
-> # Preparation for the magic...
+> # Đoạn mã tạo dựng ví dụ.
+> # Đoạn mã chủ thể cần khám phá...
 > ```
 >
-> **Output (Python version(s)):**
+> **Kết quả (Các phiên bản Python):**
 >
 > ```py
-> >>> triggering_statement
-> Some unexpected output
+> >>> câu lệnh kích hoạt?
+> Một vài kết quả bất ngờ, không như mong đợi
 > ```
-> (Optional): One line describing the unexpected output.
+> (Có thể có hay không): Một dòng mô tả kết quả
 >
 >
-> #### 💡 Explanation:
+> #### 💡 Giải thích:
 >
-> * Brief explanation of what's happening and why is it happening.
+> * Giải thích những điều đang diễn ra và tại sao.
 > ```py
-> # Set up code
-> # More examples for further clarification (if necessary)
+> # Đoạn mã tạo dựng ví dụ
+> # Trong trường hợp cần thiết, chúng tôi liệt kê thêm nhiều ví dụ khác để giúp bạn hiểu rõ hơn
 > ```
-> **Output (Python version(s)):**
+> **Kết quả (Các phiên bản Python):**
 >
 > ```py
 > >>> trigger # some example that makes it easy to unveil the magic
+> >>> trigger # Một vài ví dụ giúp bạn hiểu các đoạn mã
 > # some justified output
 > ```
 
-**Note:** All the examples are tested on Python 3.5.2 interactive interpreter, and they should work for all the Python versions unless explicitly specified before the output.
+**Lưu ý:** Tất cả các ví dụ đã được chứng minh chạy thành công trên trình thông dịch Python 3.5.2 chế độ tương tác, với các phiên bản Python khác các ví dụ sẽ vẫn chạy bình thường, ngoại trừ một số ví dụ chúng tôi sẽ lưu ý trước phần kết quả.
+# Cách dùng các ví dụ
 
-# Usage
-
-A nice way to get the most out of these examples, in my opinion, is to read them chronologically, and for every example:
-- Carefully read the initial code for setting up the example. If you're an experienced Python programmer, you'll successfully anticipate what's going to happen next most of the time.
-- Read the output snippets and,
-  + Check if the outputs are the same as you'd expect.
-  + Make sure if you know the exact reason behind the output being the way it is.
-    - If the answer is no (which is perfectly okay), take a deep breath, and read the explanation (and if you still don't understand, shout out! and create an issue [here](https://github.com/satwikkansal/wtfpython/issues/new)).
-    - If yes, give a gentle pat on your back, and you may skip to the next example.
-
-PS: You can also read WTFPython at the command line using the [pypi package](https://pypi.python.org/pypi/wtfpython),
+Theo tôi, để học các ví dụ trong bài, bạn nên đọc theo trình tự thời gian, và đối với mỗi ví dụ hãy:
+- Đọc kĩ đoạn mã tạo dựng nên ví dụ. Nếu bạn đã lập trình lâu rồi, bạn sẽ đoán được những điều sắp tới ngay.
+- Đọc kết quả của các ví dụ và thực hiện hai việc sau:
+  + Kiểm tra xem kết quả có giống như bạn nghĩ hay không.
+  + Một khi đọc xong, hãy hỏi chính bạn xem mình đã hiểu thông suốt lý do mà có kết quả như vậy chưa.
+    - Nếu câu trả lời là "chưa, tôi chưa hiểu" (không sao cả), hít một hơi thật sau, và đọc phần giải thích (nếu bạn vẫn chưa hiểu, hãy tạo một issue [ở dây](https://github.com/satwikkansal/wtfpython/issues/new)).
+    - Nếu câu trả lời là "có, tôi đã hiểu", bạn có thể đọc ví dụ tiếp theo.
+PS: Bạn có thể đọc WTFPython dùng chế độ dòng lệnh sử dụng [pypi package](https://pypi.python.org/pypi/wtfpython),
 ```sh
 $ pip install wtfpython -U
 $ wtfpython
 ```
 ---
 
-# 👀 Examples
+# 👀 Các ví dụ
 
-## Section: Strain your brain!
+## Chương 1: Hack não!
 
-### ▶ First things first! *
+### ▶ Món khai vị! *
 
 <!-- Example ID: d3d73936-3cf1-4632-b5ab-817981338863 -->
 <!-- read-only -->
 
 For some reason, the Python 3.8's "Walrus" operator (`:=`) has become quite popular. Let's check it out,
-
+Kí hiệu "con hà mã" ("Walrus" operator), được giới thiệu trong phiên bản Python 3.8 đã trở nên khá phổ biến vì một vài lý do. Hãy thử qua nó xem
 1\.
 
 ```py
-# Python version 3.8+
+# Phiên bản Python 3.8+
 
 >>> a = "wtf_walrus"
 >>> a
@@ -185,7 +183,7 @@ For some reason, the Python 3.8's "Walrus" operator (`:=`) has become quite popu
 File "<stdin>", line 1
     a := "wtf_walrus"
       ^
-SyntaxError: invalid syntax
+SyntaxError: invalid syntax (Lỗi về cú pháp: Cú pháp không hợp lệ)
 
 >>> (a := "wtf_walrus") # This works though
 >>> a
@@ -195,7 +193,7 @@ SyntaxError: invalid syntax
 2 \.
 
 ```py
-# Python version 3.8+
+# Phiên bản Python 3.8+
 
 >>> a = 6, 9
 >>> a
@@ -212,47 +210,46 @@ SyntaxError: invalid syntax
   File "<stdin>", line 1
     (a, b = 6, 9)
           ^
-SyntaxError: invalid syntax
+SyntaxError: invalid syntax (Lỗi cú pháp: cú pháp không hợp lệ)
 
->>> (a, b := 16, 19) # This prints out a weird 3-tuple
+>>> (a, b := 16, 19) # Câu lệnh này in ra một tuple có 3 phần tử không như mong đợi (đáng lẽ là 2 phần tử 16 và 19)
 (6, 16, 19)
 
->>> a # a is still unchanged?
+>>> a # a được được gán lại giá trị trước đó, nhưng giá trị phía dưới vẫn giữ nguyên, là sao?
 6
 
->>> b
+>>> b 
 16
 ```
 
 
 
-#### 💡 Explanation
+#### 💡 Giải thích
 
-**Quick walrus operator refresher**
+**Ôn lại một chút về kí hiệu "con hà mã"**
 
-The Walrus operator (`:=`) was introduced in Python 3.8, it can be useful in situations where you'd want to assign values to variables within an expression.
+Kí hiệu con hà mã (`:=`) lần đầu tiên được giới thiệu trong phiên bản Python 3.8, nó hữu dụng khi bạn muốn gán giá trị cho các biến bên trong một biểu diễn (expression).
 
 ```py
 def some_func():
-        # Assume some expensive computation here
+        # Giả định rằng ta thực hiện một vài phép tính tốn nhiều tài nguyên (thời gian, I/O) ở đây
         # time.sleep(1000)
         return 5
 
-# So instead of,
+# Thay vì thực hiện việc kiểm tra kết quả trả về của hàm trên,
 if some_func():
-        print(some_func()) # Which is bad practice since computation is happening twice
-
-# or
+        print(some_func()) # Và gọi lại hàm đó trong thân điều kiện, nghĩa là thực hiện các tính toán trong hàm 2 lần.
+# Hay tốt hơn, ta có thể tiết kiệm một lời gọi hàm thông qua việc lấy về giá trị trả về ở một lần gọi và thực hiện so sánh trên giá trị đó:
 a = some_func()
 if a:
     print(a)
 
-# Now you can concisely write
+# Dùng kĩ hiệu con hà mã bạn có thể viết ngắn gọn hơn như dưới đây, phép gán được sử dụng như mệnh đề điều kiện và ta có thể sử dụng biến được gán giá trị trong thân câu điều kiện if:
 if a := some_func():
         print(a)
 ```
 
-**Output (> 3.8):**
+**Kết quả (> 3.8):**
 
 ```py
 5
@@ -261,6 +258,8 @@ if a := some_func():
 ```
 
 This saved one line of code, and implicitly prevented invoking `some_func` twice.
+
+Sử dụng kí hiệu con hà mã giúp ta rút ngắn được đoạn mã đi một dòng và tránh được việc gọi `some_func` hai lần.
 
 - Unparenthesized "assignment expression" (use of walrus operator), is restricted at the top level, hence the `SyntaxError` in the `a := "wtf_walrus"` statement of the first snippet. Parenthesizing it worked as expected and assigned `a`.  
 
