@@ -203,10 +203,10 @@ SyntaxError: invalid syntax (Lỗi về cú pháp: Cú pháp không hợp lệ)
 >>> a
 6
 
->>> a, b = 6, 9 # Typical unpacking
+>>> a, b = 6, 9 # Phân rã (unpacking) các giá trị, hay còn gọi là câu lệnh gán đa giá trị (multiple assignments)
 >>> a, b
 (6, 9)
->>> (a, b = 16, 19) # Oops
+>>> (a, b = 16, 19) # Có 
   File "<stdin>", line 1
     (a, b = 6, 9)
           ^
@@ -257,33 +257,32 @@ if a := some_func():
 5
 ```
 
-This saved one line of code, and implicitly prevented invoking `some_func` twice.
-
 Sử dụng kí hiệu con hà mã giúp ta rút ngắn được đoạn mã đi một dòng và tránh được việc gọi `some_func` hai lần.
+  
+- Ta chỉ được sử dụng phép gán có kí hiệu hà mã ở cấp độ cao nhất do đó lỗi cú pháp (`SyntaxError`) trong câu lệnh `a := "wtf_walrus"` xảy ra. Khi ta cho phép gán này vào hai dấu ngoặc đơn `()` thì sẽ không bị lỗi nữa.  
 
-- Unparenthesized "assignment expression" (use of walrus operator), is restricted at the top level, hence the `SyntaxError` in the `a := "wtf_walrus"` statement of the first snippet. Parenthesizing it worked as expected and assigned `a`.  
-
-- As usual, parenthesizing of an expression containing `=` operator is not allowed. Hence the syntax error in `(a, b = 6, 9)`. 
+- Thông thường, câu lệnh có dấu bằng `=` sẽ không được phép đặt trong dấu ngoặc đơn. Do vậy câu lệnh `(a, b = 6, 9)` bị lỗi cú pháp. 
 
 - The syntax of the Walrus operator is of the form `NAME:= expr`, where `NAME` is a valid identifier, and `expr` is a valid expression. Hence, iterable packing and unpacking are not supported which means, 
 
-  - `(a := 6, 9)` is equivalent to `((a := 6), 9)` and ultimately `(a, 9) ` (where `a`'s value is 6')
+- Cú pháp của kí hiệu gán con hà mã như sau: `NAME:= expr`, ở đó `NAME` là một tên biến hợp lệ, và `expr` là một biểu diễn hợp lệ. Do vậy, việc sử dụng các phép gộp (packing) hay phân rã trong trường hợp này sẽ không được hỗ trợ, nghãi là 
+  - `(a := 6, 9)` tương đương với `((a := 6), 9)` và buổi diễn cuối cùng là  `(a, 9) ` (ở đó giá trị của  `a` là 6). Bạn có thể kiểm tra lại với các dòng lệnh dưới đây
 
     ```py
     >>> (a := 6, 9) == ((a := 6), 9)
-    True
+    True # Biểu diễn bên trái bằng bên phải do phép phân rã không được phép (như đã giải thích phía trên)
     >>> x = (a := 696, 9)
     >>> x
     (696, 9)
-    >>> x[0] is a # Both reference same memory location
+    >>> x[0] is a # Cả x[0] và a cùng trỏ về chung một địa chỉ trong bộ nhớ 
     True
     ```
 
-  - Similarly, `(a, b := 16, 19)` is equivalent to `(a, (b := 16), 19)` which is nothing but a 3-tuple. 
+  - Tương tự, `(a, b := 16, 19)` tương đương với `(a, (b := 16), 19)` khi ta có 3 giá trị trong một tuple. 
 
 ---
 
-### ▶ Strings can be tricky sometimes
+### ▶ Strings thỉnh thoảng có thể khá oái oăm
 
 <!-- Example ID: 30f1d3fc-e267-4b30-84ef-4d9e7091ac1a --->
 1\.
@@ -292,7 +291,7 @@ Sử dụng kí hiệu con hà mã giúp ta rút ngắn được đoạn mã đi
 >>> a = "some_string"
 >>> id(a)
 140420665652016
->>> id("some" + "_" + "string") # Notice that both the ids are same.
+>>> id("some" + "_" + "string") # Để ý rằng cả hai giá trị id đều giống nhau (140420665652016).
 140420665652016
 ```
 
@@ -301,12 +300,12 @@ Sử dụng kí hiệu con hà mã giúp ta rút ngắn được đoạn mã đi
 >>> a = "wtf"
 >>> b = "wtf"
 >>> a is b
-True
+True # a và b cùng trỏ tới một địa chỉ trong bộ nhớ
 
 >>> a = "wtf!"
 >>> b = "wtf!"
 >>> a is b
-False
+False # a và b không cùng trỏ tới một địa chỉ trong bộ nhớ
 
 ```
 
@@ -314,26 +313,27 @@ False
 
 ```py
 >>> a, b = "wtf!", "wtf!"
->>> a is b # All versions except 3.7.x
-True
+>>> a is b # Áp dụng cho tất cả các phiên bản Python, ngoại trừ các phiên bản 3.7.x
+True # a và b cùng trỏ tới một địa chỉ trong bộ nhớ
 
 >>> a = "wtf!"; b = "wtf!"
->>> a is b # This will print True or False depending on where you're invoking it (python shell / ipython / as a script)
+>>> a is b # Kết quả là True hoặc False tuỳ thuộc vào môi trường bên chạy đoạn mã (python shell / ipython / as a script)
 False
 ```
 
 ```py
-# This time in file some_file.py
+# Tạo một file tên some_file.py, chứa ba dòng code dưới đây:
 a = "wtf!"
 b = "wtf!"
 print(a is b)
 
-# prints True when the module is invoked!
+# Khi file này được chạy kết quả in ra là True
+
 ```
 
 4\.
 
-**Output (< Python3.7 )**
+**Kết quả (< Python3.7 )**
 
 ```py
 >>> 'a' * 20 is 'aaaaaaaaaaaaaaaaaaaa'
@@ -342,7 +342,7 @@ True
 False
 ```
 
-Makes sense, right?
+Có gì đó sai sai?
 
 #### 💡 Explanation:
 + The behavior in first and second snippets is due to a CPython optimization (called string interning) that tries to use existing immutable objects in some cases rather than creating a new object every time.
