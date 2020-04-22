@@ -3500,25 +3500,27 @@ Let's increase the number of iterations by a factor of 10.
 ---
 ---
 
-# Contributing
+# Đóng góp
 
-A few ways in which you can contribute to wtfpython,
+Bạn có thể đóng góp cho wtfpython theo những cách dưới đây
 
-- Suggesting new examples
-- Helping with translation (See [issues labeled translation](https://github.com/satwikkansal/wtfpython/issues?q=is%3Aissue+is%3Aopen+label%3Atranslation))
+- Cho chúng tôi biết những ví dụ mới
+- Dịch wtfpython sang các ngôn gnuwx khác (Xem tại [issues labeled translation](https://github.com/satwikkansal/wtfpython/issues?q=is%3Aissue+is%3Aopen+label%3Atranslation))
 - Minor corrections like pointing out outdated snippets, typos, formatting errors, etc.
+- Sửa các lỗi phụ khác như các đoạn mã bị lỗi thời, các lỗi cú pháp, lỗi định dạng, vân vân.
 - Identifying gaps (things like inadequate explanation, redundant examples, etc.)
-- Any creative suggestions to make this project more fun and useful
+- Tìm những thiếu sót (ví dụ như giải thích chưa cặn kẽ, các ví dụ không cần thiết, vân vân.)
+- Bất cứ đề xuất sáng tạo nào cũng làm cho wtfpython thú vị và hữu dụng hơn
 
 Please see [CONTRIBUTING.md](/CONTRIBUTING.md) for more details. Feel free to create a new [issue](https://github.com/satwikkansal/wtfpython/issues/new) to discuss things.
 
 PS: Please don't reach out with backlinking requests, no links will be added unless they're highly relevant to the project.
 
-# Acknowledgements
+# Lời cám ơn
 
-The idea and design for this collection were initially inspired by Denys Dovhan's awesome project [wtfjs](https://github.com/denysdovhan/wtfjs). The overwhelming support by Pythonistas gave it the shape it is in right now.
+Ý tưởng và thiết kế của wtfpython lấy cảm hứng từ dự án tuyệt vời của Denys Dovhan's [wtfjs](https://github.com/denysdovhan/wtfjs). Cùng với đó là sự hỗ trợ tuyệt vời của những người yêu Python, giúp cho wtfpython có được như ngày hôm nay.
 
-#### Some nice Links!
+#### Một vài liên kết hay khác!
 * https://www.youtube.com/watch?v=sH4XF6pKKmk
 * https://www.reddit.com/r/Python/comments/3cu6ej/what_are_some_wtf_things_about_python
 * https://sopython.com/wiki/Common_Gotchas_In_Python
@@ -3539,16 +3541,18 @@ The idea and design for this collection were initially inspired by Denys Dovhan'
 [license-url]: http://www.wtfpl.net
 [license-image]: https://img.shields.io/badge/License-WTFPL%202.0-lightgrey.svg?style=flat-square
 
-## Surprise your friends as well!
+## Chia sẻ cho bạn bè!
 
-If you like wtfpython, you can use these quick links to share it with your friends,
+Nếu bạn thích wtfpython, bạn có thể chia sẻ các liên kết dưới đây cho bạn bè,
 
 [Twitter](https://twitter.com/intent/tweet?url=https://github.com/satwikkansal/wtfpython&text=If%20you%20really%20think%20you%20know%20Python,%20think%20once%20more!%20Check%20out%20wtfpython&hashtags=python,wtfpython) | [Linkedin](https://www.linkedin.com/shareArticle?url=https://github.com/satwikkansal&title=What%20the%20f*ck%20Python!&summary=If%20you%20really%20thing%20you%20know%20Python,%20think%20once%20more!) | [Facebook](https://www.facebook.com/dialog/share?app_id=536779657179021&display=page&href=https%3A%2F%2Fgithub.com%2Fsatwikkansal%2Fwtfpython&quote=If%20you%20really%20think%20you%20know%20Python%2C%20think%20once%20more!)  
 
-## Need a pdf version?
+## Bạn có cần bản pdf của wtf hay không?
 
 I've received a few requests for the pdf (and epub) version of wtfpython. You can add your details [here](https://satwikkansal.xyz/wtfpython-pdf/) to get them as soon as they are finished.
 
+Tôi nhận được một vài yêu cầu cho phiên bản pdf (và epub) của wtfpython. Nếu bạn muốn, bạn có thể thêm thông tin chi tiết của mình ở đây [here](https://satwikkansal.xyz/wtfpython-pdf/) để có phiên bản pdf sớm nhất.
 
 **That's all folks!** For upcoming content like this, you can add your email [here](https://www.satwikkansal.xyz/content-like-wtfpython/).
+
 *PS: On a sidenote, consider donating a dollar to [plant a tree](https://teamtrees.org/).*
