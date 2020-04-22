@@ -3131,7 +3131,7 @@ AttributeError: 'A' object has no attribute '__variable'
 
 ### ▶ Skipping lines?
 <!-- Example ID: d50bbde1-fb9d-4735-9633-3444b9d2f417 --->
-**Output:**
+**Kết quả:**
 ```py
 >>> value = 11
 >>> valuе = 32
@@ -3139,18 +3139,18 @@ AttributeError: 'A' object has no attribute '__variable'
 11
 ```
 
-Wut?
+Cái quái gì thế?
 
-**Note:** The easiest way to reproduce this is to simply copy the statements from the above snippet and paste them into your file/shell.
+**Chú ý:** Để làm ra kết quả như trên bạn chỉ cần sao chếp các câu lệnh và dán nó vào file hay shell.
 
-#### 💡 Explanation
+#### 💡 Giải thích
 
 Some non-Western characters look identical to letters in the English alphabet but are considered distinct by the interpreter.
-
+Một vài kí tự không phải là kí tự phương tây trông giống như các kí tự trong bảng chữ cái tiếng Anh nhưng lại được diễn giải khác bởi trình thông idhcj
 ```py
->>> ord('е') # cyrillic 'e' (Ye)
+>>> ord('е') # Kí tự cyrillic 'e' (Ye)
 1077
->>> ord('e') # latin 'e', as used in English and typed using standard keyboard
+>>> ord('e') # Kí tự latin 'e', được sử dụng trong tiếng Anh và trên các bàn phím chuẩn
 101
 >>> 'е' == 'e'
 False
@@ -3161,7 +3161,9 @@ False
 42
 ```
 
-The built-in `ord()` function returns a character's Unicode [code point](https://en.wikipedia.org/wiki/Code_point), and different code positions of Cyrillic 'e' and Latin 'e' justify the behavior of the above example.
+Hàm tích hợp sẵn `ord()` function returns a character's Unicode [code point](https://en.wikipedia.org/wiki/Code_point), and different code positions of Cyrillic 'e' and Latin 'e' justify the behavior of the above example.
+
+Hàm tích hợp sẵn `ord()` trả về mã Unicode của một kí tự [code point](https://en.wikipedia.org/wiki/Code_point), và bạn có thể thấy các mã khác nhau cho kí tự  Cyrillic 'e' và kí tự Latin 'e' .
 
 ---
 
