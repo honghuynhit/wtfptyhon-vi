@@ -927,7 +927,8 @@ array_4 = [400, 500, 600]
 ---
 
 
-### ▶ `is not ...` is not `is (not ...)`
+### ▶ `is not ...` không phải là `is (not ...)`
+
 <!-- Example ID: b26fb1ed-0c7d-4b9c-8c6d-94a58a055c0d --->
 ```py
 >>> 'something' is not None
@@ -936,11 +937,11 @@ True
 False
 ```
 
-#### 💡 Explanation
+#### 💡 Giải thích
 
-- `is not` is a single binary operator, and has behavior different than using `is` and `not` separated.
-- `is not` evaluates to `False` if the variables on either side of the operator point to the same object and `True` otherwise. 
-- In the example, `(not None)` evaluates to `True` since the value `None` is `False` in a boolean context, so the expression becomes `'something' is True`.
+- `is not` là một toán tử nhị phân đơn, và khi thực hiện sẽ cho kết quả khác với sử dụng `is` và `not` riêng biệt.
+- `is not` cho ra kết quả `False` khi các biến ở hai đầu của nó trỏ về cùng một đối tượng , và nếu hai biến này trỏ về khác đối tượng, kết quả sẽ là `True`. Cụ thể, `None` và `something` trỏ về hai biến khác nhau nên kết quả là `True`
+- Trong ví dụ trên, `(not None)` sẽ cho ra kết quả `True` bởi vì khi sử dụng trong phép so sánh luận lý `None` tương đương với `False`, do đó dòng mã trên sẽ trở thành `'something' is True`. Cụ thể, do `something` và `True` trỏ về hai đối tượng khác nhau nên kết quả là `False`
 
 ---
 
