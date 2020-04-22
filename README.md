@@ -1050,7 +1050,7 @@ Even when the values of `x` were different in every iteration prior to appending
 
 ---
 
-### ▶ The chicken-egg problem *
+### ▶ Bài toán con gà và quả trứng *
 <!-- Example ID: 60730dc2-0d79-4416-8568-2a63323b3ce8 --->
 1\.
 ```py
@@ -1062,7 +1062,7 @@ True
 True
 ```
 
-So which is the "ultimate" base class? There's more to the confusion by the way,
+Đâu là lớp cơ bản cuối cùng ? Còn nhiều thứ gây khó hiểu hơn nữa sau đây
 
 2\. 
 
@@ -1088,16 +1088,16 @@ False
 ```
 
 
-#### 💡 Explanation
+#### 💡 Giải thích
 
-- `type` is a [metaclass](https://realpython.com/python-metaclasses/) in Python.
-- **Everything** is an `object` in Python, which includes classes as well as their objects (instances).
-- class `type` is the metaclass of class `object`, and every class (including `type`) has inherited directly or indirectly from `object`.
-- There is no real base class among `object` and `type`. The confusion in the above snippets is arising because we're thinking about these relationships (`issubclass` and `isinstance`) in terms of Python classes. The relationship between `object` and `type` can't be reproduced in pure python. To be more precise the following relationships can't be reproduced in pure Python,
-    + class A is an instance of class B, and class B is an instance of class A.
-    + class A is an instance of itself.
+- `type` là một [metaclass](https://realpython.com/python-metaclasses/) trong Python.
+- **Mọi thứ** đều là một đối tượng `object` trong Python, bao gồm cả các lớp (classes) cũng như là các hiện thực của chúng (instances).
+- Lớp `type` là metaclass của lớp `object`, do đó mọi lớp (gồm cả `type`) thừa hưởng trực tiếp hay gián tiếp từ `object`.
+- Không có một lớp nào nằm giữa lớp `object` và `type`. Vấn đề đối với các đoạn mã phía trên nằm ở cách ta tìm các mối quan hệ giữa các lớp trong Python (dùng `issubclass` và `isinstance`). Mỗi quan hệ giữa `object` và `type` không thể được định nghĩa trong Python đơn thuần. Chính xác hơn, nghĩa là,
+    + Lớp A là một hiện thực của lớp B, và lớp B là một hiện thực của lớp A.  
+    + Lớp A là một hiện thực của chính nó.
 - These relationships between `object` and `type` (both being instances of each other as well as themselves) exist in Python because of "cheating" at the implementation level.
-
+- Các mối quan hệ giữa `object` và `type` (ở cả hai cấp độ hiện thực cũng như chính lớp đó) tồn tại là do việc "ăn gian" khi triển khai các lớp này.
 ---
 
 ### ▶ Subclass relationships
