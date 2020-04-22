@@ -3244,21 +3244,21 @@ Shouldn't that be 100?
 ## Section: Miscellaneous
 
 
-### ▶ `+=` is faster
+### ▶ `+=` nhanh hơn
 <!-- Example ID: bfd19c60-a807-4a26-9598-4912b86ddb36 --->
 
 ```py
-# using "+", three strings:
+# Sử dụng "+" để cộng 3 strings:
 >>> timeit.timeit("s1 = s1 + s2 + s3", setup="s1 = ' ' * 100000; s2 = ' ' * 100000; s3 = ' ' * 100000", number=100)
 0.25748300552368164
-# using "+=", three strings:
+# Sử dụng "+=" để cộng 3 strings:
 >>> timeit.timeit("s1 += s2 + s3", setup="s1 = ' ' * 100000; s2 = ' ' * 100000; s3 = ' ' * 100000", number=100)
 0.012188911437988281
 ```
 
-#### 💡 Explanation:
-+ `+=` is faster than `+` for concatenating more than two strings because the first string (example, `s1` for `s1 += s2 + s3`) is not destroyed while calculating the complete string.
-
+#### 💡 Giải thích:
++ `+=` nhanh hơn `+` for concatenating more than two strings because the first string (example, `s1` for `s1 += s2 + s3`) is not destroyed while calculating the complete string.
++ `+=` nhanh hơn `+` khi nối nhiều hơn 2 strings bởi vì string đầu tiên (ví dụ, `s1` trong `s1 += s2 + s3`) không bị huỷ đi khi tạo ra chuỗi kết quả cuối cùng
 ---
 
 ### ▶ Let's make a giant string!
