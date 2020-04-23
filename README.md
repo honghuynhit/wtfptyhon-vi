@@ -1595,7 +1595,7 @@ The same result, this didn't work either.
 ---
 
 ### ▶ Nan-reflexivity *
-
+### ▶ Tính phản xạ của Nan *
 <!-- Example ID: 59bee91a-36e0-47a4-8c7d-aa89bf1d3976 --->
 
 1\.
@@ -1603,11 +1603,11 @@ The same result, this didn't work either.
 ```py
 a = float('inf')
 b = float('nan')
-c = float('-iNf')  # These strings are case-insensitive
+c = float('-iNf')  # Các strings này không phân biệt hoa hay thường
 d = float('nan')
 ```
 
-**Output:**
+**Kết quả:**
 
 ```py
 >>> a
@@ -1617,12 +1617,12 @@ nan
 >>> c
 -inf
 >>> float('some_other_string')
-ValueError: could not convert string to float: some_other_string
+ValueError: could not convert string to float: some_other_string (Lỗi giá trị: Không thể chuyển đổi từ string sang float)
 >>> a == -c # inf==inf
 True
 >>> None == None # None == None
 True
->>> b == d # but nan!=nan
+>>> b == d # nhưng nan!=nan
 False
 >>> 50 / a
 0.0
@@ -1637,22 +1637,21 @@ nan
 ```py
 >>> x = float('nan')
 >>> y = x / x
->>> y is y # identity holds
+>>> y is y # định danh giống nhau (cùng trỏ về một đối tượng)
 True
->>> y == y # equality fails of y
+>>> y == y # Gía trị lại không bằng nhau
 False
->>> [y] == [y] # but the equality succeeds for the list containing y
+>>> [y] == [y] # Giá trị bằng nhau khi nằm ở trong một list
 True
 ```
 
 
 
-#### 💡 Explanation:
+#### 💡 Giải thích:
 
-- `'inf'` and `'nan'` are special strings (case-insensitive), which, when explicitly typecast-ed to `float` type, are used to represent mathematical "infinity" and "not a number" respectively.
+- `'inf'` và `'nan'` là các strings đặc biệt (không phân biệt hoa thường), khi được chuyển đổi sang kiểu `float` sẽ tương ứng biểu diễn cho giá trị vô hạn "infinity" hay không phải là một số "not a number".
 
-- Since according to IEEE standards ` NaN != NaN`, obeying this rule breaks the reflexivity assumption of a collection element in Python i.e. if `x` is a part of a collection like `list`, the implementations like comparison are based on the assumption that `x == x`.  Because of this assumption, the identity is compared first (since it's faster) while comparing two elements, and the values are compared only when the identities mismatch. The following snippet will make things clearer,
-
+- Theo chuẩn của IEEE thì ` NaN != NaN`, tuân theo quy tắc trên sẽ phá vỡ giả định về tính tương phản của một phần tử trong một tập trong Python ví dụ. nếu `x` là một phần tử của một tập `list`, các phép toán trên các phần tử của tập như là so sánh sẽ dựa trên giải định rằng `x == x`.  Do giả định này nên định danh được so sánh đầu tiên (do nhanh hơn) khi so sánh hai phần tử, và các giá trị được so sánh chỉ khi các định danh không khớp. Ví dụ sau sẽ giúp bạn dễ hiểu hơn
   ```py
   >>> x = float('nan')
   >>> x == x, [x] == [x]
@@ -1665,8 +1664,10 @@ True
   ```
 
   Since the identities of `x` and `y` are different, the values are considered, which are also different; hence the comparison returns `False` this time.
+  
+ Do các định danh của `x` và `y` khác nhau, do đó giá trị của chúng sẽ được so sánh, mà giá trị của chúng khác nhau trong ví dụ này; nên kết quả trả về là `False`. Cụ thể hơn, theo tiêu chuẩn của IEEE thì `x` f va `y` đểu có giá trị là `nan` khi được chuyển đổi qua float, ` NaN != NaN` nên `x != y`, nhưng khi đặt trong một list thì định danh sẽ đc so sánh trước nên `[x] == [y]`
 
-- Interesting read: [Reflexivity, and other pillars of civilization](https://bertrandmeyer.com/2010/02/06/reflexivity-and-other-pillars-of-civilization/)
+- Đọc thêm: [Reflexivity, and other pillars of civilization](https://bertrandmeyer.com/2010/02/06/reflexivity-and-other-pillars-of-civilization/)
 
 ---
 
@@ -1675,7 +1676,7 @@ True
 <!-- Example ID: 15a9e782-1695-43ea-817a-a9208f6bb33d --->
 
 This might seem trivial if you know how references work in Python.
-
+Ví dụ dưới đây có vẻ tầm thường nếu bạn hiểu cách các tham chiếu (references) hoạt đông trong Python.
 ```py
 some_tuple = ("A", "tuple", "with", "values")
 another_tuple = ([1, 2], [3, 4], [5, 6])
@@ -1684,26 +1685,25 @@ another_tuple = ([1, 2], [3, 4], [5, 6])
 **Output:**
 ```py
 >>> some_tuple[2] = "change this"
-TypeError: 'tuple' object does not support item assignment
->>> another_tuple[2].append(1000) #This throws no error
+TypeError: 'tuple' object does not support item assignment (Lỗi về kiểu: đối tượng 'tuple' không hỗ trợ phép gán phần tử)
+>>> another_tuple[2].append(1000) # Dòng này không bị lỗi
 >>> another_tuple
 ([1, 2], [3, 4], [5, 6, 1000])
 >>> another_tuple[2] += [99, 999]
-TypeError: 'tuple' object does not support item assignment
+TypeError: 'tuple' object does not support item assignment (Lỗi về kiểu: đối tượng 'tuple' không hỗ trợ phép gán phần tử)
 >>> another_tuple
 ([1, 2], [3, 4], [5, 6, 1000, 99, 999])
 ```
 
-But I thought tuples were immutable...
+Tôi đã nghĩ rằng các tuples thì bất biến (immutable) ...
+#### 💡 Giải thích:
 
-#### 💡 Explanation:
+* Trích từ https://docs.python.org/2/reference/datamodel.html
 
-* Quoting from https://docs.python.org/2/reference/datamodel.html
+    > Các chuỗi bất biến
+        Một đối tượng kiểu chuỗi bất biến không thể thay đổi giá trị của nó sau khi được tạo. (Nếu đối tượng này chứa các tham chiếu tới các đối tượng khác, những đối tượng có thể thay đổi được; tuy thế, tập hợp các đối tượng được trỏ trực tiếp bởi một đối tượng bất biến không thể thay đổi .)
 
-    > Immutable sequences
-        An object of an immutable sequence type cannot change once it is created. (If the object contains references to other objects, these other objects may be mutable and may be modified; however, the collection of objects directly referenced by an immutable object cannot change.)
-
-* `+=` operator changes the list in-place. The item assignment doesn't work, but when the exception occurs, the item has already been changed in place.
+* Toán tử `+=` thay đổi list tại chỗ. Phép gán phần tử không thực hiện được, nhưng khi ngoại lệ xảy ra, phần tử đã được thay đổi ngay tại chỗ.
 
 ---
 
