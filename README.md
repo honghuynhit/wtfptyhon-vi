@@ -749,7 +749,7 @@ Cái quái gì đang xảy ra?
 
 ---
 
-### ▶ Keep trying... *
+### ▶ Cố thêm chút nữa... *
 <!-- Example ID: b4349443-e89f-4d25-a109-82616be9d41a --->
 ```py
 def some_func():
@@ -780,7 +780,7 @@ def one_more_func(): # A gotcha!
         print("Zero division error occurred", e)
 ```
 
-**Output:**
+**Kết quả:**
 
 ```py
 >>> some_func()
@@ -794,18 +794,18 @@ Finally!
 >>> 1 / 0
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
-ZeroDivisionError: division by zero
+ZeroDivisionError: division by zero (Ngoại lệ sinh ra bởi chia một số cho số 0)
 
 >>> one_more_func()
 Iteration 0
 
 ```
 
-#### 💡 Explanation:
+#### 💡 Giải thích:
 
-- When a `return`, `break` or `continue` statement is executed in the `try` suite of a "try…finally" statement, the `finally` clause is also executed on the way out.
-- The return value of a function is determined by the last `return` statement executed. Since the `finally` clause always executes, a `return` statement executed in the `finally` clause will always be the last one executed.
-- The caveat here is, if the finally clause executes a `return` or `break` statement, the temporarily saved exception is discarded.
+- Khi câu lệnh `return`, `break` hay `continue` được thực hiện trong phần `try` của khối "try…finally", phần `finally` cũng được thực hiện.
+- Giá trị trả về của một hàm được xác định bởi câu lệnh `return` cuối cung được thực hiện. Bởi vì phần `finally` luôn được thực hiện, câu lệnh `return` trong phần `finally` sẽ luôn là câu lệnh trả về gia trị cuối cùng.
+- Tuy nhiên nếu phần finally thực hiện câu lệnh `return` hay `break` thì phần ngoại lệ tồn tại sẽ bị bỏ qua.
 
 ---
 
