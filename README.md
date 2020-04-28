@@ -1269,33 +1269,33 @@ SyntaxError: invalid syntax
 
 ---
 
-### ▶ Half triple-quoted strings
+### ▶ Các chuỗi rưỡi trích dẫn
 <!-- Example ID: c55da3e2-1034-43b9-abeb-a7a970a2ad9e --->
-**Output:**
+**Kết quả:**
 ```py
 >>> print('wtfpython''')
 wtfpython
 >>> print("wtfpython""")
 wtfpython
->>> # The following statements raise `SyntaxError`
+>>> # Các câu lệnh phía dưới gặp lỗi cú pháp `SyntaxError` khi thực thi
 >>> # print('''wtfpython')
 >>> # print("""wtfpython")
   File "<input>", line 3
     print("""wtfpython")
                         ^
-SyntaxError: EOF while scanning triple-quoted string literal
+SyntaxError: EOF while scanning triple-quoted string literal (Lỗi cú pháp khi sử lý chuỗi được bao bởi dấu trích dẫn)
 ```
 
-#### 💡 Explanation:
-+ Python supports implicit [string literal concatenation](https://docs.python.org/2/reference/lexical_analysis.html#string-literal-concatenation), Example,
+#### 💡 Giải thích:
++ Python hỗ trợ ngầm [ghép chuỗi](https://docs.python.org/2/reference/lexical_analysis.html#string-literal-concatenation), ví dụ,
   ```
   >>> print("wtf" "python")
   wtfpython
   >>> print("wtf" "") # or "wtf"""
   wtf
   ```
-+ `'''` and `"""` are also string delimiters in Python which causes a SyntaxError because the Python interpreter was expecting a terminating triple quote as delimiter while scanning the currently encountered triple quoted string literal.
-
++ `'''` và `"""` are also string delimiters in Python which causes a SyntaxError because the Python interpreter was expecting a terminating triple quote as delimiter while scanning the currently encountered triple quoted string literal.
++ `'''` và `"""` là các kí hiệu phân cách chuỗi trong Python, chúng tạo ra lỗi SyntaxError bởi vì trình thông dịch Python chơ đợi kí hiệu phân cách kết thúc khi nó dò tìm chuỗi kí tự trích dẫn có ba dấu nháy .
 ---
 
 ### ▶ What's wrong with booleans?
