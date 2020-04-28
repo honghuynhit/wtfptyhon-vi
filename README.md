@@ -648,12 +648,12 @@ True
 
 ---
 
-### ▶ Disorder within order *
+### ▶ Vô trật tự trong trật tự *
 <!-- Example ID: 91bff1f8-541d-455a-9de4-6cd8ff00ea66 --->
 ```py
 from collections import OrderedDict
 
-dictionary = dict()
+
 dictionary[1] = 'a'; dictionary[2] = 'b';
 
 ordered_dict = OrderedDict()
@@ -675,25 +675,25 @@ class OrderedDictWithHash(OrderedDict):
     __hash__ = lambda self: 0
 ```
 
-**Output**
+**Kết quả**
 ```py
->>> dictionary == ordered_dict # If a == b
+>>> dictionary == ordered_dict # Nếu a == b
 True
 >>> dictionary == another_ordered_dict # and b == c
 True
->>> ordered_dict == another_ordered_dict # then why isn't c == a ??
+>>> ordered_dict == another_ordered_dict # thế sao c != a ??
 False
 
-# We all know that a set consists of only unique elements,
-# let's try making a set of these dictionaries and see what happens...
+# ta biết răng set chỉ chứa các phần tử độc nhất,
+# thử tạo một set chứa 3 từ điển phía trên xem sao...
 
 >>> len({dictionary, ordered_dict, another_ordered_dict})
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
-TypeError: unhashable type: 'dict'
+TypeError: unhashable type: 'dict' (Lỗi về kiểu: kiểu không thể hash được)
 
-# Makes sense since dict don't have __hash__ implemented, let's use
-# our wrapper classes.
+# Lỗi trên xảy ra là điều dê hiểu do từ điển không được tran bị __hash__, 
+# sử dụng các lớp bọc (wrapper classes) ta xây dựng phía trên thử xem.
 >>> dictionary = DictWithHash()
 >>> dictionary[1] = 'a'; dictionary[2] = 'b';
 >>> ordered_dict = OrderedDictWithHash()
@@ -702,19 +702,21 @@ TypeError: unhashable type: 'dict'
 >>> another_ordered_dict[2] = 'b'; another_ordered_dict[1] = 'a';
 >>> len({dictionary, ordered_dict, another_ordered_dict})
 1
->>> len({ordered_dict, another_ordered_dict, dictionary}) # changing the order
+>>> len({ordered_dict, another_ordered_dict, dictionary}) # xáo trộn thứ tự cá phần tử trong set
 2
 ```
 
-What is going on here?
+Cái quái gì đang xảy ra?
 
-#### 💡 Explanation:
+#### 💡 Giải thích:
 
-- The reason why intransitive equality didn't hold among `dictionary`, `ordered_dict` and `another_ordered_dict` is because of the way `__eq__` method is implemented in `OrderedDict` class. From the [docs](https://docs.python.org/3/library/collections.html#ordereddict-objects)
-  
-    > Equality tests between OrderedDict objects are order-sensitive and are implemented as `list(od1.items())==list(od2.items())`. Equality tests between `OrderedDict` objects and other Mapping objects are order-insensitive like regular dictionaries.
-- The reason for this equality in behavior is that it allows `OrderedDict` objects to be directly substituted anywhere a regular dictionary is used.
-- Okay, so why did changing the order affect the length of the generated `set` object? The answer is the lack of intransitive equality only. Since sets are "unordered" collections of unique elements, the order in which elements are inserted shouldn't matter. But in this case, it does matter. Let's break it down a bit,
+- Lý do tại sao quy tắc so sánh bắc cầu không áp dụng được khi so sánh  `dictionary`, `ordered_dict` và `another_ordered_dict` là do cách triển khai phương thức `__eq__` trong lớp `OrderedDict` . Xem thêm [tài liệu](https://docs.python.org/3/library/collections.html#ordereddict-objects)
+
+    >  Các phép so sánh bằng giữa các đối tượng OrderedDict tuôn theo thư tự và được thực hiện như sau. Còn phép so sánh băng giữa cá đối tượng `OrderedDict` và các đối tượng ánh xạ khác (mapping objects) thì không tuân theo thứ tự như là các từ điển thông thường..
+
+- Lý do ở đây là các đối tượng `OrderedDict` được cho phép bị thay thế trực tiếp tại bất cứ vị trí nao một từ điển thông thường được sử dụng.
+- Vậy tại sao thay đổi thư tự của các từ điển lại ảnh hưởng tới đối tượng `set` được sinh ra? Câu trả lời là do thiếu sự so sánh nội đối tượng (intrasitive) . Do sets là các tập hợp không có thứ tự của các phần tử độc nhất, thứ tự các phần tử khi chèn vào không có nghĩa lý gì cả. Nhưng trong trường hợp này, nó lại có vấn đề. Hãy tìm hiểu thêm xem sao
+
     ```py
     >>> some_set = set()
     >>> some_set.add(dictionary) # these are the mapping objects from the snippets above
@@ -742,7 +744,8 @@ What is going on here?
     >>> len(another_set)
     2
     ```
-    So the inconsistency is due to `another_ordered_dict in another_set` being `False` because `ordered_dict` was already present in `another_set` and as observed before, `ordered_dict == another_ordered_dict` is `False`.
+    Sự bất nhất ở đây  `another_ordered_dict in another_set` cho kết quả là `False` bởi vì `ordered_dict` đã tồn tại trong `another_set` trước đó, `ordered_dict == another_ordered_dict` trở thành  `False`.
+    
 
 ---
 
