@@ -540,12 +540,12 @@ some_dict[5.0] = "Ruby"
 some_dict[5] = "Python"
 ```
 
-**Output:**
+**Kết quả:**
 
 ```py
 >>> some_dict[5.5]
 "JavaScript"
->>> some_dict[5.0] # "Python" destroyed the existence of "Ruby"?
+>>> some_dict[5.0] # "Python" chiếm lấy khoá (key) của "Ruby"?
 "Python"
 >>> some_dict[5] 
 "Python"
@@ -557,12 +557,12 @@ complex
 "Python"
 ```
 
-So, why is Python all over the place?
+Thế quái nào mà toàn in ra Python?
 
 
-#### 💡 Explanation
+#### 💡 Giải thích
 
-* Uniqueness of keys in a Python dictionary is by *equivalence*, not identity. So even though `5`, `5.0`, and `5 + 0j` are distinct objects of different types, since they're equal, they can't both be in the same `dict` (or `set`). As soon as you insert any one of them, attempting to look up any distinct but equivalent key will succeed with the original mapped value (rather than failing with a `KeyError`):
+* Tính duy nhất của các khoá (keys) trong cấu trúc dữ liệu từ điển của được xác định bởi  *sự tương đương*, chứ không phải dựa trên danh tính. Do đó dẫu cho `5`, `5.0`, và `5 + 0j` là các đối tượng riêng biệt có kiểu khác nhau, nhưng bởi vì chúng băng nhau nên không thể tồn tại như một khoá riêng của `dict` (hoặc `set`). Khi bạn thêm các khoá này vào từ điển sau đó tra giá trị của khoá đó dựa trên giả định về sự tương đương thì Python chỉ trả về giá trị của khoá được chèn vào ban đầu (thay vì trả lại lỗi về truy xuất khoá `KeyError`):
   ```py
   >>> 5 == 5.0 == 5 + 0j
   True
@@ -575,7 +575,7 @@ So, why is Python all over the place?
   >>> (5 in some_dict) and (5 + 0j in some_dict)
   True
   ```
-* This applies when setting an item as well. So when you do `some_dict[5] = "Python"`, Python finds the existing item with equivalent key `5.0 -> "Ruby"`, overwrites its value in place, and leaves the original key alone.
+* Nguyên lý trên cũng áp dụng khi bạn gán giá trị cho khoá. Khi bạn thực hiện phép gán `some_dict[5] = "Python"`, Python tìm phần tử có sẵn trong từ điển có khoá tương đương, trong trường hợp này nè `5.0 -> "Ruby"`, ghi đè lên giá trị của khoá này ngay, và lờ đi khoá tương đương mà bạn mới cung cấp.
   ```py
   >>> some_dict
   {5.0: 'Ruby'}
@@ -583,16 +583,18 @@ So, why is Python all over the place?
   >>> some_dict
   {5.0: 'Python'}
   ```
-* So how can we update the key to `5` (instead of `5.0`)? We can't actually do this update in place, but what we can do is first delete the key (`del some_dict[5.0]`), and then set it (`some_dict[5]`) to get the integer `5` as the key instead of floating `5.0`, though this should be needed in rare cases.
 
-* How did Python find `5` in a dictionary containing `5.0`? Python does this in constant time without having to scan through every item by using hash functions. When Python looks up a key `foo` in a dict, it first computes `hash(foo)` (which runs in constant-time). Since in Python it is required that objects that compare equal also have the same hash value ([docs](https://docs.python.org/3/reference/datamodel.html#object.__hash__) here), `5`, `5.0`, and `5 + 0j` have the same hash value.
+* Vậy làm sao để cập nhật khoá `5` vào từ điển (thay vì `5.0`)? Thực sự là chúng ta không thể làm điều đó vơi một thao tác, nhưng ta có thể xoá đi khoá cũ  (`del some_dict[5.0]`), và sau đó thiết lập khoá mới(`some_dict[5]`) để có thể lấy được khoá `5` thay vì `5.0`, tuy nhiên cách này ít ai xài tới lắm.
+
+
+* Làm thế nào Python tìm khoá `5` trong từ điển có chứa sẵn khoá `5.0`? Nó làm được điều đó mà không phải dò qua mọi phần tử trong từ điển thông qua sử dụng các hàm băm (hash functions), do đó tốn thời gian chạy hằng số (constant time). Khi Python tra  khoá tên `foo` trong một tư điển, đầu tiên nó thực hiện hàm băm `hash(foo)` (với thời gian chạy hằng số). Bởi vì trong Python các đối tượng băng nhau khi chúng có chung một giá trị băm ([đọc thêm ở đây](https://docs.python.org/3/reference/datamodel.html#object.__hash__) here), `5`, `5.0`, and `5 + 0j` have the same hash value.
   ```py
   >>> 5 == 5.0 == 5 + 0j
   True
   >>> hash(5) == hash(5.0) == hash(5 + 0j)
   True
   ```
-  **Note:** The inverse is not necessarily true: Objects with equal hash values may themselves be unequal. (This causes what's known as a [hash collision](https://en.wikipedia.org/wiki/Collision_(computer_science)), and degrades the constant-time performance that hashing usually provides.)
+  **Ghi chú:** Các đối tượng có giá trị băm băng nhau chưa chắc đã bằng nhau. (Vẫn đề này được biết tới với tên gọi [hash collision](https://en.wikipedia.org/wiki/Collision_(computer_science)), và giảm đi hiệu năng với thời gian hằng số qua việc dùng hàm băm.)
 
 ---
 
