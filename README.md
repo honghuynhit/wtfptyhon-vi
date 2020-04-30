@@ -863,20 +863,20 @@ for i, some_dict[i] in enumerate(some_string):
 
 ---
 
-### ▶ Evaluation time discrepancy
+### ▶ Sự khác biệt đến từ thời điểm đánh giá
 <!-- Example ID: 6aa11a4b-4cf1-467a-b43a-810731517e98 --->
 1\.
 ```py
 array = [1, 8, 15]
-# A typical generator expression
+# Một biểu diễn generator thông thường
 gen = (x for x in array if array.count(x) > 0)
 array = [2, 8, 22]
 ```
 
-**Output:**
+**Kết quả:**
 
 ```py
->>> print(list(gen)) # Where did the other values go?
+>>> print(list(gen)) # Các giá trị khác đi đâu mất rồi?
 [8]
 ```
 
@@ -892,7 +892,7 @@ gen_2 = (x for x in array_2)
 array_2[:] = [1,2,3,4,5]
 ```
 
-**Output:**
+**Kết quả:**
 ```py
 >>> print(list(gen_1))
 [1, 2, 3, 4]
@@ -912,23 +912,21 @@ array_3 = [4, 5, 6]
 array_4 = [400, 500, 600]
 ```
 
-**Output:**
+**Kết quả:**
 ```py
 >>> print(list(gen))
 [401, 501, 601, 402, 502, 602, 403, 503, 603]
 ```
 
-#### 💡 Explanation
+#### 💡 Lý giải
 
-- In a [generator](https://wiki.python.org/moin/Generators) expression, the `in` clause is evaluated at declaration time, but the conditional clause is evaluated at runtime.
-- So before runtime, `array` is re-assigned to the list `[2, 8, 22]`, and since out of `1`, `8` and `15`, only the count of `8` is greater than `0`, the generator only yields `8`.
-- The differences in the output of `g1` and `g2` in the second part is due the way variables `array_1` and `array_2` are re-assigned values.
-- In the first case, `array_1` is binded to the new object `[1,2,3,4,5]` and since the `in` clause is evaluated at the declaration time it still refers to the old object `[1,2,3,4]` (which is not destroyed).
-- In the second case, the slice assignment to `array_2` updates the same old object `[1,2,3,4]` to `[1,2,3,4,5]`. Hence both the `g2` and `array_2` still have reference to the same object (which has now been updated to `[1,2,3,4,5]`).
-- Okay, going by the logic discussed so far, shouldn't be the value of `list(g)` in the third snippet be `[11, 21, 31, 12, 22, 32, 13, 23, 33]`? (because `array_3` and `array_4` are going to behave just like `array_1`). The reason why (only) `array_4` values got updated is explained in [PEP-289](https://www.python.org/dev/peps/pep-0289/#the-details)
-  
-    > Only the outermost for-expression is evaluated immediately, the other expressions are deferred until the generator is run.
-
+- Trong một biểu diễn [generator](https://wiki.python.org/moin/Generators), câu `in` được thực hiện tại thời điểm khai báo, nhưng câu điều kiện được thực hiện tại thời điểm chạy (runtime).
+- Do trước thời điểm chạy, `array` được gán cho giá trị `[2, 8, 22]`, và trong ba số được gán trước đó `1`, `8` and `15`, chỉ có `8` có số lần xuất hiện trong mảng mới và do đó số lần xuât hiện lớn hơn `0`, nên generator chỉ cho ra số `8`.
+- Sự khác biệt giữa kết quả của `g1` and `g2` trong phần thứ hai là do cách các biến `array_1` và `array_2` được gán lại các giá trị.
+- Trong trường hợp đầu tiên, `array_1` được gán cho một đối tượng mới `[1,2,3,4,5]` và vì câu `in` được thực hiện tại thời điểm khai báo nên nó vẫn trỏ tới đối tượng cũ `[1,2,3,4]` (đối tượng này chưa bị mất đi).
+- Trong trường hợp thư hai, phép gán lát cắt (slice assignment) `array_2` cập nhật đối tượng cũ `[1,2,3,4]` thành `[1,2,3,4,5]`. Hiển nhiên cả `g2` và `array_2` đều trỏ tới cung một đối tượng (đối tượng đã được cập nhật thành `[1,2,3,4,5]`).
+ - Okay, với những gì ta quan sát trên, co phải giá trị trả về từ `list(g)` trong phần thứ ba phải là `[11, 21, 31, 12, 22, 32, 13, 23, 33]`? (bởi vì `array_3` và `array_4` sẽ giống như `array_1`). Lý do chỉ `array_4` được cập nhật được giải thích ở đây [PEP-289](https://www.python.org/dev/peps/pep-0289/#the-details)
+    >Chỉ có vòng for ngoài cùng được thực hiện ngay lập tức, các lệnh khác được trì hoãn cho đến khi generator được chạy.
 ---
 
 
