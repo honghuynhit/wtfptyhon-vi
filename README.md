@@ -1296,13 +1296,14 @@ SyntaxError: EOF while scanning triple-quoted string literal (Lỗi cú pháp kh
 + `'''` và `"""` là các kí hiệu phân cách chuỗi trong Python, chúng tạo ra lỗi SyntaxError bởi vì trình thông dịch Python chơ đợi kí hiệu phân cách kết thúc khi nó dò tìm chuỗi kí tự trích dẫn có ba dấu nháy .
 ---
 
-### ▶ What's wrong with booleans?
+### ▶ Có gì sai sai với các giá trị luận lý (booleans)?
 <!-- Example ID: 0bba5fa7-9e6d-4cd2-8b94-952d061af5dd --->
 1\.
 
 ```py
 # A simple example to count the number of booleans and
-# integers in an iterable of mixed data types.
+# Một ví dụ tính toán số lượng các giá trị luận lý và
+# sô nguyên trong một danh sách lẫn lộn các kiểu phần tử khác nhau.
 mixed_list = [False, 1.0, "some_string", 3, True, [], False]
 integers_found_so_far = 0
 booleans_found_so_far = 0
@@ -1314,7 +1315,7 @@ for item in mixed_list:
         booleans_found_so_far += 1
 ```
 
-**Output:**
+**Kết quả:**
 ```py
 >>> integers_found_so_far
 4
@@ -1342,7 +1343,7 @@ def tell_truth():
         print("I have lost faith in truth!")
 ```
 
-**Output (< 3.x):**
+**Kết quả (< 3.x):**
 
 ```py
 >>> tell_truth()
@@ -1351,9 +1352,9 @@ I have lost faith in truth!
 
 
 
-#### 💡 Explanation:
+#### 💡 Lý giải:
 
-* `bool` is a subclass of `int` in Python
+* `bool` là lơp con của `int` trong Python
     
     ```py
     >>> issubclass(bool, int)
@@ -1362,7 +1363,7 @@ I have lost faith in truth!
     False
     ```
     
-* And thus, `True` and `False` are instances of `int`
+* Và do vậy, `True` và `False` là các hiện thực (instances) của `int`
   ```py
   >>> isinstance(True, int)
   True
@@ -1370,7 +1371,7 @@ I have lost faith in truth!
   True
   ```
 
-* The integer value of `True` is `1` and that of `False` is `0`.
+* Giá trị dạng số nguyên của `True` là `1` và của `False` là `0`.
   ```py
   >>> int(True)
   1
@@ -1378,12 +1379,13 @@ I have lost faith in truth!
   0
   ```
 
-* See this StackOverflow [answer](https://stackoverflow.com/a/8169049/4354153) for the rationale behind it.
+* Xem trên [câu trả lời] trên StackOverflow(https://stackoverflow.com/a/8169049/4354153) để biết lý do.
 
-* Initially, Python used to have no `bool` type (people used 0 for false and non-zero value like 1 for true).  `True`, `False`, and a `bool` type was added in 2.x versions, but, for backward compatibility, `True` and `False` couldn't be made constants. They just were built-in variables, and it was possible to reassign them
+* Lúc đầu, Python không có kiểu `bool` (người ta dung 0 cho false và các giá trị khác không như 1 cho true).  `True`, `False`, va kiểu `bool` được bổ sung trong cá phiên bản 2.x, nhưng vi lý do hỗ trợ tương thích ngược (backward compatibility), `True` và `False` không thể trơ thành các hăng số (constants). Chúng chỉ là các biến được tích hợp sẵn trong Python, và ta có thể gán lại giá trị cho chúng.
+
 
 * Python 3 was backward-incompatible, the issue was finally fixed, and thus the last snippet won't work with Python 3.x!
-
+* Python 3 không hỗ trợ tương thích ngược, và do vậy các đoạn mã cuối cung không chạy được trên  Python 3.x!
 ---
 
 ### ▶ Class attributes and instance attributes
