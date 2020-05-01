@@ -1007,12 +1007,12 @@ for x in range(7):
     def some_func():
         return x
     funcs.append(some_func)
-    results.append(some_func())  # note the function call here
+    results.append(some_func())  # Chú ý lời gọi hàm ở đây
 
 funcs_results = [func() for func in funcs]
 ```
 
-**Output:**
+**kết quả:**
 
 ```py
 >>> results
@@ -1020,7 +1020,7 @@ funcs_results = [func() for func in funcs]
 >>> funcs_results
 [6, 6, 6, 6, 6, 6, 6]
 ```
-Even when the values of `x` were different in every iteration prior to appending `some_func` to `funcs`, all the functions return 6.
+Ngay cả khi các giá trị `x` khác nhau trong mọi vòng lặp trước khi đặt `some_func` vào trong danh sách `funcs`, tất cả các hàm đều trả về 6.
 
 2\.
 
@@ -1030,11 +1030,11 @@ Even when the values of `x` were different in every iteration prior to appending
 [512, 512, 512, 512, 512, 512, 512, 512, 512, 512]
 ```
 
-#### 💡 Explanation
+#### 💡 Lý giải
 
-- When defining a function inside a loop that uses the loop variable in its body, the loop function's closure is bound to the variable, not its value. So all of the functions use the latest value assigned to the variable for computation.
+- Khi định nghia một hàm bên trong một vòng lặp, vòng lặp có biến lặp được sử dụng trong thân hàm, closure của hàm này được giơi hạn cho biến, chư không phải là giá trị. Vì vậy tất cả các ham sử dụng giá trị cuối cung được gán cho biến này để thực hiện tính toán. Để rõ hơn ta thấy được rằng biến lặp `x` (và giá trị của cung của nó nhận được là `6`) trong ví dụ thứ nhất được sử dụng cho tất cả các hàm `func()`, hàm này sẽ luôn trả về giá trị là `6` 
 
-- To get the desired behavior you can pass in the loop variable as a named variable to the function. **Why does this work?** Because this will define the variable again within the function's scope.
+- Để thực hiện được tính toán mong muốn bạn có thể truyền biến lặp như là biến được đặt tên (named variable) cho hàm. **Sao mà nó lại chạy đung được?** ởi vì việc truyền biến như vậy sẽ định nghĩa lại biến nay bên trong phạm vi của hàm.
 
     ```py
     funcs = []
@@ -1044,7 +1044,7 @@ Even when the values of `x` were different in every iteration prior to appending
         funcs.append(some_func)
     ```
 
-    **Output:**
+    **Kết quả:**
     ```py
     >>> funcs_results = [func() for func in funcs]
     >>> funcs_results
