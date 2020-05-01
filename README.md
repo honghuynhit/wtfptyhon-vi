@@ -1168,7 +1168,7 @@ Why's this True-False alteration?
 
 ---
 
-### ▶ The surprising comma
+### ▶ Dấu phẩy lạ lùng
 <!-- Example ID: 31a819c8-ed73-4dcc-84eb-91bedbb51e58 --->
 **Output (< 3.6):**
 
@@ -1183,20 +1183,21 @@ Why's this True-False alteration?
   File "<stdin>", line 1
     def h(x, **kwargs,):
                      ^
-SyntaxError: invalid syntax
+SyntaxError: invalid syntax (Lỗi cú pháp không hợp lệ)
 
 >>> def h(*args,):
   File "<stdin>", line 1
     def h(*args,):
                 ^
-SyntaxError: invalid syntax
+SyntaxError: invalid syntax (Lỗi cú pháp không hợp lệ)
 ```
 
-#### 💡 Explanation:
+#### 💡 Lý giải:
 
-- Trailing comma is not always legal in formal parameters list of a Python function.
+- Dấu phẩy nằm ở cuối danh sách các tham số của một hàm không phải bao giờ cũng hợp lệ.
 -  In Python, the argument list is defined partially with leading commas and partially with trailing commas. This conflict causes situations where a comma is trapped in the middle, and no rule accepts it.
--  **Note:** The trailing comma problem is [fixed in Python 3.6](https://bugs.python.org/issue9232). The remarks in [this](https://bugs.python.org/issue9232#msg248399) post discuss in brief different usages of trailing commas in Python.
+-  Trong Python, danh sách tham số được định nghĩa bởi một phần các dấu phẩy nằm phía trước và một phần các dấy phẩy nằm phía sau. Điều nay mâu thuẫn với các tình huống ở đó một dấu phẩy bị mắc kẹt ở giữa danh sách, và chẳng có một luật nào chấp nhận điều này cả.
+-  **Chú ý:** Vấn đề về dâu phẩy ở cuối  [đã được sửa trong Python 3.6](https://bugs.python.org/issue9232). Thảo luận [ở đây](https://bugs.python.org/issue9232#msg248399) cung cấp những cách dung khác nhau của dây phẩy ở cuối.
 
 ---
 
