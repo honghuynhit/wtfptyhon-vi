@@ -1103,7 +1103,8 @@ False
 - Các mối quan hệ giữa `object` và `type` (ở cả hai cấp độ hiện thực cũng như chính lớp đó) tồn tại là do việc "ăn gian" khi triển khai các lớp này.
 ---
 
-### ▶ Subclass relationships
+### ▶ Các mối quan hệ của lơp con (subclass)
+
 <!-- Example ID: 9f6d8cf0-e1b5-42d0-84a0-4cfab25a0bc0 --->
 **Output:**
 ```py
@@ -1116,14 +1117,16 @@ True
 False
 ```
 
-The Subclass relationships were expected to be transitive, right? (i.e., if `A` is a subclass of `B`, and `B` is a subclass of `C`, the `A` _should_ a subclass of `C`)
 
-#### 💡 Explanation:
+Mỗi quan hệ giữa các lớp con có tính bắc cầu không?(ví dụ, nếu `A` là lớp con của `B`, và `B` là lớp con của `C`, vậy `A` _nên_ là lớp con của `C`)
 
-* Subclass relationships are not necessarily transitive in Python. Anyone is allowed to define their own, arbitrary `__subclasscheck__` in a metaclass.
-* When `issubclass(cls, Hashable)` is called, it simply looks for non-Falsey "`__hash__`" method in `cls` or anything it inherits from.
-* Since `object` is hashable, but `list` is non-hashable, it breaks the transitivity relation.
-* More detailed explanation can be found [here](https://www.naftaliharris.com/blog/python-subclass-intransitivity/).
+#### 💡 Lý giải:
+
+* Trong Python mối quan hệ giữa cá lớp con không nhất thiết phải mang tính bắc cầu. Bất cứ ai cũng được phép định nghĩa một lớp `__subclasscheck__` riêng, tuỳ ý trong một siêu lớp (metaclass).
+* Khi `issubclass(cls, Hashable)` được gọi, nó chỉ tìm phương thức non-Falsey "`__hash__`"  trong `cls` hoặc bất cư thư gì nó thừa hưởng từ đó.
+* Bởi vì `object` là một đối tượng có thể băm (hashable), còn `list` thi không, nên nó phá vỡ tính bắc cầu.
+
+* Giải thích chi tiết có thể xem [ở đây](https://www.naftaliharris.com/blog/python-subclass-intransitivity/).
 
 ---
 
