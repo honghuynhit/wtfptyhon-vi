@@ -1603,7 +1603,6 @@ The same result, this didn't work either.
 
 ---
 
-### ▶ Nan-reflexivity *
 ### ▶ Tính phản xạ của Nan *
 <!-- Example ID: 59bee91a-36e0-47a4-8c7d-aa89bf1d3976 --->
 
@@ -1684,14 +1683,13 @@ True
 
 <!-- Example ID: 15a9e782-1695-43ea-817a-a9208f6bb33d --->
 
-This might seem trivial if you know how references work in Python.
 Ví dụ dưới đây có vẻ tầm thường nếu bạn hiểu cách các tham chiếu (references) hoạt đông trong Python.
 ```py
 some_tuple = ("A", "tuple", "with", "values")
 another_tuple = ([1, 2], [3, 4], [5, 6])
 ```
 
-**Output:**
+**Kết quả:**
 ```py
 >>> some_tuple[2] = "change this"
 TypeError: 'tuple' object does not support item assignment (Lỗi về kiểu: đối tượng 'tuple' không hỗ trợ phép gán phần tử)
@@ -1727,30 +1725,31 @@ except Exception as e:
     pass
 ```
 
-**Output (Python 2.x):**
+**Kết quả (Python 2.x):**
 ```py
 >>> print(e)
-# prints nothing
+# Không in ra kết quả nào cả
 ```
 
 **Output (Python 3.x):**
 ```py
 >>> print(e)
-NameError: name 'e' is not defined
+NameError: name 'e' is not defined (Lỗi tên biến không được định nghĩa)
 ```
 
-#### 💡 Explanation:
+#### 💡 Giải thích:
 
 * Source: https://docs.python.org/3/reference/compound_stmts.html#except
 
   When an exception has been assigned using `as` target, it is cleared at the end of the `except` clause. This is as if
+  Khi một ngoại lệ được gán sử dụng đích được định nghia bởi `as`, ngoại lệ này được dọn dẹp ở cuối câu `except`. Như vậy thì
 
   ```py
   except E as N:
       foo
   ```
 
-  was translated into
+  sẽ được hiểu như sau
 
   ```py
   except E as N:
@@ -1760,9 +1759,11 @@ NameError: name 'e' is not defined
           del N
   ```
 
-  This means the exception must be assigned to a different name to be able to refer to it after the except clause. Exceptions are cleared because, with the traceback attached to them, they form a reference cycle with the stack frame, keeping all locals in that frame alive until the next garbage collection occurs.
+  
+    Điều này có nghĩa la ngoại lệ phải được gán cho một cái tên khác để ta có thể tìm thấy nó sau câu except. Các ngoại lệ được dọn dẹp bởi vì với truy lỗi (traceback) được gán cho chúng, chúng hình thành nên một vòng tham chiếu bên trong khung ngăn xếp (stack frame), giữ tất cả các biến cục bộ không bị xoá đi cho đến khi việc thu thập rác tiếp theo tiếp diễn.
 
-* The clauses are not scoped in Python. Everything in the example is present in the same scope, and the variable `e` got removed due to the execution of the `except` clause. The same is not the case with functions that have their separate inner-scopes. The example below illustrates this:
+
+* Các câu này không được tính phạm vi trong Python. Mọi thư trong ví dụ nay đều nàm trong cùng một phạm vi, và biến `e` bị xoá đi bởi vì ngoại lệ `except`. Điều tương tự như vậy không đúng với các hàm có các nội phạm vi (inner-scopes) riêng biệt. Ví dụ sau sẽ cho ta thấy:
 
      ```py
      def f(x):
@@ -1785,14 +1786,14 @@ NameError: name 'e' is not defined
      [5, 4, 3]
      ```
 
-* In Python 2.x, the variable name `e` gets assigned to `Exception()` instance, so when you try to print, it prints nothing.
+* Trong Python 2.x, biến `e` được gán cho một hiện thực `Exception()`, khi bạn in ra biến này, nó không hiển thị gì cả
 
     **Output (Python 2.x):**
     ```py
     >>> e
     Exception()
     >>> print e
-    # Nothing is printed!
+    # Không in ra gì cả!
     ```
 
 ---
