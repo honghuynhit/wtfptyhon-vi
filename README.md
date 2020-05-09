@@ -1773,7 +1773,7 @@ NameError: name 'e' is not defined (Lỗi tên biến không được định ng
      y = [5, 4, 3]
      ```
 
-     **Output:**
+     **Kết quả:**
      ```py
      >>>f(x)
      UnboundLocalError: local variable 'x' referenced before assignment
@@ -1787,7 +1787,7 @@ NameError: name 'e' is not defined (Lỗi tên biến không được định ng
 
 * Trong Python 2.x, biến `e` được gán cho một hiện thực `Exception()`, khi bạn in ra biến này, nó không hiển thị gì cả
 
-    **Output (Python 2.x):**
+    **Kết quả (Python 2.x):**
     ```py
     >>> e
     Exception()
@@ -1807,24 +1807,25 @@ class SomeClass(str):
 some_dict = {'s': 42}
 ```
 
-**Output:**
+**Kết quả:**
 ```py
 >>> type(list(some_dict.keys())[0])
 str
 >>> s = SomeClass('s')
 >>> some_dict[s] = 40
->>> some_dict # expected: Two different keys-value pairs
+>>> some_dict # Giá trị mong đợi: Hai cặp khoá và giá trị khác nhau
 {'s': 40}
 >>> type(list(some_dict.keys())[0])
 str
 ```
 
-#### 💡 Explanation:
+#### 💡 Giải thích:
 
-* Both the object `s` and the string `"s"` hash to the same value because `SomeClass` inherits the `__hash__` method of `str` class.
-* `SomeClass("s") == "s"` evaluates to `True` because `SomeClass` also inherits `__eq__` method from `str` class.
-* Since both the objects hash to the same value and are equal, they are represented by the same key in the dictionary.
-* For the desired behavior, we can redefine the `__eq__` method in `SomeClass`
+* Cả đối tượng `s` và string `"s"` khi được băm (hash) sẽ cho ra cùng một giá trị ởi `SomeClass` thừa kế phương thức `__hash__` của lớp `str`.
+* `SomeClass("s") == "s"`  bằng `True` bởi vì `SomeClass` cũng thừa kế phương thức `__eq__` từ lớp `str` .
+* Bởi vì cả hai đối tượng này khi băm cho ra cùng giá trị và bằng nhau nên chúng được biểu diễn bởi cùng một khoá trong từ điển.
+* Để có được kết quả như mong muốn với hai cặp giá khoá và giá trị khác nhau, chúng ta có thể định nghĩa phương thức `__eq__` trong `SomeClass`
+
   ```py
   class SomeClass(str):
     def __eq__(self, other):
@@ -1834,14 +1835,14 @@ str
             and super().__eq__(other)
         )
 
-    # When we define a custom __eq__, Python stops automatically inheriting the
-    # __hash__ method, so we need to define it as well
+    # Khi chúng ta ta định nghĩa một phương thức __eq__ tuỳ chỉnh, Python tự động dừng việc thừa kế
+    # và chúng ta cũng cần định nghĩa phươn thức __hash__ ,
     __hash__ = str.__hash__
 
   some_dict = {'s':42}
   ```
 
-  **Output:**
+  **Kết quả:**
   ```py
   >>> s = SomeClass('s')
   >>> some_dict[s] = 40
@@ -1860,21 +1861,23 @@ str
 a, b = a[b] = {}, 5
 ```
 
-**Output:**
+**Kết quả:**
 ```py
 >>> a
 {5: ({...}, 5)}
 ```
 
-#### 💡 Explanation:
+#### 💡 Giải thích:
 
-* According to [Python language reference](https://docs.python.org/2/reference/simple_stmts.html#assignment-statements), assignment statements have the form
+* Dựa trên [Python language reference](https://docs.python.org/2/reference/simple_stmts.html#assignment-statements), các câu lệnh gán sẽ có cách khai báo như sau
   ```
   (target_list "=")+ (expression_list | yield_expression)
   ```
   and
   
 > An assignment statement evaluates the expression list (remember that this can be a single expression or a comma-separated list, the latter yielding a tuple) and assigns the single resulting object to each of the target lists, from left to right.
+
+> Câu lệnh gán thực thi  (remember that this can be a single expression or a comma-separated list, the latter yielding a tuple) and assigns the single resulting object to each of the target lists, from left to right.
 
 * The `+` in `(target_list "=")+` means there can be **one or more** target lists. In this case, target lists are `a, b` and `a[b]` (note the expression list is exactly one, which in our case is `{}, 5`).
 
