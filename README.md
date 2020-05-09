@@ -1305,7 +1305,6 @@ SyntaxError: EOF while scanning triple-quoted string literal (Lỗi cú pháp kh
 1\.
 
 ```py
-# A simple example to count the number of booleans and
 # Một ví dụ tính toán số lượng các giá trị luận lý và
 # sô nguyên trong một danh sách lẫn lộn các kiểu phần tử khác nhau.
 mixed_list = [False, 1.0, "some_string", 3, True, [], False]
@@ -1388,7 +1387,6 @@ I have lost faith in truth!
 * Lúc đầu, Python không có kiểu `bool` (người ta dung 0 cho false và các giá trị khác không như 1 cho true).  `True`, `False`, va kiểu `bool` được bổ sung trong cá phiên bản 2.x, nhưng vi lý do hỗ trợ tương thích ngược (backward compatibility), `True` và `False` không thể trơ thành các hăng số (constants). Chúng chỉ là các biến được tích hợp sẵn trong Python, và ta có thể gán lại giá trị cho chúng.
 
 
-* Python 3 was backward-incompatible, the issue was finally fixed, and thus the last snippet won't work with Python 3.x!
 * Python 3 không hỗ trợ tương thích ngược, và do vậy các đoạn mã cuối cung không chạy được trên  Python 3.x!
 ---
 
@@ -1530,10 +1528,10 @@ def some_func(val):
 ```
 
 #### 💡 Explanation:
-- This is a bug in CPython's handling of `yield` in generators and comprehensions.
-- Source and explanation can be found here: https://stackoverflow.com/questions/32139885/yield-in-list-comprehensions-and-generator-expressions
-- Related bug report: http://bugs.python.org/issue10544
-- Python 3.8+ no longer allows `yield` inside list comprehension and will throw a `SyntaxError`.
+- Đây là một bug tồn tại khi CPython xử lý `yield` trong các generators và comprehensions.
+- Bạn có thể tham khảo thêm về lỗi này tại đây: https://stackoverflow.com/questions/32139885/yield-in-list-comprehensions-and-generator-expressions
+- Báo cáo về bug này: http://bugs.python.org/issue10544
+- Từ Python 3.8+  `yield` không được phép nằm bên trong  list comprehension và nếu bạn làm như vậy sẽ tạo ra lỗi cú pháp `SyntaxError`.
 
 ---
 
@@ -1550,14 +1548,14 @@ def some_func(x):
         yield from range(x)
 ```
 
-**Output (> 3.3):**
+**Kết quả (> 3.3):**
 
 ```py
 >>> list(some_func(3))
 []
 ```
 
-Where did the `"wtf"` go? Is it due to some special effect of `yield from`? Let's validate that,
+Đáng lẽ phải hiển thị `"wtf"` chứ nhỉ? Có phải là do `yield from`? Cùng nhau đánh giá thêm,
 
 2\.
 
@@ -1570,24 +1568,25 @@ def some_func(x):
           yield i
 ```
 
-**Output:**
+**Kết quả:**
 
 ```py
 >>> list(some_func(3))
 []
 ```
 
-The same result, this didn't work either.
+Cũng vẫn lại không in ra `"wtf"` .
 
-#### 💡 Explanation:
+#### 💡 Giải thích:
 
-+ From Python 3.3 onwards, it became possible to use `return` statement with values inside generators (See [PEP380](https://www.python.org/dev/peps/pep-0380/)). The [official docs](https://www.python.org/dev/peps/pep-0380/#enhancements-to-stopiteration) say that,
 
-> "... `return expr` in a generator causes `StopIteration(expr)` to be raised upon exit from the generator."
++ Từ Python 3.3 trở đi, ta có thể sử dụng `return`  with values bên trong các generators (Xem thêm [PEP380](https://www.python.org/dev/peps/pep-0380/)). Các [tài liệu chính thức](https://www.python.org/dev/peps/pep-0380/#enhancements-to-stopiteration) cũng nói như vậy,
+> "... `return expr` tron một generator tạo ra ngoại lệ `StopIteration(expr)` khi thoát ra từ generator."
 
-+ In the case of `some_func(3)`, `StopIteration` is raised at the beginning because of `return` statement. The `StopIteration` exception is automatically caught inside the `list(...)` wrapper and the `for` loop. Therefore, the above two snippets result in an empty list.
++ Trong trường hợp `some_func(3)`, ngoại lệ `StopIteration` được khởi lên ngay từ đầu bởi vì câu lệnh `return`. Ngoại lệ `StopIteration` được tự động bắt lại trong dòng lệnh bao `list(...)` và trong vòng lặp `for`. Do đó, cả hai đoạn mã trên đều trả về một danh sách rỗng.
 
 + To get `["wtf"]` from the generator `some_func` we need to catch the `StopIteration` exception,
++ Để có được `["wtf"]` từ generator `some_func` bạn cần bắt ngoại lệ `StopIteration`,
 
   ```py
   try:
