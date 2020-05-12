@@ -3073,12 +3073,12 @@ class Yo(object):
         self.bro = True
 ```
 
-**Output:**
+**Kết quả:**
 ```py
 >>> Yo().bro
 True
 >>> Yo().__honey
-AttributeError: 'Yo' object has no attribute '__honey'
+AttributeError: 'Yo' object has no attribute '__honey' (Đối tượng 'Yo' không có thuộc tính '__honey')
 >>> Yo()._Yo__honey
 True
 ```
@@ -3092,7 +3092,7 @@ class Yo(object):
         self.bro = True
 ```
 
-**Output:**
+**Kết quả:**
 ```py
 >>> Yo().bro
 True
@@ -3100,10 +3100,10 @@ True
 >>> Yo()._Yo__honey__
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
-AttributeError: 'Yo' object has no attribute '_Yo__honey__'
+AttributeError: 'Yo' object has no attribute '_Yo__honey__' (Đối tượng 'Yo' không có thuộc tính '_Yo__honey__')
 ```
 
-Why did `Yo()._Yo__honey` work?
+Tại sao `Yo()._Yo__honey` lại gây ra lỗi?
 
 3\.
 
@@ -3112,29 +3112,30 @@ _A__variable = "Some value"
 
 class A(object):
     def some_func(self):
-        return __variable # not initialized anywhere yet
+        return __variable # (biến này chưa được khởi tạo)
 ```
 
-**Output:**
+**Kết quả:**
 ```py
 >>> A().__variable
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
-AttributeError: 'A' object has no attribute '__variable'
+AttributeError: 'A' object has no attribute '__variable' (Đối tượng 'A' không có thuộc tính '__variable')
 
 >>> A().some_func()
 'Some value'
 ```
 
 
-#### 💡 Explanation:
+#### 💡 Giải thích:
 
-* [Name Mangling](https://en.wikipedia.org/wiki/Name_mangling) is used to avoid naming collisions between different namespaces.
-* In Python, the interpreter modifies (mangles) the class member names starting with `__` (double underscore a.k.a "dunder") and not ending with more than one trailing underscore by adding `_NameOfTheClass` in front.
+* [Name Mangling](https://en.wikipedia.org/wiki/Name_mangling) được sử dụng để tránh việc đụng độ về tên (names) giữa các không gian tên (namespaces).
+* Trong Python, trình thông dịch thay đổi (mangles) tên của các thành viên của một lớp mà bắt đầu với `__` (hai dấu gạch chân liền nhau hay còn gọi là "dunder") và các tên không thúc với nhiều hơn một dấu gạch chân bằng việc thêm vào `_TênCủaLớp` vào trước đó
 * So, to access `__honey` attribute in the first snippet, we had to append `_Yo` to the front, which would prevent conflicts with the same name attribute defined in any other class.
-* But then why didn't it work in the second snippet? Because name mangling excludes the names ending with double underscores.
-* The third snippet was also a consequence of name mangling. The name `__variable` in the statement `return __variable` was mangled to `_A__variable`, which also happens to be the name of the variable we declared in the outer scope.
-* Also, if the mangled name is longer than 255 characters, truncation will happen.
+* Vì vậy, để truy cập vào thuộc tính `__honey` trong đoạn mã đầu tiên, bạn phải nối `_Yo` vào phía trước, để ngăn việc xung đột với thuộc tính có cùng tên trong lớp khác.
+* Nhưng tại sao trong đoạn mã thứ hai mặc dù đã dung tên đúng nhưng ta vẫn không truy cập được vào thuộc tính? Bởi vì cách thức mangling này không áp dụng đối với các tên biến kết thúc với hai dấu gạch chân.
+* Đoạn mã thứ ba cũng là kết quả của việc mangling. Tên `__variable` trong câu lệnh `return __variable` được chuyển thành `_A__variable`, và lại vô tình trùng với tên biến được khai báo phía bên ngoài
+* Còn nữa, nếu tên bị mangle nhiều hơn 255 kí tự, việc cắt gọn tên sẽ diên ra.
 
 ---
 ---
@@ -3184,33 +3185,34 @@ Hàm tích hợp sẵn `ord()` trả về mã Unicode của một kí tự [code
 <!-- Example ID: edafe923-0c20-4315-b6e1-0c31abfc38f5 --->
 
 ```py
-# `pip install numpy` first.
+# Cài đặt thư viên numpy sử dụng `pip install numpy` trước
 import numpy as np
 
 def energy_send(x):
-    # Initializing a numpy array
+    # Khởi tạo một mảng numpy
     np.array([float(x)])
 
 def energy_receive():
-    # Return an empty numpy array
+    # Trả về một mang numpy rỗng
     return np.empty((), dtype=np.float).tolist()
 ```
 
-**Output:**
+**Kết quả:**
 ```py
 >>> energy_send(123.456)
 >>> energy_receive()
 123.456
 ```
 
-Where's the Nobel Prize?
+Giải Nobel ở chỗ nào?
 
-#### 💡 Explanation:
+#### 💡 Giải thích:
 
-* Notice that the numpy array created in the `energy_send` function is not returned, so that memory space is free to reallocate.
-* `numpy.empty()` returns the next free memory slot without reinitializing it. This memory spot just happens to be the same one that was just freed (usually, but not always).
+* Chú ý rằng mảng numpy được tạo trong hàm `energy_send` không có được trả vì, vì vậy không gian bộ nhớ được giải phóng.
+* `numpy.empty()` trả về phần bộ nhơ tự do tiếp theo mà không khởi tạo lại nó. Phân bộ nhớ nay lại vô tình trung với phần bộ nhớ trước đó được giải phóng (thường xảy ra, nhưng không phải là luôn luôn)
 
 ---
+
 
 ### ▶ Well, something is fishy...
 <!-- Example ID: cb6a37c5-74f7-44ca-b58c-3b902419b362 --->
