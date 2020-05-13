@@ -605,7 +605,7 @@ class WTF:
   pass
 ```
 
-**Output:**
+**Kết quả:**
 ```py
 >>> WTF() == WTF() # two different instances can't be equal
 False
@@ -617,19 +617,19 @@ True
 True
 ```
 
-#### 💡 Explanation:
+#### 💡 Giải thích:
 
 * When `id` was called, Python created a `WTF` class object and passed it to the `id` function. The `id` function takes its `id` (its memory location), and throws away the object. The object is destroyed.
-* When we do this twice in succession, Python allocates the same memory location to this second object as well. Since (in CPython) `id` uses the memory location as the object id, the id of the two objects is the same.
-* So, the object's id is unique only for the lifetime of the object. After the object is destroyed, or before it is created, something else can have the same id.
-* But why did the `is` operator evaluated to `False`? Let's see with this snippet.
-  ```py
+* Khi `id` được gọi, Python tạo một đối tượng lớp `WTF` và truyền đối tượng này cho hàm `id`. Hàm `id` lấy `id` của đối tượng (vùng nhớ của đối tượng), và vứt đối tượng này đi. Do đó đối tượng bị tiêu huỷ.
+* Khi chúng ta gọi `id` hai lần, Python cấp phát cùng một vùng nhơ cho đối tượng thư hai. Bởi vi (trong CPython) `id` sử dụng vùng nhớ cho id của đối tượng, id của hai đối tượng này là giống nhau.
+* Vì vậy, id của đối tượng chỉ duy nhất trong vòng đời của đối tượng đó. Sau khi đối tượng bị tiêu hiểu, hay trước khi nó được tạo, những thứ khác có thể có cùng id với nó.
+* Nhưng tại sao phép `is` lại cho ra kết quả `False`? Hãy nhìn ví dụ dưới đây
+```py
   class WTF(object):
     def __init__(self): print("I")
     def __del__(self): print("D")
   ```
-
-  **Output:**
+  **Kết quả:**
   ```py
   >>> WTF() is WTF()
   I
@@ -644,8 +644,8 @@ True
   D
   True
   ```
-  As you may observe, the order in which the objects are destroyed is what made all the difference here.
-
+  Như bạn quan sát thấy, có sự khác biệt ở thứ tự tiêu hiểu các đối tượng, và đó tạo ra sự khác biệt.
+  
 ---
 
 ### ▶ Vô trật tự trong trật tự *
