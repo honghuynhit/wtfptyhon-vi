@@ -1148,11 +1148,11 @@ False
 True
 ```
 
-Why's this True-False alteration?
+Lý do vì sao mà lúc thì True mà lúc thì lại False
 
-#### 💡 Explanation:
+#### 💡 Giải thích:
 
-- The implementation of `all` function is equivalent to
+- Hàm `all` tương đương như đoạn mã dưới
 
 - ```py
   def all(iterable):
@@ -1162,10 +1162,9 @@ Why's this True-False alteration?
       return True
   ```
 
-- `all([])` returns `True` since the iterable is empty. 
-- `all([[]])` returns `False` because `not []` is `True` is equivalent to `not False` as the list inside the iterable is empty.
-- `all([[[]]])` and higher recursive variants are always `True` since `not [[]]`, `not [[[]]]`, and so on are equivalent to `not True`.
-
+- `all([])` trả về `True` bởi vì danh sách nay rỗng. 
+- `all([[]])` trả về `False` bởi vì `not []` là `True` tương đương với `not False` bởi vì danh sách phía trong rỗng.
+- `all([[[]]])` và các biến thể đệ quy cao hơn luôn trả về `True` bởi vì `not [[]]`, `not [[[]]]`, tương đương với`not True`.
 ---
 
 ### ▶ Dấu phẩy lạ lùng
@@ -1203,7 +1202,7 @@ SyntaxError: invalid syntax (Lỗi cú pháp không hợp lệ)
 
 ### ▶ Strings and the backslashes
 <!-- Example ID: 6ae622c3-6d99-4041-9b33-507bd1a4407b --->
-**Output:**
+**Kết quả:**
 ```py
 >>> print("\"")
 "
@@ -1221,14 +1220,16 @@ SyntaxError: EOL while scanning string literal
 True
 ```
 
-#### 💡 Explanation
+#### 💡 Giải thích
 
-- In a usual python string, the backslash is used to escape characters that may have a special meaning (like single-quote, double-quote, and the backslash itself).
+
+- Tron một string thông thường, dấu xuyệc ngược được dùng để "escape" các kí tự có một ý nghĩa đặc biệt (như là dấu trích dẫn đơn, dấu trích dẫn kép, va chính dấu xuyệc ngược).
     ```py
     >>> "wt\"f"
     'wt"f'
     ```
 - In a raw string literal (as indicated by the prefix `r`),  the backslashes pass themselves as is along with the behavior of escaping the following character.
+- Đối với một string thô (raw string) (được chỉ định bởi tiếp đầu ngữ `r`), dấu xuyệc ngược .
     ```py
     >>> r'wt\"f' == 'wt\\"f'
     True
@@ -1241,6 +1242,7 @@ True
     '\\\\n'
     ```
 - This means when a parser encounters a backslash in a raw string, it expects another character following it. And in our case (`print(r"\")`), the backslash escaped the trailing quote, leaving the parser without a terminating quote (hence the `SyntaxError`). That's why backslashes don't work at the end of a raw string.
+- Có nghĩa là khi một trình phân tích cú pháp gặp một dấu xuyệc ngược tron một string thô, trình này mong đợi một kí tự khác phía sau nó. Và tron trường hợp `print(r"\")`, dấu xuyêcj ngược escape dấu trích dẫn ở đuôi, DỊCH LẠI
 
 ---
 
@@ -1251,7 +1253,7 @@ x = True
 y = False
 ```
 
-**Output:**
+**Kết quả:**
 ```py
 >>> not x == y
 True
@@ -1259,15 +1261,15 @@ True
   File "<input>", line 1
     x == not y
            ^
-SyntaxError: invalid syntax
+SyntaxError: invalid syntax (Lỗi về cú pháp)
 ```
 
-#### 💡 Explanation:
+#### 💡 Giải thích:
 
-* Operator precedence affects how an expression is evaluated, and `==` operator has higher precedence than `not` operator in Python.
-* So `not x == y` is equivalent to `not (x == y)` which is equivalent to `not (True == False)` finally evaluating to `True`.
-* But `x == not y` raises a `SyntaxError` because it can be thought of being equivalent to `(x == not) y` and not `x == (not y)` which you might have expected at first sight.
-* The parser expected the `not` token to be a part of the `not in` operator (because both `==` and `not in` operators have the same precedence), but after not being able to find an `in` token following the `not` token, it raises a `SyntaxError`.
+* Thứ tự ưu tiên của các phép toán ảnh hưởng tơi cách một câu lệnh được thực thi, và phép `==` có độ ưu tiên cao hơn phép `not` trong Python.
+* Vì vậy `not x == y` tương đương với `not (x == y)` rồi tương đương với `not (True == False)` và kết quả là`True`.
+* Nhưng `x == not y` gây ra lỗi cú pháp `SyntaxError` bởi vì Python nghĩ rằng nó sẽ thực hiện `(x == not) y` chứ không phải là `x == (not y)` do đó bạn mới gặp lỗi về cú pháp.
+* Trình phân tích cú pháp mong đợi `not` là một phần của phép toán `not in` (bởi vì cả  `==` và `not in` có cùng độ ưu tiên), nhưng do trong trương hợp của chúng ta, trình xử lý không tìm thấy `in` đằng sau `not`, nên nó gây ra `SyntaxError`.
 
 ---
 
