@@ -1407,7 +1407,7 @@ class C(A):
     pass
 ```
 
-**Output:**
+**Kết quả:**
 ```py
 >>> A.x, B.x, C.x
 (1, 1, 1)
@@ -1415,7 +1415,7 @@ class C(A):
 >>> A.x, B.x, C.x
 (1, 2, 1)
 >>> A.x = 3
->>> A.x, B.x, C.x # C.x changed, but B.x didn't
+>>> A.x, B.x, C.x # C.x thay đổi, nhưng B.x không thay đổi
 (3, 2, 3)
 >>> a = A()
 >>> a.x, A.x
@@ -1437,7 +1437,7 @@ class SomeClass:
         self.another_list += [x]
 ```
 
-**Output:**
+**Kết quả:**
 
 ```py
 >>> some_obj = SomeClass(420)
@@ -1456,11 +1456,11 @@ True
 True
 ```
 
-#### 💡 Explanation:
+#### 💡 Gỉai thích:
 
-* Class variables and variables in class instances are internally handled as dictionaries of a class object. If a variable name is not found in the dictionary of the current class, the parent classes are searched for it.
-* The `+=` operator modifies the mutable object in-place without creating a new object. So changing the attribute of one instance affects the other instances and the class attribute as well.
 
+* Các biến thuộc về lớp và các biến thuộc về các hiện thực của lơp (class instances) được xử lý nội tại như là các từ điển của một đối tượng lớp. Nếu một biến không nằm trong từ điển của lớp hiện hành, nó sẽ được tìm trong các lớp cha. 
+* Phép `+=` thay đổi đối tượng có thể biến đổi (mutable) tại chỗ mà khôn cần phải tạo một đối tượng mới. Vì vậy thay đổi thuộc tính cua một hiện thực ảnh hưởng tới thuộc tính của các hiện thực khác và thuộc tính lớp.
 ---
 
 ### ▶ Non-reflexive class method *
