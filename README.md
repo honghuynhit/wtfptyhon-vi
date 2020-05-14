@@ -1230,7 +1230,6 @@ True
     >>> "wt\"f"
     'wt"f'
     ```
-- In a raw string literal (as indicated by the prefix `r`),  the backslashes pass themselves as is along with the behavior of escaping the following character.
 - Đối với một string thô (raw string) (được chỉ định bởi tiếp đầu ngữ `r`), dấu xuyệc ngược .
     ```py
     >>> r'wt\"f' == 'wt\\"f'
@@ -1478,7 +1477,7 @@ class SomeClass:
                 pass
 ```
 
-**Output:**
+**Kết quả:**
 
 ```py
 >>> SomeClass.instance_method is SomeClass.instance_method
@@ -1489,9 +1488,9 @@ False
 True
 ```
 
-#### 💡 Explanation:
+#### 💡 Giải thích:
 
-- The reason `SomeClass.class_method is SomeClass.class_method` is `False` is due to the `@classmethod` decorator. 
+- Lý do `SomeClass.class_method is SomeClass.class_method` trả về `False` là bởi vì decorator `@classmethod`. 
 
   ```py
   >>> SomeClass.instance_method
@@ -1500,10 +1499,8 @@ True
   <bound method SomeClass.class_method of <class '__main__.SomeClass'>
   ```
 
-  A new bound method every time `SomeClass.class_method` is accessed.
-
--  `id(SomeClass.class_method) == id(SomeClass.class_method)` returned `True` because the second allocation of memory for `class_method` happened at the same location of first deallocation (See Deep Down, we're all the same example for more detailed explanation). 
-
+  Mỗi lân truy cập tơi `SomeClass.class_method` là có một phương thức được bọc mới (new bound method) 
+-  `id(SomeClass.class_method) == id(SomeClass.class_method)` trả về `True` bởi vì quá trình cấp phát bộ nhớ cho `class_method` lần thứ hai xảy ra tại cung một ví trí với quá trình giải phóng bộ nhớ đầu tiên (Xem lại "Deep Down, we're all the same example" để có lời giải thích rõ hơn). 
 ---
 
 
@@ -1516,7 +1513,7 @@ def some_func(val):
     return "something"
 ```
 
-**Output (<= 3.7.x):**
+**Kết quả (<= 3.7.x):**
 
 ```py
 >>> [x for x in some_iterable]
@@ -1531,7 +1528,7 @@ def some_func(val):
 ['a', 'something', 'b', 'something']
 ```
 
-#### 💡 Explanation:
+#### 💡 Gỉai thích:
 - Đây là một bug tồn tại khi CPython xử lý `yield` trong các generators và comprehensions.
 - Bạn có thể tham khảo thêm về lỗi này tại đây: https://stackoverflow.com/questions/32139885/yield-in-list-comprehensions-and-generator-expressions
 - Báo cáo về bug này: http://bugs.python.org/issue10544
