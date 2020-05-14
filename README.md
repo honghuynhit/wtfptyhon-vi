@@ -1580,13 +1580,11 @@ Cũng vẫn lại không in ra `"wtf"` .
 
 #### 💡 Giải thích:
 
-
 + Từ Python 3.3 trở đi, ta có thể sử dụng `return`  with values bên trong các generators (Xem thêm [PEP380](https://www.python.org/dev/peps/pep-0380/)). Các [tài liệu chính thức](https://www.python.org/dev/peps/pep-0380/#enhancements-to-stopiteration) cũng nói như vậy,
 > "... `return expr` tron một generator tạo ra ngoại lệ `StopIteration(expr)` khi thoát ra từ generator."
 
 + Trong trường hợp `some_func(3)`, ngoại lệ `StopIteration` được khởi lên ngay từ đầu bởi vì câu lệnh `return`. Ngoại lệ `StopIteration` được tự động bắt lại trong dòng lệnh bao `list(...)` và trong vòng lặp `for`. Do đó, cả hai đoạn mã trên đều trả về một danh sách rỗng.
 
-+ To get `["wtf"]` from the generator `some_func` we need to catch the `StopIteration` exception,
 + Để có được `["wtf"]` từ generator `some_func` bạn cần bắt ngoại lệ `StopIteration`,
 
   ```py
@@ -1731,7 +1729,7 @@ except Exception as e:
 # Không in ra kết quả nào cả
 ```
 
-**Output (Python 3.x):**
+**Kết quả (Python 3.x):**
 ```py
 >>> print(e)
 NameError: name 'e' is not defined (Lỗi tên biến không được định nghĩa)
@@ -1741,7 +1739,6 @@ NameError: name 'e' is not defined (Lỗi tên biến không được định ng
 
 * Source: https://docs.python.org/3/reference/compound_stmts.html#except
 
-  When an exception has been assigned using `as` target, it is cleared at the end of the `except` clause. This is as if
   Khi một ngoại lệ được gán sử dụng đích được định nghia bởi `as`, ngoại lệ này được dọn dẹp ở cuối câu `except`. Như vậy thì
 
   ```py
