@@ -819,19 +819,20 @@ for i, some_dict[i] in enumerate(some_string):
     i = 10
 ```
 
-**Output:**
+**Kết quả:**
 ```py
 >>> some_dict # An indexed dict appears.
 {0: 'w', 1: 't', 2: 'f'}
 ```
 
-####  💡 Explanation:
+####  💡 Giải thích:
 
-* A `for` statement is defined in the [Python grammar](https://docs.python.org/3/reference/grammar.html) as:
+* Câu lệnh `for` được định nghĩa trong [ngữ pháp Python](https://docs.python.org/3/reference/grammar.html) như sau:
   ```
   for_stmt: 'for' exprlist 'in' testlist ':' suite ['else' ':' suite]
   ```
-  Where `exprlist` is the assignment target. This means that the equivalent of `{exprlist} = {next_value}` is **executed for each item** in the iterable.
+
+  Ở đó `exprlist` là biến mục tiêu của phép gán. Điều đó co nghĩa là câu lệnh gán `{exprlist} = {next_value}` được **thực hiện đối với mỗi phần tử** trong đối tượng lặp (iterable)
   An interesting example that illustrates this:
   ```py
   for i in range(4):
@@ -839,7 +840,7 @@ for i, some_dict[i] in enumerate(some_string):
       i = 10
   ```
 
-  **Output:**
+  **Kết quả:**
   ```
   0
   1
@@ -847,13 +848,14 @@ for i, some_dict[i] in enumerate(some_string):
   3
   ```
 
-  Did you expect the loop to run just once?
+  Bạn có nghĩ răng vòng lặp trên chỉ chạy có một lần?
 
   **💡 Explanation:**
 
-  - The assignment statement `i = 10` never affects the iterations of the loop because of the way for loops work in Python. Before the beginning of every iteration, the next item provided by the iterator (`range(4)` in this case) is unpacked and assigned the target list variables (`i` in this case).
 
-* The `enumerate(some_string)` function yields a new value `i` (a counter going up) and a character from the `some_string` in each iteration. It then sets the (just assigned) `i` key of the dictionary `some_dict` to that character. The unrolling of the loop can be simplified as:
+- Câu lệnh gán `i = 10` không bao giờ ảnh hưởng tới các vòng lặp do cách thức hoạt động của vòng lặp for tron Python. Trước điểm khởi đầu của mỗi vòng lặp, phần tử tiếp theo được đưa ra bởi trình sinh (iterator, trong trường hợp nay là `range(4)`), phần tử này được giải nén ra (unpacked) và gán cho các biến chạy (trong trường hợp nay là `i`)
+
+* Hàm `enumerate(some_string)` sinh ra giá trị mới `i` (biến đếm) và một kí tự từ `some_string` tại mỗi lần lặp. Sau đó nó gán khoá `i` của từ điển `some_dict` cho kí tự đó. Trình tự được thể hiện đơn giản như dưới đây:
   ```py
   >>> i, some_dict[i] = (0, 'w')
   >>> i, some_dict[i] = (1, 't')
