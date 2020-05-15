@@ -954,13 +954,13 @@ False
 <!-- Example ID: 69329249-bdcb-424f-bd09-cca2e6705a7a --->
 
 ```py
-# Let's initialize a row
+# Khởi tạo một hàng
 row = [""] * 3 #row i['', '', '']
-# Let's make a board
+# Và tạo một bảng gồm các hàng
 board = [row] * 3
 ```
 
-**Output:**
+**Kết quả:**
 
 ```py
 >>> board
@@ -974,20 +974,20 @@ board = [row] * 3
 [['X', '', ''], ['X', '', ''], ['X', '', '']]
 ```
 
-We didn't assign three `"X"`s, did we?
+Chúng ta đã gán `"X"` cho ba vị trí trong bảng này chăng?
 
-#### 💡 Explanation:
+#### 💡 Giải thích:
 
-When we initialize `row` variable, this visualization explains what happens in the memory
+Khi chúng ta khởi tạoi biến `row`, hình mô phỏng dưới đây cho ta biết những gì diễn ra trong bộ nhớ
 
 ![image](/images/tic-tac-toe/after_row_initialized.png)
 
-And when the `board` is initialized by multiplying the `row`, this is what happens inside the memory (each of the elements `board[0]`, `board[1]` and `board[2]` is a reference to the same list referred by `row`)
+
+Khi `board` được khởi tạo băng việc nhân bản `row`, minh hoạ phía dưới mô tả những gì diên ra trong bộ nhớ (mỗi thành phần của bảng `board[0]`, `board[1]` và `board[2]` là một tham chiếu tới cung một danh sách trỏ bởi `row`)
 
 ![image](/images/tic-tac-toe/after_board_initialized.png)
 
-We can avoid this scenario here by not using `row` variable to generate `board`. (Asked in [this](https://github.com/satwikkansal/wtfpython/issues/68) issue).
-
+Chúng ta có thể tránh điều trên xảy ra bằng cách không dùng biến `row` để sinh ra `board`. (Tim hiểu thêm tại (https://github.com/satwikkansal/wtfpython/issues/68) )
 ```py
 >>> board = [['']*3 for _ in range(3)]
 >>> board[0][0] = "X"
