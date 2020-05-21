@@ -2930,7 +2930,7 @@ True
 
 ### ▶ Yes, it exists!
 <!-- Example ID: 4286db3d-1ea7-47c9-8fb6-a9a04cac6e49 --->
-**The `else` clause for loops.** One typical example might be:
+** Khối `else` của các vòng lặp .** Dưới đây là một ví dụ điển hình:
 
 ```py
   def does_exists_num(l, to_find):
@@ -2942,16 +2942,16 @@ True
           print("Does not exist")
 ```
 
-**Output:**
+**Kết quả:**
 ```py
 >>> some_list = [1, 2, 3, 4, 5]
 >>> does_exists_num(some_list, 4)
-Exists!
+Exists! (Tồn tại)
 >>> does_exists_num(some_list, -1)
-Does not exist
+Does not exist (Không tồn tại)
 ```
 
-**The `else` clause in exception handling.** An example,
+**Khối `else` trong xử lý ngoại lệ.** Một ví dụ,
 
 ```py
 try:
@@ -2962,14 +2962,14 @@ else:
     print("Try block executed successfully...")
 ```
 
-**Output:**
+**Kết quả:**
 ```py
 Try block executed successfully...
 ```
 
-#### 💡 Explanation:
-- The `else` clause after a loop is executed only when there's no explicit `break` after all the iterations. You can think of it as a "nobreak" clause.
-- `else` clause after a try block is also called "completion clause" as reaching the `else` clause in a `try` statement means that the try block actually completed successfully.
+#### 💡 Giải thích:
+- Khối `else` sau một vòng lặp được thực hiện chỉ khi trong quá trình lặp không có một `break` nào. Bạn có thể nghĩ nó như là một khối "không ngắt" ("nobreak")
+- Khối `else` sau một khối try còn được gọi la "khối hoàn tất" đó khi các câu lệnh trong khối này sẽ được thực thi khi khối try hoàn thành trọn vẹn công việc của mình.
 
 ---
 ### ▶ Ellipsis *
@@ -3119,7 +3119,6 @@ AttributeError: 'A' object has no attribute '__variable' (Đối tượng 'A' kh
 
 * [Name Mangling](https://en.wikipedia.org/wiki/Name_mangling) được sử dụng để tránh việc đụng độ về tên (names) giữa các không gian tên (namespaces).
 * Trong Python, trình thông dịch thay đổi (mangles) tên của các thành viên của một lớp mà bắt đầu với `__` (hai dấu gạch chân liền nhau hay còn gọi là "dunder") và các tên không thúc với nhiều hơn một dấu gạch chân bằng việc thêm vào `_TênCủaLớp` vào trước đó
-* So, to access `__honey` attribute in the first snippet, we had to append `_Yo` to the front, which would prevent conflicts with the same name attribute defined in any other class.
 * Vì vậy, để truy cập vào thuộc tính `__honey` trong đoạn mã đầu tiên, bạn phải nối `_Yo` vào phía trước, để ngăn việc xung đột với thuộc tính có cùng tên trong lớp khác.
 * Nhưng tại sao trong đoạn mã thứ hai mặc dù đã dung tên đúng nhưng ta vẫn không truy cập được vào thuộc tính? Bởi vì cách thức mangling này không áp dụng đối với các tên biến kết thúc với hai dấu gạch chân.
 * Đoạn mã thứ ba cũng là kết quả của việc mangling. Tên `__variable` trong câu lệnh `return __variable` được chuyển thành `_A__variable`, và lại vô tình trùng với tên biến được khai báo phía bên ngoài
