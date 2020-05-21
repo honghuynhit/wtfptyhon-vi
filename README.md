@@ -407,8 +407,7 @@ While such behavior might seem silly to you in the above examples, it's fantasti
 
 ### ▶ How not to use `is` operator
 <!-- Example ID: 230fa2ac-ab36-4ad1-b675-5f5a1c1a6217 --->
-The following is a very famous example present all over the internet.
-
+Ví dụ dươi đây rất nổi tiếng trên Internet
 1\.
 
 ```py
@@ -438,7 +437,7 @@ True
 ```
 
 3\.
-**Output**
+**Kết quả**
 
 ```py
 >>> a, b = 257, 257
@@ -446,7 +445,7 @@ True
 True
 ```
 
-**Output (Python 3.7.x specifically)**
+**Kết qủa (Chỉ áp dụng cho Python 3.7.x )**
 
 ```py
 >>> a, b = 257, 257
@@ -454,25 +453,24 @@ True
 False
 ```
 
-#### 💡 Explanation:
+#### 💡 Giải thích:
 
-**The difference between `is` and `==`**
+**Sự khác biệt giữa `is` và `==`**
 
-* `is` operator checks if both the operands refer to the same object (i.e., it checks if the identity of the operands matches or not).
-* `==` operator compares the values of both the operands and checks if they are the same.
-* So `is` is for reference equality and `==` is for value equality. An example to clear things up,
+* `is` kiểm tra xem cả hai phần tử so sánh có trỏ về cùng một đôi tượng (ví dụ, `is` kiểm tra định danh của cả hai thành phần được so sánh có khớp với nhau hay không)
+* `==` so sánh giá trị của hai phần tử xem chúng có bằng nhau hay không
+* Vì thế `is` được dùng cho việc so sánh tham chiếu và `==` được dùng cho so sánh tham trị. Hãy xem ví dụ dưới đây để hiểu rõ hơn
   ```py
   >>> class A: pass
-  >>> A() is A() # These are two empty objects at two different memory locations.
+  >>> A() is A() # Hai đối tượng rỗng nhưng nằm ở hai vị trí khác nhau trong bộ nhớ.
   False
   ```
+** `256` là một đối tượng hiện hữu nhưng `257` lại không phải là một đối tượng hiện hữu.
 
-**`256` is an existing object but `257` isn't**
+Khi bạn khởi chạy python các số từ `-5` tới `256` sẽ được cấp phát. Những sô nay được sử dụng rất nhiều, do đó việc cấp phát này là hợp lý.
+Tham khảo từ https://docs.python.org/3/c-api/long.html
 
-When you start up python the numbers from `-5` to `256` will be allocated. These numbers are used a lot, so it makes sense just to have them ready.
-
-Quoting from https://docs.python.org/3/c-api/long.html
-> The current implementation keeps an array of integer objects for all integers between -5 and 256, when you create an int in that range you just get back a reference to the existing object. So it should be possible to change the value of 1. I suspect the behavior of Python, in this case, is undefined. :-)
+> Cách triển khai hiện hành của Python duy trì một mảng các đối tượng sô nguyên từ -5 tới 256, khi bạn tạo một số nguyên trong dải này bạn sẽ quay trở về lại một tham chiếu tới một đôi tượng tồn tại. Do vậy ta vẫn có thể thay đổi giá trị của 1. 
 
 ```py
 >>> id(256)
@@ -493,13 +491,13 @@ Quoting from https://docs.python.org/3/c-api/long.html
 140084850247344
 ```
 
-Here the interpreter isn't smart enough while executing `y = 257` to recognize that we've already created an integer of the value `257,` and so it goes on to create another object in the memory.
 
-Similar optimization applies to other **immutable** objects like empty tuples as well. Since lists are mutable, that's why `[] is []` will return `False` and `() is ()` will return `True`. This explains our second snippet. Let's move on to the third one, 
+Ở đây trình thông dịch không đủ thông minh khi thực thi `y = 257` và nhận ra rằng chúng ta đã tạo một số nguyên có giá trị là `257,` rồi, do đó nó tiếp tục tạo một đôi tượng khác trong bộ nhớ. 
 
-**Both `a` and `b` refer to the same object when initialized with same value in the same line.**
+Một tối ưu tương tự áp dụng cho các đối tượng bất biến (**immutable**) khác như là các tuples. Bởi vì lists có thể biến đổi được, do đó ta hiểu tại sao `[] is []` sẽ trả về `False` và `() is ()` sẽ trả về `True`. Điều này giải thích đoạn mã thứ hai. Nào hãy cùng đi qua ví dụ thứ 3.
 
-**Output**
+** Cả `a` và `b` đều trỏ về cùng một đối tượng khi được khởi tạo với cung một giá trị và trên cùng một dòng code**
+**Kết quả**
 
 ```py
 >>> a, b = 257, 257
@@ -515,18 +513,18 @@ Similar optimization applies to other **immutable** objects like empty tuples as
 140640774013488
 ```
 
-* When a and b are set to `257` in the same line, the Python interpreter creates a new object, then references the second variable at the same time. If you do it on separate lines, it doesn't "know" that there's already `257` as an object.
 
-* It's a compiler optimization and specifically applies to the interactive environment. When you enter two lines in a live interpreter, they're compiled separately, therefore optimized separately. If you were to try this example in a `.py` file, you would not see the same behavior, because the file is compiled all at once. This optimization is not limited to integers, it works for other immutable data types like strings (check the "Strings are tricky example") and floats as well,
+* Trên cùng một dòng code nơi cả a va b được gán cho giá trị `257`, trinh thông dịch Python tạo một đôi tượng mới, sau đó trỏ tới biến thứ hai cùng một lúc. Nếu bạn thực hiện việc gán trên các dòng riêng biệt, Python sẽ không biết rằng đã có săn một đối tượng `257`
 
+* Đây là một tối ưu của trình biên dịch, và áp dụng cụ thể cho môi trường tương tác (interactive environment). Khi bạn nhập hai dòng code trong phiên thôn dịch động, chúng được biên dịch riêng, do đó được tối ưu riêng. Nếu bạn thử ví dụ này trong một file `.py` bạn sẽ không thấy điều trên xảy ra do file code được biên dịch một lần. Tối ưu nay không chỉ giơi hạn cho các số nguyên, nó còn hoạt động được với các kiểu dữ liệu bất biến khác như strings (xem "Strings are tricky example") và floats.
   ```py
   >>> a, b = 257.0, 257.0
   >>> a is b
   True
   ```
 
-* Why didn't this work for Python 3.7? The abstract reason is because such compiler optimizations are implementation specific (i.e. may change with version, OS, etc). I'm still figuring out what exact implementation change cause the issue, you can check out this [issue](https://github.com/satwikkansal/wtfpython/issues/100) for updates.
 
+* Tại sao ví dụ nay lại không chạy được trên Python 3.7? Đại khái lý do là bởi vì các tối ưu của trình biên dịch áp dụng cho các trường hợp cụ thể (ví dụ. một cách tối ưu có thể thay đổi tuỳ theo phiên bản, hệ điều hành, vân vân). Tôi vân đang tìm hiểu các thay đổi cụ thể trong code triểu khai, bạn có thể xem thêm [tại đây](https://github.com/satwikkansal/wtfpython/issues/100)
 ---
 
 
