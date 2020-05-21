@@ -1097,7 +1097,6 @@ False
 - Không có một lớp nào nằm giữa lớp `object` và `type`. Vấn đề đối với các đoạn mã phía trên nằm ở cách ta tìm các mối quan hệ giữa các lớp trong Python (dùng `issubclass` và `isinstance`). Mỗi quan hệ giữa `object` và `type` không thể được định nghĩa trong Python đơn thuần. Chính xác hơn, nghĩa là,
     + Lớp A là một hiện thực của lớp B, và lớp B là một hiện thực của lớp A.  
     + Lớp A là một hiện thực của chính nó.
-- These relationships between `object` and `type` (both being instances of each other as well as themselves) exist in Python because of "cheating" at the implementation level.
 - Các mối quan hệ giữa `object` và `type` (ở cả hai cấp độ hiện thực cũng như chính lớp đó) tồn tại là do việc "ăn gian" khi triển khai các lớp này.
 ---
 
@@ -1123,7 +1122,6 @@ Mỗi quan hệ giữa các lớp con có tính bắc cầu không?(ví dụ, n�
 * Trong Python mối quan hệ giữa cá lớp con không nhất thiết phải mang tính bắc cầu. Bất cứ ai cũng được phép định nghĩa một lớp `__subclasscheck__` riêng, tuỳ ý trong một siêu lớp (metaclass).
 * Khi `issubclass(cls, Hashable)` được gọi, nó chỉ tìm phương thức non-Falsey "`__hash__`"  trong `cls` hoặc bất cư thư gì nó thừa hưởng từ đó.
 * Bởi vì `object` là một đối tượng có thể băm (hashable), còn `list` thi không, nên nó phá vỡ tính bắc cầu.
-
 * Giải thích chi tiết có thể xem [ở đây](https://www.naftaliharris.com/blog/python-subclass-intransitivity/).
 
 ---
@@ -1192,7 +1190,7 @@ SyntaxError: invalid syntax (Lỗi cú pháp không hợp lệ)
 #### 💡 Lý giải:
 
 - Dấu phẩy nằm ở cuối danh sách các tham số của một hàm không phải bao giờ cũng hợp lệ.
--  In Python, the argument list is defined partially with leading commas and partially with trailing commas. This conflict causes situations where a comma is trapped in the middle, and no rule accepts it.
+
 -  Trong Python, danh sách tham số được định nghĩa bởi một phần các dấu phẩy nằm phía trước và một phần các dấy phẩy nằm phía sau. Điều nay mâu thuẫn với các tình huống ở đó một dấu phẩy bị mắc kẹt ở giữa danh sách, và chẳng có một luật nào chấp nhận điều này cả.
 -  **Chú ý:** Vấn đề về dâu phẩy ở cuối  [đã được sửa trong Python 3.6](https://bugs.python.org/issue9232). Thảo luận [ở đây](https://bugs.python.org/issue9232#msg248399) cung cấp những cách dung khác nhau của dây phẩy ở cuối.
 
@@ -1220,8 +1218,7 @@ True
 
 #### 💡 Giải thích
 
-
-- Tron một string thông thường, dấu xuyệc ngược được dùng để "escape" các kí tự có một ý nghĩa đặc biệt (như là dấu trích dẫn đơn, dấu trích dẫn kép, va chính dấu xuyệc ngược).
+- Trong một string thông thường, dấu xuyệc ngược được dùng để "escape" các kí tự có một ý nghĩa đặc biệt (như là dấu trích dẫn đơn, dấu trích dẫn kép, va chính dấu xuyệc ngược).
     ```py
     >>> "wt\"f"
     'wt"f'
@@ -1295,7 +1292,7 @@ SyntaxError: EOF while scanning triple-quoted string literal (Lỗi cú pháp kh
   >>> print("wtf" "") # or "wtf"""
   wtf
   ```
-+ `'''` và `"""` are also string delimiters in Python which causes a SyntaxError because the Python interpreter was expecting a terminating triple quote as delimiter while scanning the currently encountered triple quoted string literal.
+
 + `'''` và `"""` là các kí hiệu phân cách chuỗi trong Python, chúng tạo ra lỗi SyntaxError bởi vì trình thông dịch Python chơ đợi kí hiệu phân cách kết thúc khi nó dò tìm chuỗi kí tự trích dẫn có ba dấu nháy .
 ---
 
@@ -1385,7 +1382,6 @@ I have lost faith in truth!
 
 * Lúc đầu, Python không có kiểu `bool` (người ta dung 0 cho false và các giá trị khác không như 1 cho true).  `True`, `False`, va kiểu `bool` được bổ sung trong cá phiên bản 2.x, nhưng vi lý do hỗ trợ tương thích ngược (backward compatibility), `True` và `False` không thể trơ thành các hăng số (constants). Chúng chỉ là các biến được tích hợp sẵn trong Python, và ta có thể gán lại giá trị cho chúng.
 
-
 * Python 3 không hỗ trợ tương thích ngược, và do vậy các đoạn mã cuối cung không chạy được trên  Python 3.x!
 ---
 
@@ -1452,8 +1448,7 @@ True
 True
 ```
 
-#### 💡 Gỉai thích:
-
+#### 💡 Giải thích:
 
 * Các biến thuộc về lớp và các biến thuộc về các hiện thực của lơp (class instances) được xử lý nội tại như là các từ điển của một đối tượng lớp. Nếu một biến không nằm trong từ điển của lớp hiện hành, nó sẽ được tìm trong các lớp cha. 
 * Phép `+=` thay đổi đối tượng có thể biến đổi (mutable) tại chỗ mà khôn cần phải tạo một đối tượng mới. Vì vậy thay đổi thuộc tính cua một hiện thực ảnh hưởng tới thuộc tính của các hiện thực khác và thuộc tính lớp.
@@ -1486,7 +1481,7 @@ True
 
 #### 💡 Giải thích:
 
-- Lý do `SomeClass.class_method is SomeClass.class_method` trả về `False` là bởi vì decorator `@classmethod`. 
+- Lý do là vì `SomeClass.class_method is SomeClass.class_method` trả về `False` là bởi vì decorator `@classmethod`. 
 
   ```py
   >>> SomeClass.instance_method
@@ -1495,7 +1490,7 @@ True
   <bound method SomeClass.class_method of <class '__main__.SomeClass'>
   ```
 
-  Mỗi lân truy cập tơi `SomeClass.class_method` là có một phương thức được bọc mới (new bound method) 
+  Mỗi lần truy cập tới `SomeClass.class_method` là lại có một phương thức được bọc mới sinh ra (new bound method) 
 -  `id(SomeClass.class_method) == id(SomeClass.class_method)` trả về `True` bởi vì quá trình cấp phát bộ nhớ cho `class_method` lần thứ hai xảy ra tại cung một ví trí với quá trình giải phóng bộ nhớ đầu tiên (Xem lại "Deep Down, we're all the same example" để có lời giải thích rõ hơn). 
 ---
 
@@ -1552,7 +1547,7 @@ def some_func(x):
 []
 ```
 
-Đáng lẽ phải hiển thị `"wtf"` chứ nhỉ? Có phải là do `yield from`? Cùng nhau đánh giá thêm,
+Đáng lẽ phải hiển thị `"wtf"` chứ nhỉ? Có phải là do `yield from`? Cùng tìm hiểu thêm nào,
 
 2\.
 
@@ -1572,11 +1567,11 @@ def some_func(x):
 []
 ```
 
-Cũng vẫn lại không in ra `"wtf"` .
+Vẫn lại không in ra `"wtf"` .
 
 #### 💡 Giải thích:
 
-+ Từ Python 3.3 trở đi, ta có thể sử dụng `return`  with values bên trong các generators (Xem thêm [PEP380](https://www.python.org/dev/peps/pep-0380/)). Các [tài liệu chính thức](https://www.python.org/dev/peps/pep-0380/#enhancements-to-stopiteration) cũng nói như vậy,
++ Từ Python 3.3 trở đi, ta có thể sử dụng `return`  với các giá trị bên trong các generators (Xem thêm [PEP380](https://www.python.org/dev/peps/pep-0380/)). Các [tài liệu chính thức](https://www.python.org/dev/peps/pep-0380/#enhancements-to-stopiteration) cũng nói như vậy,
 > "... `return expr` tron một generator tạo ra ngoại lệ `StopIteration(expr)` khi thoát ra từ generator."
 
 + Trong trường hợp `some_func(3)`, ngoại lệ `StopIteration` được khởi lên ngay từ đầu bởi vì câu lệnh `return`. Ngoại lệ `StopIteration` được tự động bắt lại trong dòng lệnh bao `list(...)` và trong vòng lặp `for`. Do đó, cả hai đoạn mã trên đều trả về một danh sách rỗng.
@@ -1664,8 +1659,6 @@ True
   >>> x == y, [x] == [y]
   (False, False)
   ```
-
-  Since the identities of `x` and `y` are different, the values are considered, which are also different; hence the comparison returns `False` this time.
   
  Do các định danh của `x` và `y` khác nhau, do đó giá trị của chúng sẽ được so sánh, mà giá trị của chúng khác nhau trong ví dụ này; nên kết quả trả về là `False`. Cụ thể hơn, theo tiêu chuẩn của IEEE thì `x` f va `y` đểu có giá trị là `nan` khi được chuyển đổi qua float, ` NaN != NaN` nên `x != y`, nhưng khi đặt trong một list thì định danh sẽ đc so sánh trước nên `[x] == [y]`
 
@@ -1867,13 +1860,14 @@ a, b = a[b] = {}, 5
   ```
   (target_list "=")+ (expression_list | yield_expression)
   ```
-  and
-  
-> An assignment statement evaluates the expression list (remember that this can be a single expression or a comma-separated list, the latter yielding a tuple) and assigns the single resulting object to each of the target lists, from left to right.
+  và
+
 
 > Câu lệnh gán thực thi  (remember that this can be a single expression or a comma-separated list, the latter yielding a tuple) and assigns the single resulting object to each of the target lists, from left to right.
 
 * The `+` in `(target_list "=")+` means there can be **one or more** target lists. In this case, target lists are `a, b` and `a[b]` (note the expression list is exactly one, which in our case is `{}, 5`).
+
+* Phép `+` trong `(target_list "=")+` có nghĩa là có thể có **một hay nhiều hơn** các danh sách mục tiêu. Trong trường hợp này, các danh sách mục tiêu đó là `a, b` và `a[b]` (chú ý rằng c)
 
 * After the expression list is evaluated, its value is unpacked to the target lists from **left to right**. So, in our case, first the `{}, 5` tuple is unpacked to `a, b` and we now have `a = {}` and `b = 5`.
 
@@ -1922,7 +1916,7 @@ for i in x:
     print(i)
 ```
 
-**Output (Python 2.7- Python 3.5):**
+**Kết quả (Áp dụng cho các phiên bản Python 2.7- Python 3.5):**
 
 ```
 0
@@ -3168,7 +3162,6 @@ False
 42
 ```
 
-Hàm tích hợp sẵn `ord()` function returns a character's Unicode [code point](https://en.wikipedia.org/wiki/Code_point), and different code positions of Cyrillic 'e' and Latin 'e' justify the behavior of the above example.
 
 Hàm tích hợp sẵn `ord()` trả về mã Unicode của một kí tự [code point](https://en.wikipedia.org/wiki/Code_point), và bạn có thể thấy các mã khác nhau cho kí tự  Cyrillic 'e' và kí tự Latin 'e' .
 
@@ -3198,7 +3191,7 @@ def energy_receive():
 123.456
 ```
 
-Giải Nobel ở chỗ nào?
+Có gì mới ở đây nào ?
 
 #### 💡 Giải thích:
 
@@ -3265,7 +3258,6 @@ Shouldn't that be 100?
 ```
 
 #### 💡 Giải thích:
-+ `+=` nhanh hơn `+` for concatenating more than two strings because the first string (example, `s1` for `s1 += s2 + s3`) is not destroyed while calculating the complete string.
 + `+=` nhanh hơn `+` khi nối nhiều hơn 2 strings bởi vì string đầu tiên (ví dụ, `s1` trong `s1 += s2 + s3`) không bị huỷ đi khi tạo ra chuỗi kết quả cuối cùng
 ---
 
@@ -3301,7 +3293,7 @@ def convert_list_to_string(l, iters):
     assert len(s) == 3*iters
 ```
 
-**Output:**
+**Kết quả:**
 
 ```py
 # Executed in ipython shell using %timeit for better readability of results.
@@ -3385,7 +3377,7 @@ Let's increase the number of iterations by a factor of 10.
   5
   ```
 
-  **💡 Explanation:**
+  **💡 Giải thích:**
   + There is no `++` operator in Python grammar. It is actually two `+` operators.
   + `++a` parses as `+(+a)` which translates to `a`. Similarly, the output of the statement `--a` can be justified.
   + This StackOverflow [thread](https://stackoverflow.com/questions/3654830/why-are-there-no-and-operators-in-python) discusses the rationale behind the absence of increment and decrement operators in Python.
