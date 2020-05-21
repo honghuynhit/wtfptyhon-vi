@@ -616,7 +616,6 @@ True
 
 #### 💡 Giải thích:
 
-* When `id` was called, Python created a `WTF` class object and passed it to the `id` function. The `id` function takes its `id` (its memory location), and throws away the object. The object is destroyed.
 * Khi `id` được gọi, Python tạo một đối tượng lớp `WTF` và truyền đối tượng này cho hàm `id`. Hàm `id` lấy `id` của đối tượng (vùng nhớ của đối tượng), và vứt đối tượng này đi. Do đó đối tượng bị tiêu huỷ.
 * Khi chúng ta gọi `id` hai lần, Python cấp phát cùng một vùng nhơ cho đối tượng thư hai. Bởi vi (trong CPython) `id` sử dụng vùng nhớ cho id của đối tượng, id của hai đối tượng này là giống nhau.
 * Vì vậy, id của đối tượng chỉ duy nhất trong vòng đời của đối tượng đó. Sau khi đối tượng bị tiêu hiểu, hay trước khi nó được tạo, những thứ khác có thể có cùng id với nó.
