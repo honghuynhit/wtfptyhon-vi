@@ -2877,9 +2877,9 @@ There we go.
 import this
 ```
 
-Wait, what's **this**? `this` is love :heart:
+Nào, **this** là gì thế? `this` là tình yêu :heart:
 
-**Output:**
+**Kết quả:**
 ```
 The Zen of Python, by Tim Peters
 
@@ -2904,7 +2904,7 @@ If the implementation is easy to explain, it may be a good idea.
 Namespaces are one honking great idea -- let's do more of those!
 ```
 
-It's the Zen of Python!
+`this` là Thiền của Python!
 
 ```py
 >>> love = this
@@ -2916,16 +2916,17 @@ False
 False
 >>> love is not True or False
 True
->>> love is not True or False; love is love  # Love is complicated
+>>> love is not True or False; love is love  # Tình yêu thật phức tạp
 True
 ```
 
-#### 💡 Explanation:
+#### 💡 Giải thích:
 
 * `this` module in Python is an easter egg for The Zen Of Python ([PEP 20](https://www.python.org/dev/peps/pep-0020)).
+* Module `this` trong Python là một quả trứng phục sinh cho Thiền của Python
 * And if you think that's already interesting enough, check out the implementation of [this.py](https://hg.python.org/cpython/file/c3896275c0f6/Lib/this.py). Interestingly, **the code for the Zen violates itself** (and that's probably the only place where this happens).
-* Regarding the statement `love is not True or False; love is love`, ironic but it's self-explanatory (if not, please see the examples related to `is` and `is not` operators).
-
+* Và nếu bạn thấy nó hứng thú, hãy xem mã triển khai của [this.py](https://hg.python.org/cpython/file/c3896275c0f6/Lib/this.py). Hấp dẫn thay, **mã của Thiền lại vi phạm chính quy tắc thiền**
+* Nói về câu `love is not True or False; love is love`, mỉa mai thay câu nay tự thấy nó co nghĩa (nếu không, hay xnhinf cá ví dụ liên quan tới `is` và `is not`)
 ---
 
 ### ▶ Yes, it exists!
