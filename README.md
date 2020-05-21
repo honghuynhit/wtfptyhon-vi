@@ -2145,17 +2145,16 @@ for x in range(7):
 print(x, ': x in global')
 ```
 
-**Output:**
+**Kết quả:**
 ```py
 6 : for x inside loop
 6 : x in global
 ```
 
-But `x` was never defined outside the scope of for loop...
-
+Nhưng mà `x` chưa bao giờ được định nghĩa bên ngoài vòng lặp...
 2\.
 ```py
-# This time let's initialize x first
+# Lần này khởi tạo x trước
 x = -1
 for x in range(7):
     if x == 6:
@@ -2163,7 +2162,7 @@ for x in range(7):
 print(x, ': x in global')
 ```
 
-**Output:**
+**Kết quả:**
 ```py
 6 : for x inside loop
 6 : x in global
@@ -2171,7 +2170,7 @@ print(x, ': x in global')
 
 3\.
 
-**Output (Python 2.x):**
+**Kết quả (Python 2.x):**
 ```py
 >>> x = 1
 >>> print([x for x in range(5)])
@@ -2180,7 +2179,7 @@ print(x, ': x in global')
 4
 ```
 
-**Output (Python 3.x):**
+**Kết quả (Python 3.x):**
 ```py
 >>> x = 1
 >>> print([x for x in range(5)])
@@ -2189,10 +2188,11 @@ print(x, ': x in global')
 1
 ```
 
-#### 💡 Explanation:
+#### 💡 Giải thích:
 
 - In Python, for-loops use the scope they exist in and leave their defined loop-variable behind. This also applies if we explicitly defined the for-loop variable in the global namespace before. In this case, it will rebind the existing variable.
 
+- Trong Python, vòng lặp for sử dụng 
 - The differences in the output of Python 2.x and Python 3.x interpreters for list comprehension example can be explained by following change documented in [What’s New In Python 3.0](https://docs.python.org/3/whatsnew/3.0.html) changelog:
 
     > "List comprehensions no longer support the syntactic form `[... for var in item1, item2, ...]`. Use `[... for var in (item1, item2, ...)]` instead. Also, note that list comprehensions have different semantics: they are closer to syntactic sugar for a generator expression inside a `list()` constructor, and in particular, the loop control variables are no longer leaked into the surrounding scope."
