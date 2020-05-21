@@ -263,8 +263,6 @@ Sử dụng kí hiệu con hà mã giúp ta rút ngắn được đoạn mã đi
 
 - Thông thường, câu lệnh có dấu bằng `=` sẽ không được phép đặt trong dấu ngoặc đơn. Do vậy câu lệnh `(a, b = 6, 9)` bị lỗi cú pháp. 
 
-- The syntax of the Walrus operator is of the form `NAME:= expr`, where `NAME` is a valid identifier, and `expr` is a valid expression. Hence, iterable packing and unpacking are not supported which means, 
-
 - Cú pháp của kí hiệu gán con hà mã như sau: `NAME:= expr`, ở đó `NAME` là một tên biến hợp lệ, và `expr` là một biểu diễn hợp lệ. Do vậy, việc sử dụng các phép gộp (packing) hay phân rã trong trường hợp này sẽ không được hỗ trợ, nghãi là 
   - `(a := 6, 9)` tương đương với `((a := 6), 9)` và buổi diễn cuối cùng là  `(a, 9) ` (ở đó giá trị của  `a` là 6). Bạn có thể kiểm tra lại với các dòng lệnh dưới đây
 
@@ -383,25 +381,26 @@ False
 False
 ```
 
-#### 💡 Explanation:
+#### 💡 Giải thích:
 
 As per https://docs.python.org/2/reference/expressions.html#not-in
 
-> Formally, if a, b, c, ..., y, z are expressions and op1, op2, ..., opN are comparison operators, then a op1 b op2 c ... y opN z is equivalent to a op1 b and b op2 c and ... y opN z, except that each expression is evaluated at most once.
 
-While such behavior might seem silly to you in the above examples, it's fantastic with stuff like `a == b == c` and `0 <= x <= 100`.
+> Nếu a, b, c, ..., y, z là các biểu diễn (expressions) và op1, op2, ..., opN là các phép so sánh, khi đó op1 b op2 c ... y opN z tương đương với op1 b and b op2 c and ... y opN, ngoại trì việc mỗi biểu diễn được thực hiện hay đánh giá nhiều nhât một lần
 
-* `False is False is False` is equivalent to `(False is False) and (False is False)`
-* `True is False == False` is equivalent to `True is False and False == False` and since the first part of the statement (`True is False`) evaluates to `False`, the overall expression evaluates to `False`.
-* `1 > 0 < 1` is equivalent to `1 > 0 and 0 < 1` which evaluates to `True`.
-* The expression `(1 > 0) < 1` is equivalent to `True < 1` and
+Trong khi những điều ta thấy phía trên có thể hơi ngớ ngẩn đối với bạn, ta có thể làm những thứ thú vị hơn như `a == b == c` và `0 <= x <= 100`.
+
+* `False is False is False` tương đương `(False is False) and (False is False)`
+* `True is False == False` tương đương với `True is False and False == False` và do phần so sánh đầu tiên (`True is False`) cho ra kết quả `False`, do đó kết quả cuối cùng là `False`.
+* `1 > 0 < 1` tương đương với `1 > 0 and 0 < 1` và cho ra kết quả là `True`.
+* Biểu diễn `(1 > 0) < 1` tương đương với `True < 1` và
   ```py
   >>> int(True)
   1
-  >>> True + 1 #not relevant for this example, but just for fun
+  >>> True + 1 #làm cho vui thôi, chứ không liên quan
   2
   ```
-  So, `1 < 1` evaluates to `False`
+  do đó, `1 < 1` cho ra kết quả`False`
 
 ---
 
