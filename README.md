@@ -846,8 +846,7 @@ for i, some_dict[i] in enumerate(some_string):
 
   Bạn có nghĩ răng vòng lặp trên chỉ chạy có một lần?
 
-  **💡 Explanation:**
-
+  **💡 Giải thích:**
 
 - Câu lệnh gán `i = 10` không bao giờ ảnh hưởng tới các vòng lặp do cách thức hoạt động của vòng lặp for tron Python. Trước điểm khởi đầu của mỗi vòng lặp, phần tử tiếp theo được đưa ra bởi trình sinh (iterator, trong trường hợp nay là `range(4)`), phần tử này được giải nén ra (unpacked) và gán cho các biến chạy (trong trường hợp nay là `i`)
 
@@ -1032,7 +1031,7 @@ Ngay cả khi các giá trị `x` khác nhau trong mọi vòng lặp trước kh
 
 - Khi định nghia một hàm bên trong một vòng lặp, vòng lặp có biến lặp được sử dụng trong thân hàm, closure của hàm này được giơi hạn cho biến, chư không phải là giá trị. Vì vậy tất cả các ham sử dụng giá trị cuối cung được gán cho biến này để thực hiện tính toán. Để rõ hơn ta thấy được rằng biến lặp `x` (và giá trị của cung của nó nhận được là `6`) trong ví dụ thứ nhất được sử dụng cho tất cả các hàm `func()`, hàm này sẽ luôn trả về giá trị là `6` 
 
-- Để thực hiện được tính toán mong muốn bạn có thể truyền biến lặp như là biến được đặt tên (named variable) cho hàm. **Sao mà nó lại chạy đung được?** ởi vì việc truyền biến như vậy sẽ định nghĩa lại biến nay bên trong phạm vi của hàm.
+- Để thực hiện được tính toán mong muốn bạn có thể truyền biến lặp như là biến được đặt tên (named variable) cho hàm. **Sao mà nó lại chạy đúng được?** ởi vì việc truyền biến như vậy sẽ định nghĩa lại biến nay bên trong phạm vi của hàm.
 
     ```py
     funcs = []
@@ -1114,8 +1113,7 @@ True
 False
 ```
 
-
-Mỗi quan hệ giữa các lớp con có tính bắc cầu không?(ví dụ, nếu `A` là lớp con của `B`, và `B` là lớp con của `C`, vậy `A` _nên_ là lớp con của `C`)
+Mối quan hệ giữa các lớp con có tính bắc cầu không?(ví dụ, nếu `A` là lớp con của `B`, và `B` là lớp con của `C`, vậy `A` _nên_ là lớp con của `C`)
 
 #### 💡 Lý giải:
 
@@ -1349,8 +1347,6 @@ def tell_truth():
 I have lost faith in truth!
 ```
 
-
-
 #### 💡 Lý giải:
 
 * `bool` là lơp con của `int` trong Python
@@ -1519,11 +1515,11 @@ def some_func(val):
 ['a', 'something', 'b', 'something']
 ```
 
-#### 💡 Gỉai thích:
+#### 💡 Giải thích:
 - Đây là một bug tồn tại khi CPython xử lý `yield` trong các generators và comprehensions.
 - Bạn có thể tham khảo thêm về lỗi này tại đây: https://stackoverflow.com/questions/32139885/yield-in-list-comprehensions-and-generator-expressions
 - Báo cáo về bug này: http://bugs.python.org/issue10544
-- Từ Python 3.8+  `yield` không được phép nằm bên trong  list comprehension và nếu bạn làm như vậy sẽ tạo ra lỗi cú pháp `SyntaxError`.
+- Theo Python 3.8+  `yield` không được phép nằm bên trong  list comprehension và nếu bạn làm như vậy sẽ tạo ra lỗi cú pháp `SyntaxError`.
 
 ---
 
@@ -1929,16 +1925,15 @@ for i in x:
 7
 ```
 
-Yes, it runs for exactly **eight** times and stops.
+Vòng lặp chạy đúng *tám* lần rồi dừng lại
 
-#### 💡 Explanation:
+#### 💡 Giải thích:
 
-* Iteration over a dictionary that you edit at the same time is not supported.
-* It runs eight times because that's the point at which the dictionary resizes to hold more keys (we have eight deletion entries, so a resize is needed). This is actually an implementation detail.
-* How deleted keys are handled and when the resize occurs might be different for different Python implementations.
-* So for Python versions other than Python 2.7 - Python 3.5, the count might be different from 8 (but whatever the count is, it's going to be the same every time you run it). You can find some discussion around this [here](https://github.com/satwikkansal/wtfpython/issues/53) or in [this](https://stackoverflow.com/questions/44763802/bug-in-python-dict) StackOverflow thread.
-* Python 3.7.6 onwards, you'll see `RuntimeError: dictionary keys changed during iteration` exception if you try to do this.
-
+* Việc lặp và chỉnh sửa một từ điển cùng một lúc không được hỗ trợ.
+* Có tám lần chạy bởi vì tại thời điểm dừng đó là lúc từ điển điều chỉnh kích thước để giữ thêm nhiều khoá hơn (chúng ta có tám phần từ xoá, do đó điều chỉnh kích thước là cần thiết). Đây thực sự là một chi tiết trong triển khai.
+* Cách các khoá bị xoá được xử lý và khi nao thì việc điều chỉnh kích thước diễn ra sẽ khác biệt đối với các phiên bản Python khác nhau
+* Do đó các phiên bản Python lớn hơn 2.7 và nhỏ hơn 3.5, số lượng cá khoá có thể giữ dao động từ 8 (nhưng khi bạn chạy thì con số này sẽ không thay đổi giữa các lần chạy). Bạn có thể xem thêm các thảo luận khác ở [đây](https://github.com/satwikkansal/wtfpython/issues/53) hoặc trên Stackoverflow tại [đây](https://stackoverflow.com/questions/44763802/bug-in-python-dict)
+* Từ phiên bản 3.7.6 trở đi, bạn sẽ gặp ngoại lệ `RuntimeError: dictionary keys changed during iteration` khi bạn cố gắng thử ví dụ trên.
 ---
 
 ### ▶ Stubborn `del` operation
