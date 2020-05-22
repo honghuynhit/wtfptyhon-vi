@@ -522,7 +522,6 @@ Một tối ưu tương tự áp dụng cho các đối tượng bất biến (*
   True
   ```
 
-
 * Tại sao ví dụ nay lại không chạy được trên Python 3.7? Đại khái lý do là bởi vì các tối ưu của trình biên dịch áp dụng cho các trường hợp cụ thể (ví dụ. một cách tối ưu có thể thay đổi tuỳ theo phiên bản, hệ điều hành, vân vân). Tôi vân đang tìm hiểu các thay đổi cụ thể trong code triểu khai, bạn có thể xem thêm [tại đây](https://github.com/satwikkansal/wtfpython/issues/100)
 ---
 
@@ -1102,7 +1101,7 @@ False
 ### ▶ Các mối quan hệ của lơp con (subclass)
 
 <!-- Example ID: 9f6d8cf0-e1b5-42d0-84a0-4cfab25a0bc0 --->
-**Output:**
+**Kết quả:**
 ```py
 >>> from collections import Hashable
 >>> issubclass(list, object)
@@ -1163,7 +1162,7 @@ Lý do vì sao mà lúc thì True mà lúc thì lại False
 
 ### ▶ Dấu phẩy lạ lùng
 <!-- Example ID: 31a819c8-ed73-4dcc-84eb-91bedbb51e58 --->
-**Output (< 3.6):**
+**Kết quả (< 3.6):**
 
 ```py
 >>> def f(x, y,):
@@ -1946,7 +1945,7 @@ class SomeClass:
         print("Deleted!")
 ```
 
-**Output:**
+**Kết quả:**
 1\.
 ```py
 >>> x = SomeClass()
@@ -1957,25 +1956,26 @@ Deleted!
 ```
 
 Phew, deleted at last. You might have guessed what saved `__del__` from being called in our first attempt to delete `x`. Let's add more twists to the example.
-
+Có thể bạn đoán được làm sao mà `__del__` không được gọi khi ta cố gắng xoá `x` trong lần đầu tiên. Hãy thử thêm 
 2\.
 ```py
 >>> x = SomeClass()
 >>> y = x
 >>> del x
->>> y # check if y exists
+>>> y # check if y exists Kiểm tra y có tồn tại
 <__main__.SomeClass instance at 0x7f98a1a67fc8>
->>> del y # Like previously, this should print "Deleted!"
->>> globals() # oh, it didn't. Let's check all our global variables and confirm
+>>> del y # Như lần trước, đáng lẽ kết quả nên là in ra "Deleted!"
+>>> globals() # nhưng không, ta không có được kết quả như mong muốn. Cùng kiểm tra tất cả các biến toàn cục và xác nhận 
 Deleted!
 {'__builtins__': <module '__builtin__' (built-in)>, 'SomeClass': <class __main__.SomeClass at 0x7f98a1a5f668>, '__package__': None, '__name__': '__main__', '__doc__': None}
 ```
 
-Okay, now it's deleted :confused:
+Ok giờ thì nó đã được xoá :confused:
 
-#### 💡 Explanation:
-+ `del x` doesn’t directly call `x.__del__()`.
+#### 💡 Giải thích:
++ `del x` không gọi trực tiếp `x.__del__()`.
 + When `del x` is encountered, Python deletes the name `x` from current scope and decrements by 1 the reference count of the object `x` referenced. `__del__()` is called only when the object's reference count reaches zero.
++ Khi `del x` được chạy, Python xoá đi tên  `x` khỏi phạm vi hiện hành và giảm biến đếm của đối tượng  tham chiếu đi 1
 + In the second output snippet, `__del__()` was not called because the previous statement (`>>> y`) in the interactive interpreter created another reference to the same object (specifically, the `_` magic variable which references the result value of the last non `None` expression on the REPL), thus preventing the reference count from reaching zero when `del y` was encountered.
 + Calling `globals` (or really, executing anything that will have a non `None` result) caused `_` to reference the new result, dropping the existing reference. Now the reference count reached 0 and we can see "Deleted!" being printed (finally!).
 
