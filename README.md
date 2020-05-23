@@ -2253,13 +2253,13 @@ def some_func(default_arg=[]):
 ```py
 some_list = [1, 2, 3]
 try:
-    # This should raise an ``IndexError``
+    # Câu lệnh sau sẽ gây ra ngoại lệ ``IndexError``
     print(some_list[4])
 except IndexError, ValueError:
     print("Caught!")
 
 try:
-    # This should raise a ``ValueError``
+    # Câu lệnh sau sẽ gây ra ngoại lệ ``ValueError``
     some_list.remove(4)
 except IndexError, ValueError:
     print("Caught again!")
@@ -2280,9 +2280,9 @@ ValueError: list.remove(x): x not in list
 SyntaxError: invalid syntax
 ```
 
-#### 💡 Explanation
+#### 💡 Giải thích
 
-* To add multiple Exceptions to the except clause, you need to pass them as parenthesized tuple as the first argument. The second argument is an optional name, which when supplied will bind the Exception instance that has been raised. Example,
+* Để thêm nhiều ngoại lệ trên cùng một dòng except, bạn cần truyền vào một tuple với các ngoại lệ được liệt kê bên trong hai dấu ngoặc đơn. Ví dụ,
   ```py
   some_list = [1, 2, 3]
   try:
@@ -2306,6 +2306,7 @@ SyntaxError: invalid syntax
   ```
 
 * Separating the exception from the variable with a comma is deprecated and does not work in Python 3; the correct way is to use `as`. Example,
+* Tách biệt ngoại lệ với biến dùng dấu phẩy đã khôn còn được áp dụng nữa và khi viết như vậy thi code sẽ không chạy trong Python 3; Cách làm đúng là sử dụng `as`. Ví dụ, 
   ```py
   some_list = [1, 2, 3]
   try:
@@ -2315,7 +2316,7 @@ SyntaxError: invalid syntax
       print("Caught again!")
       print(e)
   ```
-  **Output:**
+  **Kết quả:**
   ```
   Caught again!
   list.remove(x): x not in list
