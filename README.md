@@ -2636,7 +2636,7 @@ def _another_weird_name_func():
 
 ```
 
-**Output**
+**Kết quả**
 
 ```py
 >>> from module import *
@@ -2648,16 +2648,16 @@ Traceback (most recent call last):
 NameError: name '_another_weird_name_func' is not defined
 ```
 
-#### 💡 Explanation:
+#### 💡 Giải thích:
 
-- It is often advisable to not use wildcard imports. The first obvious reason for this is, in wildcard imports, the names with a leading underscore don't get imported. This may lead to errors during runtime.
-- Had we used `from ... import a, b, c` syntax, the above `NameError` wouldn't have occurred.
+- Chúng ta được khuyên là tránh sử dụng các wildcard imports. Vì với chúng, các tên (ví dụ hàm) với dấu gạch chân phía trước sẽ không được import. Điều này gây ra lỗi trong lúc code chạy
+- Khi chúng ta dùng `from ... import a, b, c`, lỗi `NameError` sẽ khôn xảy ra nữa.
     ```py
     >>> from module import some_weird_name_func_, _another_weird_name_func
     >>> _another_weird_name_func()
     works!
     ```
-- If you really want to use wildcard imports, then you'd have to define the list `__all__` in your module that will contain a list of public objects that'll be available when we do wildcard imports.
+- Nếu bạn thực sự muốn sử dụng wildcard imports, bạn se phải định nghĩa biến `__all__` trong module của bạn, biến này sẽ chưa một danh sách các đối tượng công cộng được import khi sử dụng wildcard imports.
     ```py
     __all__ = ['_another_weird_name_func']
 
@@ -2667,7 +2667,7 @@ NameError: name '_another_weird_name_func' is not defined
     def _another_weird_name_func():
         print("works!")
     ```
-    **Output**
+    **Kết quả**
 
     ```py
     >>> _another_weird_name_func()
@@ -2675,7 +2675,7 @@ NameError: name '_another_weird_name_func' is not defined
     >>> some_weird_name_func_()
     Traceback (most recent call last):
       File "<stdin>", line 1, in <module>
-    NameError: name 'some_weird_name_func_' is not defined
+    NameError: name 'some_weird_name_func_' is not defined (hàm "some_weird_name_func_" không được định nghĩa)
     ```
 
 ---
