@@ -1743,7 +1743,6 @@ NameError: name 'e' is not defined (Lỗi tên biến không được định ng
   
     Điều này có nghĩa la ngoại lệ phải được gán cho một cái tên khác để ta có thể tìm thấy nó sau câu except. Các ngoại lệ được dọn dẹp bởi vì với truy lỗi (traceback) được gán cho chúng, chúng hình thành nên một vòng tham chiếu bên trong khung ngăn xếp (stack frame), giữ tất cả các biến cục bộ không bị xoá đi cho đến khi việc thu thập rác tiếp theo tiếp diễn.
 
-
 * Các câu này không được tính phạm vi trong Python. Mọi thư trong ví dụ nay đều nàm trong cùng một phạm vi, và biến `e` bị xoá đi bởi vì ngoại lệ `except`. Điều tương tự như vậy không đúng với các hàm có các nội phạm vi (inner-scopes) riêng biệt. Ví dụ sau sẽ cho ta thấy:
 
      ```py
@@ -2096,11 +2095,10 @@ Can you guess why the output is `[2, 4]`?
 >>> list(zip(numbers_iter, remaining))
 [(4, 3), (5, 4), (6, 5)]
 ```
-Where did element `3` go from the `numbers` list?
+Phần tử  `3` trong `numbers` đâu?
+#### 💡 Giải thích:
 
-#### 💡 Explanation:
-
-- From Python [docs](https://docs.python.org/3.3/library/functions.html#zip), here's an approximate implementation of zip function,
+- Theo tài liệu của Python [docs](https://docs.python.org/3.3/library/functions.html#zip), triển khai gần nhất của hàm zip như sau,
     ```py
     def zip(*iterables):
         sentinel = object()
@@ -2113,9 +2111,9 @@ Where did element `3` go from the `numbers` list?
                 result.append(elem)
             yield tuple(result)
     ```
-- So the function takes in arbitrary number of iterable objects, adds each of their items to the `result` list by calling the `next` function on them, and stops whenever any of the iterable is exhausted. 
-- The caveat here is when any iterable is exhausted, the existing elements in the `result` list are discarded. That's what happened with `3` in the `numbers_iter`.
-- The correct way to do the above using `zip` would be,
+- Hàm này nhận vào một số tuỳ ý các đối tượng có thể lặp (iterable objects), thêm mỗi phần tử của các đối tượng này vào danh sách `result` thông qua việc gọi hàm `next` trên đối tượng này, và dưng lại khi đôi tượng này hết các phần tử để lặp   
+- Chú ý là khi bất cứ đối tượng lặp nào cạn kiệt đối tượng lặp, các phần tử tồn tại trong danh sách `result` được bỏ qua. Đó là những gì xảy với `3` trong `numbers_iter`
+- Để thực hiện đúng, ta cần làm như sau
     ```py
     >>> numbers = list(range(7))
     >>> numbers_iter = iter(numbers)
@@ -2124,7 +2122,7 @@ Where did element `3` go from the `numbers` list?
     >>> list(zip(remaining, numbers_iter))
     [(3, 3), (4, 4), (5, 5), (6, 6)]
     ```
-    The first argument of zip should be the one with fewest elements.
+    Tham số đầu tiên của zip nên là đối tượng có số lượng các phần tử ít nhất.
 
 ---
 
