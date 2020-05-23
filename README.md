@@ -1955,7 +1955,7 @@ class SomeClass:
 Deleted!
 ```
 
-Phew, deleted at last. You might have guessed what saved `__del__` from being called in our first attempt to delete `x`. Let's add more twists to the example.
+
 Có thể bạn đoán được làm sao mà `__del__` không được gọi khi ta cố gắng xoá `x` trong lần đầu tiên. Hãy thử thêm 
 2\.
 ```py
@@ -1974,11 +1974,9 @@ Ok giờ thì nó đã được xoá :confused:
 
 #### 💡 Giải thích:
 + `del x` không gọi trực tiếp `x.__del__()`.
-+ When `del x` is encountered, Python deletes the name `x` from current scope and decrements by 1 the reference count of the object `x` referenced. `__del__()` is called only when the object's reference count reaches zero.
-+ Khi `del x` được chạy, Python xoá đi tên  `x` khỏi phạm vi hiện hành và giảm biến đếm của đối tượng  tham chiếu đi 1
-+ In the second output snippet, `__del__()` was not called because the previous statement (`>>> y`) in the interactive interpreter created another reference to the same object (specifically, the `_` magic variable which references the result value of the last non `None` expression on the REPL), thus preventing the reference count from reaching zero when `del y` was encountered.
-+ Calling `globals` (or really, executing anything that will have a non `None` result) caused `_` to reference the new result, dropping the existing reference. Now the reference count reached 0 and we can see "Deleted!" being printed (finally!).
-
++ Khi `del x` được chạy, Python xoá  tên  `x` khỏi phạm vi hiện hành và giảm biến đếm tham chiếu của đối tượng đi 1. `__del__()` được gọi chỉ khi biến đếm này giảm xuống 0.
++ Tron đoạn mã thứ hai, `__del__()` không được gọi bởi vì câu lệnh trước đó (`>>> y`) tạo một tham chiếu khác tới cùng một đối tượng (cụ thể là, biến `_` trỏ tới giá trị kết quả của một biểu diễn không phải `None` tron REPL), do đó ngăn biến đếm tham chiếu giảm về 0 khi thực hiện `del y`
++ Gọi `globals` (thực ra thì thực hiện bất cứ thứ gì tạo ra kết quả không phải là `None`) làm cho `_` tham chiếu tới kết quả mới, bỏ đi tham chiếu hiện tồn tại. Bây giờ thì biến đếm tham chiếu giảm ve 0 và bạn có thể từ "Deleted!" được hiển thị.
 ---
 
 ### ▶ The out of scope variable
