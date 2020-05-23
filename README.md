@@ -2332,7 +2332,7 @@ b = a
 a = a + [5, 6, 7, 8]
 ```
 
-**Output:**
+**Kết quả:**
 ```py
 >>> a
 [1, 2, 3, 4, 5, 6, 7, 8]
@@ -2347,7 +2347,7 @@ b = a
 a += [5, 6, 7, 8]
 ```
 
-**Output:**
+**Kết quả:**
 ```py
 >>> a
 [1, 2, 3, 4, 5, 6, 7, 8]
@@ -2355,13 +2355,12 @@ a += [5, 6, 7, 8]
 [1, 2, 3, 4, 5, 6, 7, 8]
 ```
 
-#### 💡 Explanation:
+#### 💡 Giải thích:
 
-*  `a += b` doesn't always behave the same way as `a = a + b`.  Classes *may* implement the *`op=`* operators differently, and lists do this.
+* `a += b` không phải luôn luôn cho ra kết quả giống như `a = a + b`. Các lơp *có thể* triển khai phép *`op=`* khác nhau.
 
-* The expression `a = a + [5,6,7,8]` generates a new list and sets `a`'s reference to that new list, leaving `b` unchanged.
-
-* The expression `a += [5,6,7,8]` is actually mapped to an "extend" function that operates on the list such that `a` and `b` still point to the same list that has been modified in-place.
+* Biểu diễn `a = a + [5,6,7,8]` sinh ra một danh sách mới và tham chiếu của `a` trỏ tới danh sách mới, và để cho `b` không đổi.
+* Biển diễn `a += [5,6,7,8]` thực sự tương đương vơi hàm "mở rộng" áp dụng cho danh sách ơ đó `a` và `b` vẫn trỏ về cùng một danh sách đã được thay đổi ngay tại chỗ.
 
 ---
 
