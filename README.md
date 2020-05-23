@@ -1990,18 +1990,18 @@ def another_func():
     return a
 ```
 
-**Output:**
+**Kết quả:**
 ```py
 >>> some_func()
 1
 >>> another_func()
-UnboundLocalError: local variable 'a' referenced before assignment
+UnboundLocalError: local variable 'a' referenced before assignment (tham chiếu tới 'a' trước khi gán giá trị)
 ```
 
-#### 💡 Explanation:
-* When you make an assignment to a variable in scope, it becomes local to that scope. So `a` becomes local to the scope of `another_func`,  but it has not been initialized previously in the same scope, which throws an error.
-* Read [this](http://sebastianraschka.com/Articles/2014_python_scope_and_namespaces.html) short but an awesome guide to learn more about how namespaces and scope resolution works in Python.
-* To modify the outer scope variable `a` in `another_func`, use `global` keyword.
+#### 💡 Giải thích:
+* Khi bạn gán giá trị cho một biến trong một phạm vi, thì biến này trở thành cục bộ cho phạm vi đó. Do đó `a` trở thành cục bộ đối với `another_func`, nhưng nó chưa được khởi tạo trong cùng phạm vi, nên ta gặp lỗi về tham chiếu phía trên.
+* Đọc [bài này](http://sebastianraschka.com/Articles/2014_python_scope_and_namespaces.html) để học về cách hoạt động của các không gian tên (namespaces) và việc phân giải phạm vi trong Python.
+* Để thay đổi biên bên ngoài phạm vi `a` bên trong hàm `another_func`, sử dụng từ khoá `global`
   ```py
   def another_func()
       global a
@@ -2009,7 +2009,7 @@ UnboundLocalError: local variable 'a' referenced before assignment
       return a
   ```
 
-  **Output:**
+  **Kết quả:**
   ```py
   >>> another_func()
   2
