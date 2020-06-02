@@ -1187,7 +1187,6 @@ SyntaxError: invalid syntax (Lỗi cú pháp không hợp lệ)
 #### 💡 Lý giải:
 
 - Dấu phẩy nằm ở cuối danh sách các tham số của một hàm không phải bao giờ cũng hợp lệ.
-
 -  Trong Python, danh sách tham số được định nghĩa bởi một phần các dấu phẩy nằm phía trước và một phần các dấy phẩy nằm phía sau. Điều nay mâu thuẫn với các tình huống ở đó một dấu phẩy bị mắc kẹt ở giữa danh sách, và chẳng có một luật nào chấp nhận điều này cả.
 -  **Chú ý:** Vấn đề về dâu phẩy ở cuối  [đã được sửa trong Python 3.6](https://bugs.python.org/issue9232). Thảo luận [ở đây](https://bugs.python.org/issue9232#msg248399) cung cấp những cách dung khác nhau của dây phẩy ở cuối.
 
@@ -2051,22 +2050,25 @@ for idx, item in enumerate(list_4):
 ```
 
 Can you guess why the output is `[2, 4]`?
-
-#### 💡 Explanation:
+Vì sao lại có kết quả là `[2, 4]`?
+#### 💡 Giải thích:
 
 * It's never a good idea to change the object you're iterating over. The correct way to do so is to iterate over a copy of the object instead, and `list_3[:]` does just that.
+* Thay đổi đối tượng trong khi lặp không phải là một cách làm hay 
 
      ```py
      >>> some_list = [1, 2, 3, 4]
      >>> id(some_list)
      139798789457608
-     >>> id(some_list[:]) # Notice that python creates new object for sliced list.
+     >>> id(some_list[:]) # Chú ý rằng Python tạo một đối tượng mới sinh ra từ việc cắt (slice) list.
      139798779601192
      ```
 
-**Difference between `del`, `remove`, and `pop`:**
+**Sự khác biệt giữa `del`, `remove`, và `pop`:**
 * `del var_name` just removes the binding of the `var_name` from the local or global namespace (That's why the `list_1` is unaffected).
+* `del var_name` chỉ loại bỏ sự có măt của `var_name` khỏi khô gian tên cục bộ và toàn cục (đó la lý do tại sao `list_1` không bị ảnh hưởng ) 
 * `remove` removes the first matching value, not a specific index, raises `ValueError` if the value is not found.
+* `remove` loại bỏ giá trị được khớp đầu tiên, không phải tại một chỉ số cụ thể, 
 * `pop` removes the element at a specific index and returns it, raises `IndexError` if an invalid index is specified.
 
 **Why the output is `[2, 4]`?**
