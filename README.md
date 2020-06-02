@@ -1219,7 +1219,7 @@ True
     >>> "wt\"f"
     'wt"f'
     ```
-- Đối với một string thô (raw string) (được chỉ định bởi tiếp đầu ngữ `r`), dấu xuyệc ngược .
+- Đối với một string thô (raw string) (được chỉ định bởi tiếp đầu ngữ `r`), dấu xuyệc ngược.
     ```py
     >>> r'wt\"f' == 'wt\\"f'
     True
@@ -2037,7 +2037,7 @@ for idx, item in enumerate(list_4):
     list_4.pop(idx)
 ```
 
-**Output:**
+**Kết quả:**
 ```py
 >>> list_1
 [1, 2, 3, 4]
@@ -2049,12 +2049,10 @@ for idx, item in enumerate(list_4):
 [2, 4]
 ```
 
-Can you guess why the output is `[2, 4]`?
 Vì sao lại có kết quả là `[2, 4]`?
 #### 💡 Giải thích:
 
-* It's never a good idea to change the object you're iterating over. The correct way to do so is to iterate over a copy of the object instead, and `list_3[:]` does just that.
-* Thay đổi đối tượng trong khi lặp không phải là một cách làm hay 
+* Thay đổi đối tượng trong khi lặp không phải là một cách làm hay. Cách thực hiện đúng là lặp qua một bản sao của chính đối tượng đó như trường hợp sử dụng `list_3[:]`
 
      ```py
      >>> some_list = [1, 2, 3, 4]
@@ -2065,17 +2063,15 @@ Vì sao lại có kết quả là `[2, 4]`?
      ```
 
 **Sự khác biệt giữa `del`, `remove`, và `pop`:**
-* `del var_name` just removes the binding of the `var_name` from the local or global namespace (That's why the `list_1` is unaffected).
 * `del var_name` chỉ loại bỏ sự có măt của `var_name` khỏi khô gian tên cục bộ và toàn cục (đó la lý do tại sao `list_1` không bị ảnh hưởng ) 
-* `remove` removes the first matching value, not a specific index, raises `ValueError` if the value is not found.
-* `remove` loại bỏ giá trị được khớp đầu tiên, không phải tại một chỉ số cụ thể, 
-* `pop` removes the element at a specific index and returns it, raises `IndexError` if an invalid index is specified.
+* `remove` loại bỏ giá trị được khớp đầu tiên, không phải tại một chỉ số cụ thể, ngoại lệ `ValueError` sẽ xảy ra nếu giá trị muốn loại bỏ không tồn tại.
+* `pop` loại bỏ phần tử của danh sách ở mỗi chỉ số cụ thể và trả về phần từ đó, `pop` sẽ khởi lên `IndexError` nếu nó nhận một chỉ số không hợp lệ
 
-**Why the output is `[2, 4]`?**
-- The list iteration is done index by index, and when we remove `1` from `list_2` or `list_4`, the contents of the lists are now `[2, 3, 4]`. The remaining elements are shifted down, i.e., `2` is at index 0, and `3` is at index 1. Since the next iteration is going to look at index 1 (which is the `3`), the `2` gets skipped entirely. A similar thing will happen with every alternate element in the list sequence.
+**Tại sao kết quả lại ra `[2, 4]`?**
+- Việc lặp qua danh sách được thực hiện theo từng chỉ số một, và khi chúng ta loại bỏ `1` khỏi `list_2` hay `list_4`, các danh sách này sẽ còn lại `[2, 3, 4]`. Các phần tử còn lại trong list được dịch chuyển sang trái, ví dụ như `2` sẽ có chỉ số là 0, và `3` có chỉ số là 1. Do lần lặp tiếp theo sẽ xử lý phần tử có chỉ số là 1 (`3`), nên phần tử tại chỉ số 0 (`2`) sẽ bị bỏ qua. 
 
-* Refer to this StackOverflow [thread](https://stackoverflow.com/questions/45946228/what-happens-when-you-try-to-delete-a-list-element-while-iterating-over-it) explaining the example
-* See also this nice StackOverflow [thread](https://stackoverflow.com/questions/45877614/how-to-change-all-the-dictionary-keys-in-a-for-loop-with-d-items) for a similar example related to dictionaries in Python.
+* Xem thêm tại StackOverflow [thread](https://stackoverflow.com/questions/45946228/what-happens-when-you-try-to-delete-a-list-element-while-iterating-over-it) explaining the example
+* Và xem thêm ở đây để có các ví dụ liên quan tới các từ điển [thread](https://stackoverflow.com/questions/45877614/how-to-change-all-the-dictionary-keys-in-a-for-loop-with-d-items).
 
 ---
 
