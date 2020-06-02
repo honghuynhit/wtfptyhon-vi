@@ -2197,7 +2197,7 @@ def some_func(default_arg=[]):
     return default_arg
 ```
 
-**Output:**
+**Kết quả:**
 ```py
 >>> some_func()
 ['some_string']
@@ -2209,9 +2209,9 @@ def some_func(default_arg=[]):
 ['some_string', 'some_string', 'some_string']
 ```
 
-#### 💡 Explanation:
+#### 💡 Giải thích:
 
-- The default mutable arguments of functions in Python aren't really initialized every time you call the function. Instead, the recently assigned value to them is used as the default value. When we explicitly passed `[]` to `some_func` as the argument, the default value of the `default_arg` variable was not used, so the function returned as expected.
+- Các tham số mặc định có kiểu giá trị thay đổi được (mutable) của các hàm trong Python không thực sự được khởi tạo mỗi lần ta gọi hàm. Thay vào đó giá trị trị mới được gán cho chúng được sử dụng với vai trò  giá trị mặc định. Khi ta truyền vào hàm `some_func` giá trị `[]`, giá trị mặc định của biến `default_arg` không được sử dụng, do đó hàm trả về kết quả như  mong đợi
 
     ```py
     def some_func(default_arg=[]):
@@ -2219,9 +2219,9 @@ def some_func(default_arg=[]):
         return default_arg
     ```
 
-    **Output:**
+    **Kết quả:**
     ```py
-    >>> some_func.__defaults__ #This will show the default argument values for the function
+    >>> some_func.__defaults__ # Thuộc tính này sẽ cho ta thấy các giá trị mặc định của tham số truyền vào hàm 
     ([],)
     >>> some_func()
     >>> some_func.__defaults__
@@ -2234,7 +2234,7 @@ def some_func(default_arg=[]):
     (['some_string', 'some_string'],)
     ```
 
-- A common practice to avoid bugs due to mutable arguments is to assign `None` as the default value and later check if any value is passed to the function corresponding to that argument. Example:
+- Để tránh các bugs liên quan tới các tham số có thể thay đổi giá trị, ta có thể gán cho chúng giá trị mặc định là `None` và sau đó viết mã kiểm tra xem giá trị truyền vào hàm có tương ứng với tham số đó hay không. Ví dụ:
 
     ```py
     def some_func(default_arg=None):
