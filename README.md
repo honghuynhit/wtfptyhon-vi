@@ -2411,14 +2411,14 @@ class SomeClass:
 <!-- Example ID: 52a199b1-989a-4b28-8910-dff562cebba9 --->
 
 I haven't met even a single experience Pythonist till date who has not come across one or more of the following scenarios,
-
+Tôi chưa bao giờ gặp một lập trình viên Python kinh nghiệm nào mà chưa gặp phải một trong những tình huống éo le dưới đây
 1\.
 
 ```py
 x, y = (0, 1) if True else None, None
 ```
 
-**Output:**
+**Kết :**
 
 ```py
 >>> x, y  # expected (0, 1)
