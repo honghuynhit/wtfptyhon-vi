@@ -2373,7 +2373,7 @@ class SomeClass:
     y = (x for i in range(10))
 ```
 
-**Output:**
+**Kết quả:**
 ```py
 >>> list(SomeClass.y)[0]
 5
@@ -2387,22 +2387,22 @@ class SomeClass:
     y = [x for i in range(10)]
 ```
 
-**Output (Python 2.x):**
+**Kết quả (Python 2.x):**
 ```py
 >>> SomeClass.y[0]
 17
 ```
 
-**Output (Python 3.x):**
+**Kết quả (Python 3.x):**
 ```py
 >>> SomeClass.y[0]
 5
 ```
 
-#### 💡 Explanation
-- Scopes nested inside class definition ignore names bound at the class level.
-- A generator expression has its own scope.
-- Starting from Python 3.X, list comprehensions also have their own scope.
+#### 💡 Giải thích
+- Các phạm vi được lồng bên trong định nghĩa của lớp lờ đi các tên (biến) được khai báo ở mức lớp (biến gán với lớp)
+- Biễn diễn bộ sinh (generator) có phạm vi riêng của chúng
+- Bắt đầu từ Python 3.X, các list comprehensions cũng có phạm riêng của chúng
 
 ---
 
