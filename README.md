@@ -2410,7 +2410,6 @@ class SomeClass:
 
 <!-- Example ID: 52a199b1-989a-4b28-8910-dff562cebba9 --->
 
-I haven't met even a single experience Pythonist till date who has not come across one or more of the following scenarios,
 Tôi chưa bao giờ gặp một lập trình viên Python kinh nghiệm nào mà chưa gặp phải một trong những tình huống éo le dưới đây
 1\.
 
@@ -2418,10 +2417,10 @@ Tôi chưa bao giờ gặp một lập trình viên Python kinh nghiệm nào m�
 x, y = (0, 1) if True else None, None
 ```
 
-**Kết :**
+**Kết qủa:**
 
 ```py
->>> x, y  # expected (0, 1)
+>>> x, y  # Kết quả mong đợi (0, 1)
 ((0, 1), None)
 ```
 
@@ -2440,7 +2439,7 @@ t = ()
 print(t)
 ```
 
-**Output:**
+**Kết quả:**
 
 ```py
 one
@@ -2468,7 +2467,7 @@ ten_words_list = [
 ]
 ```
 
-**Output**
+**Kết quả**
 
 ```py
 >>> len(ten_words_list)
@@ -2482,12 +2481,12 @@ a = "python"
 b = "javascript"
 ```
 
-**Output:**
+**Kết quả:**
 
 ```py
-# An assert statement with an assertion failure message.
+# Gọi một câu lệnh assert với một thông điệp chỉ rõ lý do bị lỗi
 >>> assert(a == b, "Both languages are different")
-# No AssertionError is raised
+# Không thấy một ngoại lệ lỗi AssertionError 
 ```
 
 5\.
@@ -2504,7 +2503,7 @@ some_list = some_list.append(4)
 some_dict = some_dict.update({"key_4": 4})
 ```
 
-**Output:**
+**Kết quả:**
 
 ```py
 >>> print(some_list)
@@ -2531,7 +2530,7 @@ def similar_recursive_func(a):
         return a
 ```
 
-**Output:**
+**Kết quả:**
 
 ```py
 >>> some_recursive_func([5, 0])
@@ -2540,23 +2539,21 @@ def similar_recursive_func(a):
 4
 ```
 
-#### 💡 Explanation:
+#### 💡 Giải thích:
 
-* For 1, the correct statement for expected behavior is `x, y = (0, 1) if True else (None, None)`.
+* Trường hợp thứ nhất cách viết để có kết quả như mong đợi là `x, y = (0, 1) if True else (None, None)`.
 
-* For 2, the correct statement for expected behavior is `t = ('one',)` or `t = 'one',` (missing comma) otherwise the interpreter considers `t` to be a `str` and iterates over it character by character.
+* Trong trường hợp thứ hai cách viết đúng phải là `t = ('one',)` hoặc `t = 'one',` (có thêm dấu phẩy phía sau) nếu không trình thông dịch sẽ xem `t` như là một `str` và lặp qua từng kí tự của string này.
 
-* `()` is a special token and denotes empty `tuple`.
+* `()` là một cặp kí hiệu đặc biệt định nghĩa một `tuple` rỗng. 
 
-* In 3, as you might have already figured out, there's a missing comma after 5th element (`"that"`) in the list. So by implicit string literal concatenation,
-
+* Trong ví dụ thứ ba, bạn có thể để ý thấy thiếu một dấu phẩy đằng sau phần tử thứ 5 (`"that"`) của danh sách. Do đó, Python ngầm nối hai string liền kề,
   ```py
   >>> ten_words_list
   ['some', 'very', 'big', 'list', 'thatconsists', 'of', 'exactly', 'ten', 'words']
   ```
 
-* No `AssertionError` was raised in 4th snippet because instead of asserting the individual expression `a == b`, we're asserting entire tuple. The following snippet will clear things up,
-
+* Không có ngoại lệ `AssertionError` trong ví dụ thứ tư bởi vì thay vì kiểm tra tính đúng sai của biểu diễn `a == b`, chúng ta kiểm tra một tuple. Ví dụ dưới đây làm rõ hơn điều này,
   ```py
   >>> a = "python"
   >>> b = "javascript"
@@ -2574,12 +2571,9 @@ def similar_recursive_func(a):
   AssertionError: Values are not equal
   ```
 
-* As for the fifth snippet, most methods that modify the items of sequence/mapping objects like `list.append`, `dict.update`, `list.sort`, etc. modify the objects in-place and return `None`. The rationale behind this is to improve performance by avoiding making a copy of the object if the operation can be done in-place (Referred from [here](http://docs.python.org/2/faq/design.html#why-doesn-t-list-sort-return-the-sorted-list)).
-
-* Last one should be fairly obvious, mutable object (like `list`) can be altered in the function, and the reassignation of an immutable (`a -= 1`) is not an alteration of the value.
-
-* Being aware of these nitpicks can save you hours of debugging effort in the long run. 
-
+* Trong ví dụ thứ năm, hầu hết các phương thức thay đổi các phần tử của các đối tượng chuỗi (sequence) hay ánh xạ như `list.append`, `dict.update`,`list.sort`, và vân vân. thay đổi ngay tại chỗ (in-place) các đối tượng này và trả về  `None`. Nguyên nhân sâu xa là nhằm tăng hiệu năng thông qua việc tránh tạo bản sao của đối tượng nếu hành động được thực hiện trên đối tượng mang tính "ngay tại chỗ" (Tham khảo thêm tại [đây](http://docs.python.org/2/faq/design.html#why-doesn-t-list-sort-return-the-sorted-list)).
+* Trường hợp cuối cùng dường như khá rõ rằng, đối tượng có thể thay đổi giá trị (như `list` ) có thể được thay đổi trong hàm, và việc gán biến này lại cho một đối tượng không thể thay đổi giá trị ()`a -= 1` không làm thay đổi giá trị.
+* Lưu ý đến những điều kể trên có thể giúp bạn tiết kiệm được nhiều thời gian cho việc tìm sửa lỗi trong các chương trình lớn.
 ---
 
 
