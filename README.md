@@ -2730,16 +2730,15 @@ if noon_time:
     print("Time at noon is", noon_time)
 ```
 
-**Output (< 3.5):**
+**Kết quả (< 3.5):**
 
 ```py
 ('Time at noon is', datetime.time(12, 0))
 ```
-The midnight time is not printed.
+Thời gian nửa đêm không được hiển thị
+#### 💡 Giải thêm:
 
-#### 💡 Explanation:
-
-Before Python 3.5, the boolean value for `datetime.time` object was considered to be `False` if it represented midnight in UTC. It is error-prone when using the `if obj:` syntax to check if the `obj` is null or some equivalent of "empty."
+Trước Python 3.5, giá trị luận lý cho đối tượng `datetime.time` được xem như là `False` nếu đối tượng này biểu diễn nửa đêm trong UTC. Code dễ sai khi sử dụng cú pháp `if obj:` để kiểm tra `obj` là null hay những giá trị tương tương với "rỗng".
 
 ---
 ---
