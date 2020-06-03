@@ -2689,10 +2689,9 @@ True
 False
 ```
 
-#### 💡 Explanation:
+#### 💡 Giải thích:
 
-- The `sorted` method always returns a list, and comparing lists and tuples always returns `False` in Python. 
-
+- Phương thức `sorted` luôn luôn trả về một list, và trong Python so sánh giữa lists và tuples luôn luôn cho ra kết quả `False`.
 - ```py
   >>> [] == tuple()
   False
@@ -2701,9 +2700,8 @@ False
   (tuple, list)
   ```
 
-- Unlike `sorted`, the `reversed` method returns an iterator. Why? Because sorting requires the iterator to be either modified in-place or use an extra container (a list), whereas reversing can simply work by iterating from the last index to the first.
-
-- So during comparison `sorted(y) == sorted(y)`, the first call to `sorted()` will consume the iterator `y`, and the next call will just return an empty list.
+- Khác với `sorted`, phương thức `reversed` trả về một iterator. Tại sao? Bởi vì việc sắp xếp yêu cầu iterator có thể được thay đổi ngay tại chỗ (in-place) hoặc sử dụng một bộ chứa bổ sung (một list), trái lại việc đảo chiều (reversing) có thể hoạt động đơn giản là lặp từ chỉ số cuối về phần tử đầu
+- Do đó khi so sánh `sorted(y) == sorted(y)`, lời gọi đầu tiên `sorted()` sẽ tiêu thụ iterator `y`, và lời gọi tiếp theo sẽ trả về một list rỗng. 
 
   ```py
   >>> x = 7, 8, 9
