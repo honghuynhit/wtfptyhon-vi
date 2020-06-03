@@ -2580,28 +2580,29 @@ def similar_recursive_func(a):
 ### ▶ Splitsies *
 <!-- Example ID: ec3168ba-a81a-4482-afb0-691f1cc8d65a --->
 ```py
+# thực hiện câu lệnh này
 >>> 'a'.split()
 ['a']
 
-# is same as
+# cũng giống như
 >>> 'a'.split(' ')
 ['a']
 
-# but
+# nhưng khi chạy
 >>> len(''.split())
 0
 
-# isn't the same as
+# lại cho kết quả không giống nhau
 >>> len(''.split(' '))
 1
 ```
 
-#### 💡 Explanation:
+#### 💡 Giải thích:
 
-- It might appear at first that the default separator for split is a single space `' '`, but as per the [docs](https://docs.python.org/2.7/library/stdtypes.html#str.split)
-    >  If sep is not specified or is `None`, a different splitting algorithm is applied: runs of consecutive whitespace are regarded as a single separator, and the result will contain no empty strings at the start or end if the string has leading or trailing whitespace. Consequently, splitting an empty string or a string consisting of just whitespace with a None separator returns `[]`.
-    > If sep is given, consecutive delimiters are not grouped together and are deemed to delimit empty strings (for example, `'1,,2'.split(',')` returns `['1', '', '2']`). Splitting an empty string with a specified separator returns `['']`.
-- Noticing how the leading and trailing whitespaces are handled in the following snippet will make things clear,
+- Ta dường như thấy ngay là kí tự phân cách mặc định dùng cho split là một khoảng cách đơn (single space) `' '`, nhưng trong tài liệu [docs] (https://docs.python.org/2.7/library/stdtypes.html#str.split)
+    >  Nếu kí tự phân cách không được chỉ định hoặc là  `None`, một giải thuật chia tách khác được áp dụng: các khoảng trắng liên tục được xem như là một phân cách đơn, và kết quả sẽ chứa các strings khác rỗng tại phần đầu hoặc cuối nếu string có các khoảng trắng ở phần đầu và đuôi. Do vậy, phân tách một string rỗng hoặc một string chứa chỉ khoảng trắng với một phân tách None sẽ trả về `[]`.
+    > Nếu có kí tự phân cách, các dấu phân cách liên tục không được nhóm lại cùng nhau và được coi là để phân định các strings rỗng (ví dụ, `'1,,2'.split(',')` trả về `['1', '', '2']`). Phân tách một string rỗng với một kí tự phân tách chỉ định trả về  `['']`.
+- Ví dụ dưới đây chỉ ra cách các khoảng trắng được xử lý,
     ```py
     >>> ' a '.split(' ')
     ['', 'a', '']
