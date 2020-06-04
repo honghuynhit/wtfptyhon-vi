@@ -2782,17 +2782,17 @@ label .breakout
 print("Freedom!")
 ```
 
-**Output (Python 2.3):**
+**Kết quả (Python 2.3):**
 ```py
 I am trapped, please rescue!
 I am trapped, please rescue!
 Freedom!
 ```
 
-#### 💡 Explanation:
-- A working version of `goto` in Python was [announced](https://mail.python.org/pipermail/python-announce-list/2004-April/002982.html) as an April Fool's joke on 1st April 2004.
-- Current versions of Python do not have this module.
-- Although it works, but please don't use it. Here's the [reason](https://docs.python.org/3/faq/design.html#why-is-there-no-goto) to why `goto` is not present in Python.
+#### 💡 Giải thích:
+- Một phiên bản Python của `goto` được  [công bố](https://mail.python.org/pipermail/python-announce-list/2004-April/002982.html) trong ngày cá tháng tư năm 2004 như là một lời đùa.
+- Các phiên bản Python hiện hành không có module này.
+- Mặc dù triển khai `goto` chạy được, nhưng đừng sử dụng nó. [Lý do](https://docs.python.org/3/faq/design.html#why-is-there-no-goto) tại sao Python không có `goto`.
 
 ---
 
