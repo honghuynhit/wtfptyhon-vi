@@ -2798,26 +2798,25 @@ Freedom!
 
 ### ▶ Brace yourself!
 <!-- Example ID: 5c0c75f2-ddd9-4da3-ba49-c4be7ec39acf --->
-If you are one of the people who doesn't like using whitespace in Python to denote scopes, you can use the C-style {} by importing,
-
+Nếu bạn không thích sử dụng khoảng trắng để biểu thị các phạm vi, bạn có thể sử dụng phonng cách như trong ngôn ngữ C {} bằng cách import
 ```py
 from __future__ import braces
 ```
 
-**Output:**
+**Kết quả:**
 ```py
   File "some_file.py", line 1
     from __future__ import braces
 SyntaxError: not a chance
 ```
 
-Braces? No way! If you think that's disappointing, use Java. Okay, another surprising thing, can you find where's the `SyntaxError` raised in `__future__` module [code](https://github.com/python/cpython/blob/master/Lib/__future__.py)?
+Các dấu ngoặc nhọn? Không được đâu! Nếu bạn nghĩ rằng điều gây thất vọng, sử dụng Java. Còn một điều ngạc nhiên nữa đây, bạn có thể tìm thấy ngoại lệ `SyntaxError` được khởi lên ở đâu trong module `__future__` hay không (https://github.com/python/cpython/blob/master/Lib/__future__.py)?
 
-#### 💡 Explanation:
-+ The `__future__` module is normally used to provide features from future versions of Python. The "future" in this specific context is however, ironic.
-+ This is an easter egg concerned with the community's feelings on this issue.
-+ The code is actually present [here](https://github.com/python/cpython/blob/025eb98dc0c1dc27404df6c544fc2944e0fa9f3a/Python/future.c#L49) in `future.c` file.
-+ When the CPython compiler encounters a [future statement](https://docs.python.org/3.3/reference/simple_stmts.html#future-statements), it first runs the appropriate code in `future.c` before treating it as a normal import statement.
+#### 💡 Giải thích:
++ Module `__future__` thường được dùng để cung cấp các tính năng đến từ các phiên bản mới của Python. Tuy nhiên "tương lai" ("feature") trong hoàn cảnh này có vẻ hơi mỉa mai.
++ Có một quả trứng phục sinh liên quan đến tâm trạng của cộng đồng Python về vấn đề này. 
++ Đoạn mã được tìm thấy [ở đây ](https://github.com/python/cpython/blob/025eb98dc0c1dc27404df6c544fc2944e0fa9f3a/Python/future.c#L49) trong file `future.c`.
++ Khi trình biên dịch Cpython gặp một [câu lệnh future](https://docs.python.org/3.3/reference/simple_stmts.html#future-statements),  Nó chạy đoạn mã tương ứng trong  `future.c` trước khi thực hiện câu lệnh import thông thường.
 
 ---
 
