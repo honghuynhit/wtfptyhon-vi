@@ -2815,7 +2815,7 @@ Các dấu ngoặc nhọn? Không được đâu! Nếu bạn nghĩ rằng đi�
 #### 💡 Giải thích:
 + Module `__future__` thường được dùng để cung cấp các tính năng đến từ các phiên bản mới của Python. Tuy nhiên "tương lai" ("feature") trong hoàn cảnh này có vẻ hơi mỉa mai.
 + Có một quả trứng phục sinh liên quan đến tâm trạng của cộng đồng Python về vấn đề này. 
-+ Đoạn mã được tìm thấy [ở đây ](https://github.com/python/cpython/blob/025eb98dc0c1dc27404df6c544fc2944e0fa9f3a/Python/future.c#L49) trong file `future.c`.
++ Đoạn mã được tìm thấy [ở đây](https://github.com/python/cpython/blob/025eb98dc0c1dc27404df6c544fc2944e0fa9f3a/Python/future.c#L49) trong file `future.c`.
 + Khi trình biên dịch Cpython gặp một [câu lệnh future](https://docs.python.org/3.3/reference/simple_stmts.html#future-statements),  Nó chạy đoạn mã tương ứng trong  `future.c` trước khi thực hiện câu lệnh import thông thường.
 
 ---
@@ -2825,7 +2825,7 @@ Các dấu ngoặc nhọn? Không được đâu! Nếu bạn nghĩ rằng đi�
 **Output (Python 3.x)**
 ```py
 >>> from __future__ import barry_as_FLUFL
->>> "Ruby" != "Python" # there's no doubt about it
+>>> "Ruby" != "Python" # chả có gì phải nghi ngờ về câu lệnh so sánh này cả
   File "some_file.py", line 1
     "Ruby" != "Python"
               ^
@@ -2835,15 +2835,17 @@ SyntaxError: invalid syntax
 True
 ```
 
-There we go.
+Rồi! có thứ để xem.
 
-#### 💡 Explanation:
-- This is relevant to [PEP-401](https://www.python.org/dev/peps/pep-0401/) released on April 1, 2009 (now you know, what it means).
-- Quoting from the PEP-401
+
+#### 💡 Giải thích:
+- Điều ta muốn tìm hiểu liên quan tới [PEP-401](https://www.python.org/dev/peps/pep-0401/), PEP này được xuất bản vào ngày một tháng tư năm 2009 (là gì thì bạn biết rồi đó).
+- Đoạn dưới đây được trích ra từ PEP-401
   
-  > Recognized that the != inequality operator in Python 3.0 was a horrible, finger-pain inducing mistake, the FLUFL reinstates the <> diamond operator as the sole spelling.
-- There were more things that Uncle Barry had to share in the PEP; you can read them [here](https://www.python.org/dev/peps/pep-0401/).
-- It works well in an interactive environment, but it will raise a `SyntaxError` when you run via python file (see this [issue](https://github.com/satwikkansal/wtfpython/issues/94)). However, you can wrap the statement inside an `eval` or `compile` to get it working,
+  > Nhận ra rằng kí hiệu toán tử so sánh không bằng != trong Python 3.0 thấy gớm, gõ thật khó, FLUFL khôi phục lại kí hiệu hình kim cương <>.
+- Bạn nhiều thứ đáng xem trong PEP này; bạn có thể đọc chúng [ở đây]
+(https://www.python.org/dev/peps/pep-0401/).
+- Toán tử hình kim cương này hoạt động tốt trong môi trường tương tác, nhưng lại gây ra ngoại lệ `SyntaxError` khi chạy qua file python (hãy xem [vấn đề](https://github.com/satwikkansal/wtfpython/issues/94)). Tuy nhiên bạn có thể gói câu lệnh này vào trong hàm `eval` hoặc `compile` để chạy được.
     ```py
     from __future__ import barry_as_FLUFL
     print(eval('"Ruby" <> "Python"'))
