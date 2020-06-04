@@ -2747,23 +2747,23 @@ Trước Python 3.5, giá trị luận lý cho đối tượng `datetime.time` �
 
 ## Section: The Hidden treasures!
 
-This section contains a few lesser-known and interesting things about Python that most beginners like me are unaware of (well, not anymore).
+Phần này bao gồm những điều ít được biết tới về Python, những điều hấp dẫn này hầu hết những người mới bắt đầu như tôi đều không biết
 
 ### ▶ Okay Python, Can you make me fly?
 <!-- Example ID: a92f3645-1899-4d50-9721-0031be4aec3f --->
-Well, here you go
+Hãy bắt đầu nào
 
 ```py
 import antigravity
 ```
 
-**Output:**
-Sshh... It's a super-secret.
+**Kết quả:**
+Sshh... Một bí mật lớn.
 
-#### 💡 Explanation:
-+ `antigravity` module is one of the few easter eggs released by Python developers.
-+ `import antigravity` opens up a web browser pointing to the [classic XKCD comic](http://xkcd.com/353/) about Python.
-+ Well, there's more to it. There's **another easter egg inside the easter egg**. If you look at the [code](https://github.com/python/cpython/blob/master/Lib/antigravity.py#L7-L17), there's a function defined that purports to implement the [XKCD's geohashing algorithm](https://xkcd.com/426/).
+#### 💡 Giải thích:
++ `antigravity` là một trong vài quả trứng phục sinh được tạo ra bởi các lập trình viên Python 
++ `import antigravity` mở trang web [truyện hài XKCD ](http://xkcd.com/353/) trong một trình duyệt.
++ Còn nhiều hơn thế nữa. Có các **quả trứng phục sinh khác bên trong quả trứng phục sinh**. Nếu bạn xem đoạn [mã] (https://github.com/python/cpython/blob/master/Lib/antigravity.py#L7-L17), có một hàm được định nghĩa để triển khai [Giải thuật geohashing của XKCD] 
 
 ---
 
