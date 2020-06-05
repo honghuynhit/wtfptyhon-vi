@@ -3014,9 +3014,8 @@ Ellipsis
 
 ### ▶ Inpinity
 <!-- Example ID: ff473ea8-a3b1-4876-a6f0-4378aff790c1 --->
-The spelling is intended. Please, don't submit a patch for this.
-
-**Output (Python 3.x):**
+Việc viết sai chính tả là chủ ý.
+**Kết quả (Python 3.x):**
 ```py
 >>> infinity = float('infinity')
 >>> hash(infinity)
@@ -3025,10 +3024,9 @@ The spelling is intended. Please, don't submit a patch for this.
 -314159
 ```
 
-#### 💡 Explanation:
-- Hash of infinity is 10⁵ x π.
-- Interestingly, the hash of `float('-inf')` is "-10⁵ x π" in Python 3, whereas "-10⁵ x e" in Python 2.
-
+#### 💡 Giải thích:
+- Mã băm của vô cực là 10⁵ x π.
+- Thú vị là ở chỗ trong Python 3 mã băm của `float('-inf')` là "-10⁵ x π", trái lại trong Python là "-10⁵ x e"
 ---
 
 ### ▶ Let's mangle
