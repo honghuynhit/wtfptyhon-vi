@@ -3191,27 +3191,25 @@ def square(x):
   return sum_so_far
 ```
 
-**Output (Python 2.x):**
+**Kết quả (Python 2.x):**
 
 ```py
 >>> square(10)
 10
 ```
 
-Shouldn't that be 100?
+Sao kết quả lại ra 100?
 
-**Note:** If you're not able to reproduce this, try running the file [mixed_tabs_and_spaces.py](/mixed_tabs_and_spaces.py) via the shell.
-
+**Chú ý:** Nếu bạn không thực hiện lại được ví dụ trên, chạy thử file [mixed_tabs_and_spaces.py](/mixed_tabs_and_spaces.py) thông qua shell.
 #### 💡 Explanation
 
-* **Don't mix tabs and spaces!** The character just preceding return is a "tab",  and the code is indented by multiple of "4 spaces" elsewhere in the example.
+* **Đừng trộn lẫn tabs và các khoảng trắng (spaces)!** Kí tự nằm phía trước lệnh return là một "tab", và đoạn mã ở đâu đó trong code được thụt lùi theo bội số của "4 khoảng trắng"
 * This is how Python handles tabs:
-  
-  > First, tabs are replaced (from left to right) by one to eight spaces such that the total number of characters up to and including the replacement is a multiple of eight <...>
-* So the "tab" at the last line of `square` function is replaced with eight spaces, and it gets into the loop.
-* Python 3 is kind enough to throw an error for such cases automatically.
-
-    **Output (Python 3.x):**
+* Đây là cách Python xử lý tabs:  
+  > Đầu tiên, tabs được thay thế (từ trái sang phải) bằng từ một tới tám khoảng trắng để cho tổng số lượng các kí tự (bao gồm cả kí tự thay thế) có giá trị là bội số của tám <...>
+* Do đó "tab" nằm ở dòng cuối của hàm `square` được thay thế bằng tám khoảng trắng, và nó đi vào nằm trong vòng lặp.
+* Python 3 sẽ văng ra một lỗi khi nó gặp phải các lỗi liên quan tới tabs và khoảng trắng.
+    **Kết quả (Python 3.x):**
     ```py
     TabError: inconsistent use of tabs and spaces in indentation
     ```
@@ -3222,7 +3220,7 @@ Shouldn't that be 100?
 ## Section: Miscellaneous
 
 
-### ▶ `+=` nhanh hơn
+### ▶ `+=` chạy nhanh hơn
 <!-- Example ID: bfd19c60-a807-4a26-9598-4912b86ddb36 --->
 
 ```py
