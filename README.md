@@ -3332,9 +3332,8 @@ Let's increase the number of iterations by a factor of 10.
 
 ### ▶ Minor Ones *
 <!-- Example ID: f885cb82-f1e4-4daa-9ff3-972b14cb1324 --->
-* `join()` is a string operation instead of list operation. (sort of counter-intuitive at first usage)
-
-  **💡 Explanation:** If `join()` is a method on a string, then it can operate on any iterable (list, tuple, iterators). If it were a method on a list, it'd have to be implemented separately by every type. Also, it doesn't make much sense to put a string-specific method on a generic `list` object API.
+* `join()` là một hàm dành cho string thay vì dành cho list. (nếu nhìn vào thì ta có thể thấy nó hơi ngược ngược)
+  **💡 Giải thích:** Nếu `join()` là một phương thức hoạt động với một string, khi đó nó cũng có thể làm việc được với bất cứ đối tượng có thể lặp khác (như list, tuple, iterators). Nếu nó là một phương thức hoạt động được trên list, thì nó phải được triển khai một cách tách biệt với mọi kiểu. Còn nữa, sẽ là không hợp lý để đặt một phương thức chỉ dành riêng cho string lên một đối tượng tổng quát `list`.
   
 * Few weird looking but semantically correct statements:
   + `[] = ()` is a semantically correct statement (unpacking an empty `tuple` into an empty `list`)
