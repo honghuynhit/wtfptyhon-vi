@@ -2903,10 +2903,7 @@ True
 ```
 
 #### 💡 Giải thích:
-
-* `this` module in Python is an easter egg for The Zen Of Python ([PEP 20](https://www.python.org/dev/peps/pep-0020)).
-* Module `this` trong Python là một quả trứng phục sinh cho Thiền của Python
-* And if you think that's already interesting enough, check out the implementation of [this.py](https://hg.python.org/cpython/file/c3896275c0f6/Lib/this.py). Interestingly, **the code for the Zen violates itself** (and that's probably the only place where this happens).
+* Module `this` trong Python là một quả trứng phục sinh cho Thiền của Python ([PEP 20](https://www.python.org/dev/peps/pep-0020)).
 * Và nếu bạn thấy nó hứng thú, hãy xem mã triển khai của [this.py](https://hg.python.org/cpython/file/c3896275c0f6/Lib/this.py). Hấp dẫn thay, **mã của Thiền lại vi phạm chính quy tắc thiền**
 * Nói về câu `love is not True or False; love is love`, mỉa mai thay câu nay tự thấy nó co nghĩa (nếu không, hay xnhinf cá ví dụ liên quan tới `is` và `is not`)
 ---
