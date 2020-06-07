@@ -3393,14 +3393,14 @@ Bây giờ tăng số vòng lặp lên 10 lần
 
      **💡 Giải thích:** Phép tính `@` được thêm vào Python 3.5 với sự chú ý dành cho cộng đồng khoa học. Bất cứ đối tượng nào cũng có thể ghi đè lên phương thức ma thuật (magic method)  `__matmul__` để định nghĩa hành vi cho phép tính..
 
-* From Python 3.8 onwards you can use a typical f-string syntax like `f'{some_var=}` for quick debugging. Example,
+* Từ Python 3.8 trở đi bạn có thể sử dụng cú pháp f-string như `f'{some_var=}` để debugging cho dễ. Ví dụ
     ```py
     >>> some_string = "wtfpython"
     >>> f'{some_string=}'
     "some_string='wtfpython'"
     ``` 
 
-* Python uses 2 bytes for local variable storage in functions. In theory, this means that only 65536 variables can be defined in a function. However, python has a handy solution built in that can be used to store more than 2^16 variable names. The following code demonstrates what happens in the stack when more than 65536 local variables are defined (Warning: This code prints around 2^18 lines of text, so be prepared!):
+* Python sử dụng 2 bytes cho lưu trữ biến cụ bộ trong các hàm. Về mặt lý thuyết, điều này có nghĩa là chỉ có 65536 biến có thể được định nghĩa trong một hàm. Tuy nhiên, Python có một giải pháp khéo léo, tích hợp sẵn để lưu nhiều hơn 2^16 tên biến. Đoạn code phía dưới cho ta thấy điều gì xảy ra trong stack khi có nhiều hơn 65536 biến cục bộ được định nghĩa (Cảnh báo: đoạn mã này in ra 2^18 dòng văn bản, hảy chuẩn bị!):
      
      ```py
      import dis
@@ -3414,9 +3414,7 @@ Bây giờ tăng số vòng lặp lên 10 lần
     print(dis.dis(f))
     ```
      
-* Multiple Python threads won't run your *Python code* concurrently (yes, you heard it right!). It may seem intuitive to spawn several threads and let them execute your Python code concurrently, but, because of the [Global Interpreter Lock](https://wiki.python.org/moin/GlobalInterpreterLock) in Python, all you're doing is making your threads execute on the same core turn by turn. Python threads are good for IO-bound tasks, but to achieve actual parallelization in Python for CPU-bound tasks, you might want to use the Python [multiprocessing](https://docs.python.org/2/library/multiprocessing.html) module.
-
-* Sometimes, the `print` method might not print values immediately. For example,
+* Nhiều Python threads sẽ không chạy *Python code* đồng thời. ó vẻ tự nhiên khi sinh ra một số luồng và để nó chạy code Python của bạn đồng thời, nhưng bởi vì [Khoá trình thông dịch toàn cục](https://wiki.python.org/moin/GlobalInterpreterLock) trong Python, tất cả những gì bạn làm là làm cho các luồng của bạn thực thi trên cùng một core theo thứ tự. Các luồng Python rất tốt cho các tác vị liên quan tới IO, nhưng để đạt được việc xử lý song song trong Python cho các tác vụ gắn với CPY, bạn có thể sử dụng module [multiprocessing](https://docs.python.org/2/library/multiprocessing.html) 
 
      ```py
      # File some_file.py
