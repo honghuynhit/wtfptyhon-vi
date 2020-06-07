@@ -2290,12 +2290,12 @@ SyntaxError: invalid syntax
      print("Caught again!")
      print(e)
   ```
-  **Output (Python 2.x):**
+  **Kết  (Python 2.x):**
   ```
   Caught again!
   list.remove(x): x not in list
   ```
-  **Output (Python 3.x):**
+  **Kết quả (Python 3.x):**
   ```py
     File "<input>", line 4
       except (IndexError, ValueError), e:
@@ -2303,7 +2303,6 @@ SyntaxError: invalid syntax
   IndentationError: unindent does not match any outer indentation level
   ```
 
-* Separating the exception from the variable with a comma is deprecated and does not work in Python 3; the correct way is to use `as`. Example,
 * Tách biệt ngoại lệ với biến dùng dấu phẩy đã khôn còn được áp dụng nữa và khi viết như vậy thi code sẽ không chạy trong Python 3; Cách làm đúng là sử dụng `as`. Ví dụ, 
   ```py
   some_list = [1, 2, 3]
@@ -3124,7 +3123,6 @@ Cái quái gì thế?
 
 #### 💡 Giải thích
 
-Some non-Western characters look identical to letters in the English alphabet but are considered distinct by the interpreter.
 Một vài kí tự không phải là kí tự phương tây trông giống như các kí tự trong bảng chữ cái tiếng Anh nhưng lại được diễn giải khác bởi trình thông idhcj
 ```py
 >>> ord('е') # Kí tự cyrillic 'e' (Ye)
@@ -3272,9 +3270,7 @@ def convert_list_to_string(l, iters):
 **Kết quả:**
 
 ```py
-# Executed in ipython shell using %timeit for better readability of results.
 # Chạy các đoạn lệnh trong ipython shell sử dung %timeit để có kết quả dễ đọc hơn
-# You can also use the timeit module in normal python shell/scriptm=, example usage below
 # Bạn cũng có thể sử dụng module timeit trong python shell bình thường, như ví dụ dưới đây
 # timeit.timeit('add_string_with_plus(10000)', number=1000, globals=globals())
 
@@ -3292,7 +3288,6 @@ def convert_list_to_string(l, iters):
 10.1 µs ± 1.06 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
 ```
 
-Let's increase the number of iterations by a factor of 10.
 Bây giờ tăng số vòng lặp lên 10 lần
 ```py
 >>> NUM_ITERS = 10000
@@ -3339,12 +3334,11 @@ Bây giờ tăng số vòng lặp lên 10 lần
   **💡 Giải thích:** Nếu `join()` là một phương thức hoạt động với một string, khi đó nó cũng có thể làm việc được với bất cứ đối tượng có thể lặp khác (như list, tuple, iterators). Nếu nó là một phương thức hoạt động được trên list, thì nó phải được triển khai một cách tách biệt với mọi kiểu. Còn nữa, sẽ là không hợp lý để đặt một phương thức chỉ dành riêng cho string lên một đối tượng tổng quát `list`.
   
 * Few weird looking but semantically correct statements:
-  + `[] = ()` is a semantically correct statement (unpacking an empty `tuple` into an empty `list`)
   + `[] = ()` vẫn đúng về mặt ngữ nghĩa (Giải nén một `tuple` rỗng sẽ tạo ra một `list` rỗng)
-  + `'a'[0][0][0][0][0]` is also a semantically correct statement as strings are [sequences](https://docs.python.org/3/glossary.html#term-sequence)(iterables supporting element access using integer indices) in Python.
-  + `3 --0-- 5 == 8` and `--5 == 5` are both semantically correct statements and evaluate to `True`.
+  + `'a'[0][0][0][0][0]` cũng đúng về ngữ nghĩa bởi các strings là các [chuỗi](https://docs.python.org/3/glossary.html#term-sequence) (các đối tượng có thể lặp hỗ trợ truy cập và các phần tử nó chứa sử dụng các chỉ số số nguyên) trong Python.
+  + Cả `3 --0-- 5 == 8` và `--5 == 5` đều đúng về ngữ nghĩa và cho ra kết quả là `True`.
 
-* Given that `a` is a number, `++a` and `--a` are both valid Python statements but don't behave the same way as compared with similar statements in languages like C, C++, or Java.
+* Với `a` là một số, `++a` và `--a` đều là các câu lệnh Python hợp lệ nhưng chúng không chạy giống như các câu lệnh tương tự trong các ngôn ngữ khác như C, C++, hay Java.
   ```py
   >>> a = 5
   >>> a
@@ -3356,24 +3350,24 @@ Bây giờ tăng số vòng lặp lên 10 lần
   ```
 
   **💡 Giải thích:**
-  + There is no `++` operator in Python grammar. It is actually two `+` operators.
-  + `++a` parses as `+(+a)` which translates to `a`. Similarly, the output of the statement `--a` can be justified.
-  + This StackOverflow [thread](https://stackoverflow.com/questions/3654830/why-are-there-no-and-operators-in-python) discusses the rationale behind the absence of increment and decrement operators in Python.
+  + Trong Python, không có phép `++`. Thực ra nó chỉ là hai phép tính  `+`.
+  + `++a` được phân tích như  `+(+a)` và được dịch ra là `a`. Tương tự là `--a`.
+  + [Bài đăng](https://stackoverflow.com/questions/3654830/why-are-there-no-and-operators-in-python) trên StackOverflow thảo luận lý do tại sao không có các phép tính tăng và giảm trong Python.
 
-* You must be aware of the Walrus operator in Python. But have you ever heard about *the space-invader operator*?
+* Bạn phải biết về kí hiệu con hà mã trong Python. Nhưng bạn có bao giờ nghe tới *kí hiệu xâm lược không gian*?
   ```py
   >>> a = 42
   >>> a -=- 1
   >>> a
   43
   ```
-  It is used as an alternative incrementation operator, together with another one
+  Nó được sử dụng như phép tính tăng, như với một ví dụ khác sau đây
   ```py
   >>> a +=+ 1
   >>> a
   >>> 44
   ```
-  **💡 Explanation:** This prank comes from [Raymond Hettinger's tweet](https://twitter.com/raymondh/status/1131103570856632321?lang=en). The space invader operator is actually just a malformatted `a -= (-1)`. Which is equivalent to `a = a - (- 1)`. Similar for the `a += (+ 1)` case.
+  **💡 Giải thích:** Trò chơi khăm này xuất phát từ [Raymond Hettinger's tweet](https://twitter.com/raymondh/status/1131103570856632321?lang=en). Kí hiệu xâm lược không gian chỉ được định dạng khác đi là `a -= (-1)`. Tương tự với `a = a - (- 1)`. Tương tự với trường hợp `a += (+ 1)`.
   
 * Python has an undocumented [converse implication](https://en.wikipedia.org/wiki/Converse_implication) operator. 
      
