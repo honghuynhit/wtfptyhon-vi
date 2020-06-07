@@ -3333,7 +3333,7 @@ Bây giờ tăng số vòng lặp lên 10 lần
 * `join()` là một hàm dành cho string thay vì dành cho list. (nếu nhìn vào thì ta có thể thấy nó hơi ngược ngược)
   **💡 Giải thích:** Nếu `join()` là một phương thức hoạt động với một string, khi đó nó cũng có thể làm việc được với bất cứ đối tượng có thể lặp khác (như list, tuple, iterators). Nếu nó là một phương thức hoạt động được trên list, thì nó phải được triển khai một cách tách biệt với mọi kiểu. Còn nữa, sẽ là không hợp lý để đặt một phương thức chỉ dành riêng cho string lên một đối tượng tổng quát `list`.
   
-* Few weird looking but semantically correct statements:
+* Các câu lệnh dưới đây nhìn có vẻ lạ, nhưng đúng về ngữ nghĩa:
   + `[] = ()` vẫn đúng về mặt ngữ nghĩa (Giải nén một `tuple` rỗng sẽ tạo ra một `list` rỗng)
   + `'a'[0][0][0][0][0]` cũng đúng về ngữ nghĩa bởi các strings là các [chuỗi](https://docs.python.org/3/glossary.html#term-sequence) (các đối tượng có thể lặp hỗ trợ truy cập và các phần tử nó chứa sử dụng các chỉ số số nguyên) trong Python.
   + Cả `3 --0-- 5 == 8` và `--5 == 5` đều đúng về ngữ nghĩa và cho ra kết quả là `True`.
@@ -3369,7 +3369,7 @@ Bây giờ tăng số vòng lặp lên 10 lần
   ```
   **💡 Giải thích:** Trò chơi khăm này xuất phát từ [Raymond Hettinger's tweet](https://twitter.com/raymondh/status/1131103570856632321?lang=en). Kí hiệu xâm lược không gian chỉ được định dạng khác đi là `a -= (-1)`. Tương tự với `a = a - (- 1)`. Tương tự với trường hợp `a += (+ 1)`.
   
-* Python has an undocumented [converse implication](https://en.wikipedia.org/wiki/Converse_implication) operator. 
+* Python có một tài liệu về phép [hàm ý đảo ngược](https://en.wikipedia.org/wiki/Converse_implication). 
      
      ```py
      >>> False ** False == True
@@ -3382,17 +3382,16 @@ Bây giờ tăng số vòng lặp lên 10 lần
      True
      ```
 
-     **💡 Explanation:** If you replace `False` and `True` by 0 and 1 and do the maths, the truth table is equivalent to a converse implication operator. ([Source](https://github.com/cosmologicon/pywat/blob/master/explanation.md#the-undocumented-converse-implication-operator))
+     **💡 Giải thích:** Nếu bạn thay thế `False` và `True` bằng 0 và 1 và sau đó làm các phép toán, bảng chân trị tương đương với phép ám chỉ ngược. ([Nguồn](https://github.com/cosmologicon/pywat/blob/master/explanation.md#the-undocumented-converse-implication-operator))
      
-* Since we are talking operators, there's also `@` operator for matrix multiplication (don't worry, this time it's for real).
-
+* Do chúng ta đang bàn về các phép tính, cũng có phép `@` dành cho việc nhân ma trận (đừng lo, đây là phép tính thực sự)
      ```py
      >>> import numpy as np
      >>> np.array([2, 2, 2]) @ np.array([7, 8, 8])
      46
      ```
 
-     **💡 Explanation:** The `@` operator was added in Python 3.5 keeping the scientific community in mind. Any object can overload `__matmul__` magic method to define behavior for this operator.
+     **💡 Giải thích:** Phép tính `@` được thêm vào Python 3.5 với sự chú ý dành cho cộng đồng khoa học. Bất cứ đối tượng nào cũng có thể ghi đè lên phương thức ma thuật (magic method)  `__matmul__` để định nghĩa hành vi cho phép tính..
 
 * From Python 3.8 onwards you can use a typical f-string syntax like `f'{some_var=}` for quick debugging. Example,
     ```py
@@ -3459,7 +3458,7 @@ Bây giờ tăng số vòng lặp lên 10 lần
      4027435774
      ```
 
-* `'abc'.count('') == 4`. Here's an approximate implementation of `count` method, which would make the things more clear
+* `'abc'.count('') == 4`. Dưới đây là một cách triển khai gần tương tự với phương thức `count`, ví dụ này sẽ làm mọi thứ rõ ràng hơn
   ```py
   def count(s, sub):
       result = 0
@@ -3467,8 +3466,7 @@ Bây giờ tăng số vòng lặp lên 10 lần
           result += (s[i:i + len(sub)] == sub)
       return result
   ```
-  The behavior is due to the matching of empty substring(`''`) with slices of length 0 in the original string.
-
+  Cư xử của hàm trên là do việc so khớp các chuỗi con (substring) rỗng với các lát cắt có độ dài bằng 0 trong string gốc. 
 ---
 ---
 
