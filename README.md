@@ -2959,7 +2959,7 @@ def some_func():
     Ellipsis
 ```
 
-**Output**
+**Kết quả**
 ```py
 >>> some_func()
 # No output, No Error
@@ -2973,14 +2973,15 @@ NameError: name 'SomeRandomString' is not defined
 Ellipsis
 ```
 
-#### 💡 Explanation
-- In Python, `Ellipsis` is a globally available built-in object which is equivalent to `...`.
+#### 💡 Giải thích
+- Trong Python, `Ellipsis` là một đối tượng có sẵn, toàn cục tương đương với  `...`.
     ```py
     >>> ...
     Ellipsis
     ```
-- Eliipsis can be used for several purposes,
-    + As a placeholder for code that hasn't been written yet (just like `pass` statement)
+- Eliipsis có thể được sử dụng cho các mục đích sau
+    + Là một đối tượng "xí chỗ" cho mã chưa được viết (như câu lệnh `pass`)
+    + Trong cú pháp lát cắt (slicing syntax), nó được dùng để biểu diễn các lát cắt đầy đủ theo hướng còn lại
     + In slicing syntax to represent the full slices in remaining direction
     ```py
     >>> import numpy as np
@@ -2997,7 +2998,7 @@ Ellipsis
         ]
     ])
     ```
-    So our `three_dimensional_array` is an array of array of arrays. Let's say we want to print the second element (index `1`) of all the innermost arrays, we can use Ellipsis to bypass all the preceding dimensions
+    `three_dimensional_array` là một mảng của mảng của các mảng. Nào, chúng ta muốn in ra phần tử thứ hai (chỉ số `1`) của tất cả các mảng phía trong cùng, chugns ta có thể sử dụng Ellipsis để "chơi chiêu qua mặt" (bypass) tất cả các chiều (dimensions) phía trước đó.
     ```py
     >>> three_dimensional_array[:,:,1]
     array([[1, 3],
@@ -3006,9 +3007,9 @@ Ellipsis
     array([[1, 3],
        [5, 7]])
     ```
-    Note: this will work for any number of dimensions. You can even select slice in first and last dimension and ignore the middle ones this way (`n_dimensional_array[firs_dim_slice, ..., last_dim_slice]`)
-    + In [type hinting](https://docs.python.org/3/library/typing.html) to indicate only a part of the type (like `(Callable[..., int]` or `Tuple[str, ...]`))
-    + You may also use Ellipsis as a default function argument (in the cases when you want to differentiate between the "no argument passed" and "None value passed" scenarios).
+    Chú ý rằng: cách trên có thể thực trên bất cứ mảng với số lượng chiều nào. Bạn có thể lựa trên lát cắt (slice) trước và chiều cuối cùng và lờ đi các chiều nằm ở giữa (`n_dimensional_array[firs_dim_slice, ..., last_dim_slice]`)
+    + Trong [Gợi ý kiểu](https://docs.python.org/3/library/typing.html), Ellipsis được dùng để chỉ ra một phần của kiểu (như là `(Callable[..., int]` hay `Tuple[str, ...]`))
+    + Bạn có thể sử dụng Ellipsis như là một tham số hàm mặc định (trong những trường hợp bạn muốn phân biệt giữa hai tính huống "không có tham số được truyền vào") và "giá trị None được truyền vào"
 
 ---
 
