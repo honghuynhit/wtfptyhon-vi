@@ -3272,7 +3272,9 @@ def convert_list_to_string(l, iters):
 
 ```py
 # Executed in ipython shell using %timeit for better readability of results.
+# Chạy các đoạn lệnh trong ipython shell sử dung %timeit để có kết quả dễ đọc hơn
 # You can also use the timeit module in normal python shell/scriptm=, example usage below
+# Bạn cũng có thể sử dụng module timeit trong python shell bình thường, như ví dụ dưới đây
 # timeit.timeit('add_string_with_plus(10000)', number=1000, globals=globals())
 
 >>> NUM_ITERS = 1000
@@ -3290,7 +3292,7 @@ def convert_list_to_string(l, iters):
 ```
 
 Let's increase the number of iterations by a factor of 10.
-
+Bây giờ tăng số vòng lặp lên 10 lần
 ```py
 >>> NUM_ITERS = 10000
 >>> %timeit -n1000 add_string_with_plus(NUM_ITERS) # Linear increase in execution time
@@ -3306,12 +3308,12 @@ Let's increase the number of iterations by a factor of 10.
 86.3 µs ± 2 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)
 ```
 
-#### 💡 Explanation
-- You can read more about [timeit](https://docs.python.org/3/library/timeit.html) or [%timeit](https://ipython.org/ipython-doc/dev/interactive/magics.html#magic-timeit) on these links. They are used to measure the execution time of code pieces.
-- Don't use `+` for generating long strings — In Python, `str` is immutable, so the left and right strings have to be copied into the new string for every pair of concatenations. If you concatenate four strings of length 10, you'll be copying (10+10) + ((10+10)+10) + (((10+10)+10)+10) = 90 characters instead of just 40 characters. Things get quadratically worse as the number and size of the string increases (justified with the execution times of `add_bytes_with_plus` function)
-- Therefore, it's advised to use `.format.` or `%` syntax (however, they are slightly slower than `+` for very short strings).
-- Or better, if already you've contents available in the form of an iterable object, then use `''.join(iterable_object)` which is much faster.
-- Unlike `add_bytes_with_plus` because of the `+=` optimizations discussed in the previous example, `add_string_with_plus` didn't show a quadratic increase in execution time. Had the statement been `s = s + "x" + "y" + "z"` instead of `s += "xyz"`, the increase would have been quadratic.
+#### 💡 Giải thích
+- Bạn có thể đọc thêm về [timeit] (https://docs.python.org/3/library/timeit.html) or [%timeit](https://ipython.org/ipython-doc/dev/interactive/magics.html#magic-timeit). Module này được sử dụng để đo thời gian chạy của các đoạn code.
+- Đừng dùng `+` để sinh ra các strings dài. Trong Python, `str` không thể thay đổi được giá trị, do đó các strings phía bên trái và phải phải được chép vào string mới cho mỗi cặp ghép string. Nếu bạn nối strings có độ dài là 10, bạn sẽ chép + ((10+10)+10) + (((10+10)+10)+10) = 90 kí tự thay vì chỉ 40 kí tự. Sẽ tệ hơn nữa khi số lượng và kích thước của string tăng (như bạn có thể thấy ở hàm `add_bytes_with_plus` )
+- Do đó, bên nên dùng `.format.` hay `%` (mặc dù các cách sử dụng này sẽ chậm hơn `+` đối với các strings nhỏ )
+- Hay tốt hơn nữa, nếu bạn đã có sẵn những nội dung ở dạng một đối tượng có thể lặp, khi đó sử dụng `''.join(iterable_object)` sẽ nhanh hơn. 
+- Không giống như `add_bytes_with_plus` với các tối ưu đến từ `+=` như đã thảo luận ở ví dụ trước đó, `add_string_with_plus` không cho thấy sự tăng cấp bậc hai về thời gian thưucj thi. Sử dụng `s = s + "x" + "y" + "z"` thay vì `s += "xyz"` sẽ làm tăng thời gian chạy lên hai lần..
   ```py
   def add_string_with_plus(iters):
       s = ""
@@ -3324,12 +3326,12 @@ Let's increase the number of iterations by a factor of 10.
   >>> %timeit -n100 add_string_with_plus(10000) # Quadratic increase in execution time
   9 ms ± 298 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
   ```
-- So many ways to format and create a giant string are somewhat in contrast to the [Zen of Python](https://www.python.org/dev/peps/pep-0020/), according to which,
   
-    > There should be one-- and preferably only one --obvious way to do it.
-
+- Có nhiều cách để định dạng và tạo một string khổng lồ, trái ngược với điều trong [Zen of Python](https://www.python.org/dev/peps/pep-0020/), như sau  
+    > Chỉ nên có một -- và tốt hơn là chỉ một -- cách rõ ràng để làm điều này.
 ---
 
+ 
 ### ▶ Minor Ones *
 <!-- Example ID: f885cb82-f1e4-4daa-9ff3-972b14cb1324 --->
 * `join()` là một hàm dành cho string thay vì dành cho list. (nếu nhìn vào thì ta có thể thấy nó hơi ngược ngược)
