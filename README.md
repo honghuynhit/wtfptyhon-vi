@@ -3424,28 +3424,28 @@ Bây giờ tăng số vòng lặp lên 10 lần
      time.sleep(3)
      ```
 
-     This will print the `wtfpython` after 3 seconds due to the `end` argument because the output buffer is flushed either after encountering `\n` or when the program finishes execution. We can force the buffer to flush by passing `flush=True` argument.
-
-* List slicing with out of the bounds indices throws no errors
+    Đoạn mã trên in ra `wtfpython` sau 3 seconds bởi vì tham số `end` bộ đệm kết quả được dọn sạch sau khi găp `\n` hoặc khi chương trình kết thúc thực thi. Bạn có thể bắt dọn sạch bộ đệm thông qua việc gửi vào tham số `flush=True`..
+ 
+* Cắt danh sách với các chỉ số nằm ngoài phạm vị sẽ không trả về lỗi
+* 
   ```py
   >>> some_list = [1, 2, 3, 4, 5]
   >>> some_list[111:]
   []
   ```
-
-* Slicing an iterable not always creates a new object. For example,
+* Cắt một đối tượng có thể lặp không phải lúc nào cũng tạo ra một đối tượng mới. Ví dụ,
     ```py
     >>> some_str = "wtfpython"
     >>> some_list = ['w', 't', 'f', 'p', 'y', 't', 'h', 'o', 'n']
-    >>> some_list is some_list[:] # False expected because a new object is created.
+    >>> some_list is some_list[:] # False là bởi vì một đối tượng mới được tạo
     False
-    >>> some_str is some_str[:] # True because strings are immutable, so making a new object is of not much use.
+    >>> some_str is some_str[:] # True là bởi vì các strings không thể thay đổi giá trị, do vậy không tạo ra một đối tượng mới khi cắt.
     True
     ```
 
-* `int('١٢٣٤٥٦٧٨٩')` returns `123456789` in Python 3. In Python, Decimal characters include digit characters, and all characters that can be used to form decimal-radix numbers, e.g. U+0660, ARABIC-INDIC DIGIT ZERO. Here's an [interesting story](http://chris.improbable.org/2014/8/25/adventures-in-unicode-digits/) related to this behavior of Python.
+* `int('١٢٣٤٥٦٧٨٩')` trả về `123456789` trong Python 3. Trong Python, các kí tự số thập phân bao gồm các kí tự số, và tất cả các kí tự có thể được dùng để tạo nên có số cơ số thập phân, ví dụ. U+0660, ARABIC-INDIC DIGIT ZERO. Đậy là  [một câu chuyện hấp dân](http://chris.improbable.org/2014/8/25/adventures-in-unicode-digits/) liên quan 
 
-* You can separate numeric literals with underscores (for better readability) from Python 3 onwards.
+* Bạn có thể ngăn cách các số đơn với dấu gạch chân (để đọc dễ hơn), từ Python 3 trở đi.
 
      ```py
      >>> six_million = 6_000_000
