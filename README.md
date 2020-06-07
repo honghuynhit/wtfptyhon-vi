@@ -3337,6 +3337,7 @@ Let's increase the number of iterations by a factor of 10.
   
 * Few weird looking but semantically correct statements:
   + `[] = ()` is a semantically correct statement (unpacking an empty `tuple` into an empty `list`)
+  + `[] = ()` vẫn đúng về mặt ngữ nghĩa (Giải nén một `tuple` rỗng sẽ tạo ra một `list` rỗng)
   + `'a'[0][0][0][0][0]` is also a semantically correct statement as strings are [sequences](https://docs.python.org/3/glossary.html#term-sequence)(iterables supporting element access using integer indices) in Python.
   + `3 --0-- 5 == 8` and `--5 == 5` are both semantically correct statements and evaluate to `True`.
 
