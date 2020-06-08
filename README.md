@@ -1231,8 +1231,7 @@ True
     >>> print(r"\\n")
     '\\\\n'
     ```
-- This means when a parser encounters a backslash in a raw string, it expects another character following it. And in our case (`print(r"\")`), the backslash escaped the trailing quote, leaving the parser without a terminating quote (hence the `SyntaxError`). That's why backslashes don't work at the end of a raw string.
-- Có nghĩa là khi một trình phân tích cú pháp gặp một dấu xuyệc ngược tron một string thô, trình này mong đợi một kí tự khác phía sau nó. Và tron trường hợp `print(r"\")`, dấu xuyêcj ngược escape dấu trích dẫn ở đuôi, DỊCH LẠI
+- Có nghĩa là khi một trình phân tích cú pháp gặp một dấu xuyệc ngược tron một string thô, trình này mong đợi một kí tự khác phía sau nó. Và tron trường hợp của chúng ta `print(r"\")`, dấu xuyệc ngược vô hiệu hoá (escape) dấu trích dẫn ở đuôi, để lại cho trình thông dịch xử lý mà không có dấu trích dẫn kết thúc (do đó gây ra lỗi về cú pháp `SyntaxError`). Đó là lý do tại  sao các dấu xuyệc ngược không chạy được khi ở cuối một string thô.
 
 ---
 
@@ -2263,14 +2262,14 @@ except IndexError, ValueError:
     print("Caught again!")
 ```
 
-**Output (Python 2.x):**
+**Kết quả (Python 2.x):**
 ```py
 Caught!
 
 ValueError: list.remove(x): x not in list
 ```
 
-**Output (Python 3.x):**
+**Kết quả (Python 3.x):**
 ```py
   File "<input>", line 3
     except IndexError, ValueError:
@@ -2290,7 +2289,7 @@ SyntaxError: invalid syntax
      print("Caught again!")
      print(e)
   ```
-  **Kết  (Python 2.x):**
+  **Kết quả (Python 2.x):**
   ```
   Caught again!
   list.remove(x): x not in list
