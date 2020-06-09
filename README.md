@@ -2175,12 +2175,11 @@ print(x, ': x in global')
 
 #### 💡 Giải thích:
 
-- In Python, for-loops use the scope they exist in and leave their defined loop-variable behind. This also applies if we explicitly defined the for-loop variable in the global namespace before. In this case, it will rebind the existing variable.
+- Trong Python, vòng lặp for sử dụng phạm vi mà chúng tồn tại bên trong và để biến lặp (loop-variable) đã được định nghĩa của chúng đằng sau. Điều này cũng áp dụng khi chúng ta định nghĩa rõ biến lặp trong không gian tên toàn cục trước đó. Trong trường hợp này vòng lặp sẽ gắn lại biến đã tồn tại. 
 
-- Trong Python, vòng lặp for sử dụng 
-- The differences in the output of Python 2.x and Python 3.x interpreters for list comprehension example can be explained by following change documented in [What’s New In Python 3.0](https://docs.python.org/3/whatsnew/3.0.html) changelog:
+- Sự khác nhau giữa kết quả của trình thông dịch Python 2.x và Python 3.x liên quan tới ví dụ list comprehension có thể được giải thích bằng tài liệu [Những điều mới trong Python 3.0](https://docs.python.org/3/whatsnew/3.0.html):
 
-    > "List comprehensions no longer support the syntactic form `[... for var in item1, item2, ...]`. Use `[... for var in (item1, item2, ...)]` instead. Also, note that list comprehensions have different semantics: they are closer to syntactic sugar for a generator expression inside a `list()` constructor, and in particular, the loop control variables are no longer leaked into the surrounding scope."
+    > "List comprehensions không còn hỗ trợ dạng cú pháp `[... for var in item1, item2, ...]`. Hãy Sử dụng `[... for var in (item1, item2, ...)]`. Còn nữa, chú ý rằng list comprehensions có các ngữ nghĩa khác nhau: chúng khá gần với cú pháp đặc biệt của một biểu diễn generator bên trong hàm xây dựng `list()` , và cụ thể là,  các biến điều khiển vòng lặp không còn bị rò rỉ (leaked) trong phạm vi xung quanh"
 
 ---
 
