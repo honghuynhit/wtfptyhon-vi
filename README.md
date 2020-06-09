@@ -1848,26 +1848,24 @@ a, b = a[b] = {}, 5
 
 #### 💡 Giải thích:
 
-* Dựa trên [Python language reference](https://docs.python.org/2/reference/simple_stmts.html#assignment-statements), các câu lệnh gán sẽ có cách khai báo như sau
+* Dựa trên [nguồn tham khảo ngôn ngữ Python](https://docs.python.org/2/reference/simple_stmts.html#assignment-statements), các câu lệnh gán sẽ có cách khai báo như sau
   ```
   (target_list "=")+ (expression_list | yield_expression)
   ```
   và
+Một câu lệnh gán đánh giá một danh sách biểu diễn(nhớ rằng đây có thể là một biểu diễn đơn lẻ hoặc một danh sách các biểu diễn được phân cách bởi dấu phẩy, đối với trường hợp phía sau thì sainh ra một tuple) và gán đối tượng kết quả đơn cho mỗi một danh sách mục tiêu, từ trái sang phải. 
 
 
-> Câu lệnh gán thực thi  (remember that this can be a single expression or a comma-separated list, the latter yielding a tuple) and assigns the single resulting object to each of the target lists, from left to right.
+* Toán tử `+` trong `(target_list "=")+` có nghĩa là có thể có **một hay nhiều** danh sách mục tiêu (target lists). Trong trường hợp này, các danh sách mục tiêu là `a, b` và `a[b]` (chú ý là danh sách biểu diễn chỉ có chính xác một, trong trường hợp của chúng ta là `{}, 5`)
 
-* The `+` in `(target_list "=")+` means there can be **one or more** target lists. In this case, target lists are `a, b` and `a[b]` (note the expression list is exactly one, which in our case is `{}, 5`).
 
-* Phép `+` trong `(target_list "=")+` có nghĩa là có thể có **một hay nhiều hơn** các danh sách mục tiêu. Trong trường hợp này, các danh sách mục tiêu đó là `a, b` và `a[b]` (chú ý rằng c)
+* Sau khi biểu diễn danh sách được đánh giá, giá trị của nó được giải nén thành các danh sách được giải nén thành các danh sách mục tiêu từ **trái sang phải**. Do đó, trong trường hợp của chúng ta, đầu tiên tuple `{}, 5` được giải nén ra `a, b` và chúng ta có `a = {}` và `b = 5`.
 
-* After the expression list is evaluated, its value is unpacked to the target lists from **left to right**. So, in our case, first the `{}, 5` tuple is unpacked to `a, b` and we now have `a = {}` and `b = 5`.
+* `a` được gán cho `{}`, đây là một đối tượng có thể thay đổi được giá trị (mutable object).
 
-* `a` is now assigned to `{}`, which is a mutable object.
+* Danh sách mục tiêu thứ hai là `a[b]` (bạn có thể có thể nghĩ ta sẽ gặp một lỗi bởi vì cả `a` và `b` đều chưa được định nghĩa trong các câu lệnh trước đó. Nhưng nhớ rằng, chúng ta đã gán `a` bằng `{}` và `b` bằng `5`).
 
-* The second target list is `a[b]` (you may expect this to throw an error because both `a` and `b` have not been defined in the statements before. But remember, we just assigned `a` to `{}` and `b` to `5`).
-
-* Now, we are setting the key `5` in the dictionary to the tuple `({}, 5)` creating a circular reference (the `{...}` in the output refers to the same object that `a` is already referencing). Another simpler example of circular reference could be
+* Bây giờ, chúng ta thiết lập khoá `5` trong từ điển với giá trị là tuple `({}, 5)` tạo ra một tham chiếu vòng tròn (`{...}` trong kết quả trỏ tới cùng một đối tượng mà `a` đã đang tham chiếu). Một ví dụ đơn giản hơn về tham chiếu vòng tròn là
   ```py
   >>> some_list = some_list[0] = [0]
   >>> some_list
@@ -1879,14 +1877,14 @@ a, b = a[b] = {}, 5
   >>> some_list[0][0][0][0][0][0] == some_list
   True
   ```
-  Similar is the case in our example (`a[b][0]` is the same object as `a`)
+ Tương tự là trong ví dụ của chúng ta (`a[b][0]` là cùng đối tượng với `a`)
 
-* So to sum it up, you can break the example down to
+* Tổng kết lại, bạn có thể chia ví dụ này ra
   ```py
   a, b = {}, 5
   a[b] = a, b
   ```
-  And the circular reference can be justified by the fact that `a[b][0]` is the same object as `a`
+  Và tham chiếu vòng có thể được biện hộ bởi một điều là `a[b][0]` là đối tượng giống  `a`
   ```py
   >>> a[b][0] is a
   True
