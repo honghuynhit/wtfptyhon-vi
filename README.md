@@ -168,7 +168,6 @@ $ wtfpython
 <!-- Example ID: d3d73936-3cf1-4632-b5ab-817981338863 -->
 <!-- read-only -->
 
-For some reason, the Python 3.8's "Walrus" operator (`:=`) has become quite popular. Let's check it out,
 Kí hiệu "con hà mã" ("Walrus" operator), được giới thiệu trong phiên bản Python 3.8 đã trở nên khá phổ biến vì một vài lý do. Hãy thử qua nó xem
 1\.
 
