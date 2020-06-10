@@ -10,7 +10,7 @@
 
 Các bản dịch tiếng nước ngoài khác: [Tiếng Trung 中文](https://github.com/leisurelicht/wtfpython-cn) | [Thêm bản dịch](https://github.com/satwikkansal/wtfpython/issues/new?title=Add%20translation%20for%20[LANGUAGE]&body=Expected%20time%20to%20finish:%20[X]%20weeks.%20I%27ll%20start%20working%20on%20it%20from%20[Y].)
 
-Bạn có thể tham khảo các đoạn mã với: [Chế độ trực quan](https://colab.research.google.com/github/satwikkansal/wtfpython/blob/master/irrelevant/wtf.ipynb) | [Giao diện dòng lệnh](https://pypi.python.org/pypi/wtfpython)
+Bạn có thể tham khảo các đoạn mã với: [Chế độ trực quan](https://colab.research.google.com/github/vuduclyunitn/wtfptyhon-vi/blob/master/irrelevant/wtf.ipynb) | [Giao diện dòng lệnh](https://pypi.python.org/pypi/wtfpython)
 
 
 Python là một ngôn ngữ cấp cao, với các mã được thông dịch thay vì biên dịch như các ngôn ngữ khác như C hay Java. Python có rất nhiều các tính năng giúp việc lập trình dễ dàng, thuận tiện. Tuy nhiên, các đoạn mã viết bằng Python thỉnh thoảng cho ra kết quả không rõ ràng, gây khó hiểu khi mới nhìn vào.
