@@ -1,6 +1,11 @@
 <p align="center"><img src="/images/logo.png" alt=""></p>
 <h1 align="center">What the f*ck Python! 😱</h1>
+<p align="center">
+<a href="https://github.com/satwikkansal/wtfpython">English</a>
+| <a href="#">Tiếng Việt</a>
+</p>
 <p align="center">Cùng khám phá và tìm hiểu Python thông qua các đoạn mã khiến bạn bất ngờ.</p>
+
 
 
 Các bản dịch tiếng nước ngoài khác: [Tiếng Trung 中文](https://github.com/leisurelicht/wtfpython-cn) | [Thêm bản dịch](https://github.com/satwikkansal/wtfpython/issues/new?title=Add%20translation%20for%20[LANGUAGE]&body=Expected%20time%20to%20finish:%20[X]%20weeks.%20I%27ll%20start%20working%20on%20it%20from%20[Y].)
