@@ -4,7 +4,7 @@ from the projects main README.
 
 PS: If you are a recruiter, please don't judge me by this piece of code. I wrote it
 in hurry. I know this is messy and can be simplified, but I don't want to change it
-much because it just works. 
+much because it just works.
 
 Simplifictions and improvements through patches are more than welcome however :)
 
@@ -36,7 +36,7 @@ HOSTED_NOTEBOOK_INSTRUCTIONS = """
 
 ## Hosted notebook instructions
 
-This is just an experimental attempt of browsing wtfpython through jupyter notebooks. Some examples are read-only because, 
+This is just an experimental attempt of browsing wtfpython through jupyter notebooks. Some examples are read-only because,
 - they either require a version of Python that's not supported in the hosted runtime.
 - or they can't be reproduced in the notebook envrinonment.
 
